@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Saver Sidekick</string>
+    <string name="welcome_message">Welcome to Saver Sidekick!</string>
+    <string name="next_button_text">Next</string>
+    <string name="earnings_activity_label">Earnings Activity</string>
+    <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
+    <string name="submit_button">Submit</string>
+    <string name="needs_and_obligations">Needs and obligations</string>
+    <string name="everything_else">Everything else</string>
+    <string name="savings_and_debt_repayment">Savings and debt repayment</string>
 </resources>
