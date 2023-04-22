@@ -26,6 +26,10 @@
             android:name=".EarningsActivity"
             android:label="@string/earnings_activity_label"
             android:exported="true" />
+        <activity
+            android:name=".GoalsActivity"
+            android:label="Goals"
+            android:exported="true" />
 
         <activity
             android:name=".HomePageActivity"
