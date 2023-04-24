@@ -5,7 +5,9 @@
     <string name="earnings_activity_label">Earnings Activity</string>
     <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
     <string name="submit_button">Submit</string>
-    <string name="needs_and_obligations">Needs and obligations</string>
-    <string name="everything_else">Everything else</string>
-    <string name="savings_and_debt_repayment">Savings and debt repayment</string>
+    <string name="necessities">Necessities</string>
+    <string name="wants">Wants</string>
+    <string name="savings">Savings</string>
+    <string name="goals">Goals</string>
+    <string name="your_earnings">Your Earnings:</string>
 </resources>

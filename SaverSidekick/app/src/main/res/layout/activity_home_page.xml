@@ -6,44 +6,109 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textViewNeeds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="600dp"
-        android:text="@string/needs_and_obligations"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSavings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="@string/savings_and_debt_repayment"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNeeds" />
-
-    <TextView
-        android:id="@+id/textViewEverythingElse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="@string/everything_else"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSavings" />
-
     <Button
         android:id="@+id/goalsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
-        android:text="Goals"
+        android:text="@string/goals"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="364dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goalsButton">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewNeeds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/necessities"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBarNecessities"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="182dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewWants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/wants"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBarWants"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="182dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewSavings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/savings"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBarSavings"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="182dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textViewEarnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="438dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/your_earnings"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

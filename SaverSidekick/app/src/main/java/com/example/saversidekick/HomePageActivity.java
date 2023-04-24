@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -19,8 +20,12 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Initialize the UI elements
         TextView textViewNeeds = findViewById(R.id.textViewNeeds);
-        TextView textViewEverythingElse = findViewById(R.id.textViewEverythingElse);
+        TextView textViewEverythingElse = findViewById(R.id.textViewWants);
         TextView textViewSavings = findViewById(R.id.textViewSavings);
+        TextView textViewEarnings = findViewById(R.id.textViewEarnings);
+        ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
+        ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
+        ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
 
         Button goalsButton = findViewById(R.id.goalsButton);
         goalsButton.setOnClickListener(view -> {
@@ -32,13 +37,19 @@ public class HomePageActivity extends AppCompatActivity {
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
 
         // Calculate the amounts for each category
-        double needsAndObligations = weeklyEarnings * 0.5;
-        double everythingElse = weeklyEarnings * 0.3;
-        double savingsAndDebtRepayment = weeklyEarnings * 0.2;
+        double necessities = weeklyEarnings * 0.5;
+        double wants = weeklyEarnings * 0.3;
+        double savings = weeklyEarnings * 0.2;
 
         // Update the UI with the calculated amounts
-        textViewNeeds.setText(String.format(Locale.US, "Needs and obligations: $%.2f", needsAndObligations));
-        textViewEverythingElse.setText(String.format(Locale.US, "Everything else: $%.2f", everythingElse));
-        textViewSavings.setText(String.format(Locale.US, "Savings and debt repayment: $%.2f", savingsAndDebtRepayment));
+        textViewNeeds.setText(String.format(Locale.US, "Necessities: $%.2f", necessities));
+        textViewEverythingElse.setText(String.format(Locale.US, "Wants: $%.2f", wants));
+        textViewSavings.setText(String.format(Locale.US, "Savings: $%.2f", savings));
+        textViewEarnings.setText((String.format(Locale.US, "Your Earnings: $%.2f", weeklyEarnings)));
+
+        progressBarNecessities.setProgress(50);
+        progressBarWants.setProgress(30);
+        progressBarSavings.setProgress(20);
+
     }
 }
