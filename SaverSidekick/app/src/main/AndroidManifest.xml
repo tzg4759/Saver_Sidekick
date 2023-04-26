@@ -32,6 +32,11 @@
             android:exported="true" />
 
         <activity
+            android:name=".CreateGoalActivity"
+            android:label="Create Goal"
+            android:exported="true" />
+
+        <activity
             android:name=".HomePageActivity"
             android:label="Home Page"
             android:screenOrientation="unspecified"
