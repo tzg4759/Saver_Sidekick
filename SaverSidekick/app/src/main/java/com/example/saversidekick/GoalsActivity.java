@@ -11,6 +11,9 @@ import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class GoalsActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +27,18 @@ public class GoalsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button returnHomeButton = findViewById(R.id.returnHomeButton);
+        returnHomeButton.setOnClickListener(view -> {
+            Intent intent = new Intent(GoalsActivity.this, HomePageActivity.class);
+            startActivity(intent);
+        });
 
+        ArrayList<Goal> goalsList = new ArrayList<Goal>();
+
+        if (goalsList.size() == 0)
+        {
+            TextView textViewNoGoals = findViewById(R.id.textViewNoGoals);
+            textViewNoGoals.setText("You do not have any goals set");
+        }
     }
 }
