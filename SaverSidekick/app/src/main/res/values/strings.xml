@@ -3,7 +3,7 @@
     <string name="welcome_message">Welcome to Saver Sidekick!</string>
     <string name="next_button_text">Go to Earning Page</string>
     <string name="earnings_activity_label">Earnings Activity</string>
-    <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
+    <string name="enter_weekly_wage">Enter your weekly wage:</string>
     <string name="submit_button">Submit</string>
     <string name="necessities">Necessities</string>
     <string name="wants">Wants</string>
@@ -28,5 +28,6 @@
     <string name="others">Others</string>
     <string name="_200">$200</string>
     <string name="_31_05_2023">31/05/2023</string>
+    <string name="enter_other_type_of_income">Enter other type of Income</string>
 
 </resources>

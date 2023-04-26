@@ -34,18 +34,19 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
         // Retrieve the weekly earnings from SharedPreferences
-        double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
+        double weeklyTotalEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("totalEarnings", 0);
+        //if the
 
         // Calculate the amounts for each category
-        double necessities = weeklyEarnings * 0.5;
-        double wants = weeklyEarnings * 0.3;
-        double savings = weeklyEarnings * 0.2;
+        double necessities = weeklyTotalEarnings * 0.5;
+        double wants = weeklyTotalEarnings * 0.3;
+        double savings = weeklyTotalEarnings * 0.2;
 
         // Update the UI with the calculated amounts
         textViewNeeds.setText(String.format(Locale.US, "Necessities: $%.2f", necessities));
         textViewEverythingElse.setText(String.format(Locale.US, "Wants: $%.2f", wants));
         textViewSavings.setText(String.format(Locale.US, "Savings: $%.2f", savings));
-        textViewEarnings.setText((String.format(Locale.US, "Your Earnings: $%.2f", weeklyEarnings)));
+        textViewEarnings.setText((String.format(Locale.US, "Your total Earnings: $%.2f", weeklyTotalEarnings)));
 
         progressBarNecessities.setProgress(50);
         progressBarWants.setProgress(30);

@@ -11,22 +11,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class EarningsActivity extends AppCompatActivity {
 
-    private EditText weeklyEarningsEditText;
+    private EditText weeklyWageEditText;
+    private EditText otherTypeIncomeEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earnings);
 
-        weeklyEarningsEditText = findViewById(R.id.editTextWeeklyEarnings);
+        weeklyWageEditText = findViewById(R.id.editTextWeeklyWages);
+        otherTypeIncomeEditText =findViewById(R.id.editTextOtherTypeIncome);
 
         Button submitButton = findViewById(R.id.buttonSubmitEarnings);
         submitButton.setOnClickListener(view -> {
-            String weeklyEarningsString = weeklyEarningsEditText.getText().toString();
+            String weeklyEarningsString = weeklyWageEditText.getText().toString();
+            String otherTypeIncomeString = otherTypeIncomeEditText.getText().toString();
             double weeklyEarnings = Double.parseDouble(weeklyEarningsString);
+            double otherTypeIncome = Double.parseDouble(otherTypeIncomeString);
+            double totalEarnings = weeklyEarnings + otherTypeIncome;
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EarningsActivity.this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putFloat("weeklyEarnings", (float) weeklyEarnings);
+            editor.putFloat("totalEarnings", (float) totalEarnings);
             editor.apply();
             Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
             startActivity(intent);
