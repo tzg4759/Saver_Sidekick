@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">SaverSidekick</string>
+    <string name="app_name">Saver Sidekick</string>
+    <string name="welcome_message">Welcome to Saver Sidekick!</string>
+    <string name="next_button_text">Go to Earning Page</string>
+    <string name="earnings_activity_label">Earnings Activity</string>
+    <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
+    <string name="submit_button">Submit</string>
+    <string name="necessities">Necessities</string>
+    <string name="wants">Wants</string>
+    <string name="savings">Savings</string>
+    <string name="goals">Goals</string>
+    <string name="your_earnings">Your Earnings:</string>
+    <string name="view_my_upcoming_expense">View My Upcoming Expense</string>
+    <string name="my_upcoming_expense">My Upcoming Expense</string>
+    <string name="summary_of_my_upcoming_expense">Summary of upcoming expense</string>
+    <string name="categories">Categories</string>
+    <string name="amount">Amount</string>
+    <string name="pay_date">Pay Date</string>
+    <string name="rent_mortgage">Rent/Mortgage</string>
+    <string name="_500">$500</string>
+    <string name="_10_05_2023">10/05/2023</string>
+    <string name="groceries">Groceries</string>
+    <string name="_400">$400</string>
+    <string name="_15_05_2023">15/05/2023</string>
+    <string name="petrol_vehicles">Petrol/Vehicles</string>
+    <string name="_500_">$500</string>
+    <string name="_20_05_2023">20/05/2023</string>
+    <string name="others">Others</string>
+    <string name="_200">$200</string>
+    <string name="_31_05_2023">31/05/2023</string>
+
 </resources>
