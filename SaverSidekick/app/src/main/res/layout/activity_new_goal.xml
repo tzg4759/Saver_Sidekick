@@ -13,7 +13,7 @@
         tools:layout_editor_absoluteY="229dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/createGoalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Goal"
@@ -25,13 +25,17 @@
         app:layout_constraintVertical_bias="0.217" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="13dp"
         android:text="Cancel"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        tools:layout_editor_absoluteY="521dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/createGoalButton"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate"
+        app:layout_constraintVertical_bias="0.217" />
 
     <TextView
         android:id="@+id/textView5"
@@ -40,7 +44,8 @@
         android:layout_marginBottom="4dp"
         android:text="Date Due (Optional)"
         app:layout_constraintBottom_toTopOf="@+id/editTextDate"
-        tools:layout_editor_absoluteX="144dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -48,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="              dd/mm/yy"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -60,7 +66,8 @@
         android:layout_height="wrap_content"
         android:text="Goal Name"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
-        tools:layout_editor_absoluteX="171dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
@@ -80,6 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="$"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -92,6 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="$"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -99,22 +108,14 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Goal Amount"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
-        tools:layout_editor_absoluteX="165dp" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:text="Goal Amount"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
-        tools:layout_editor_absoluteX="165dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -123,6 +124,7 @@
         android:layout_marginBottom="4dp"
         android:text="Currently Saved"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumber4"
-        tools:layout_editor_absoluteX="156dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

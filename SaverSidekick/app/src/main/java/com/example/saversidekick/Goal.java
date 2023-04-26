@@ -8,6 +8,7 @@ public class Goal {
     private int goalCurrent;
     private Date date;
 
+    //constructor for goal object with date
     public Goal(String name, int goalTotal, int goalCurrent, Date date) {
         this.name = name;
         this.goalTotal = goalTotal;
@@ -15,6 +16,7 @@ public class Goal {
         this.date = date;
     }
 
+    //constructor for goal object without date
     public Goal(String name, int goalTotal, int goalCurrent) {
 
         this.name = name;
@@ -22,6 +24,7 @@ public class Goal {
         this.goalCurrent = goalCurrent;
     }
 
+    //getters and setters for variables of goal object
     public String getName() {
         return name;
     }
