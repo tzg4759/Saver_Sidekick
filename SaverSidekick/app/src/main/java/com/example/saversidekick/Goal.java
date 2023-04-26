@@ -6,10 +6,10 @@ public class Goal {
     private String name;
     private int goalTotal;
     private int goalCurrent;
-    private Date date;
+    private String date;
 
     //constructor for goal object with date
-    public Goal(String name, int goalTotal, int goalCurrent, Date date) {
+    public Goal(String name, int goalTotal, int goalCurrent, String date) {
         this.name = name;
         this.goalTotal = goalTotal;
         this.goalCurrent = goalCurrent;
@@ -49,11 +49,11 @@ public class Goal {
         this.goalCurrent = goalCurrent;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
