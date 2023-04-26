@@ -27,6 +27,11 @@ public class CreateGoalActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
 
+        inputName = (EditText) findViewById(R.id.inputName);
+        inputTotal = (EditText) findViewById(R.id.inputTotal);
+        inputCurrent = (EditText) findViewById(R.id.inputCurrent);
+        inputDate = (EditText) findViewById(R.id.inputDate);
+
         Button createGoalButton = findViewById(R.id.createGoalButton);
         createGoalButton.setOnClickListener(view -> {
             createGoal();
@@ -39,57 +44,77 @@ public class CreateGoalActivity  extends AppCompatActivity {
             Intent intent = new Intent(CreateGoalActivity.this, GoalsActivity.class);
             startActivity(intent);
         });
-
-        inputName = (EditText) findViewById(R.id.inputName);
-        inputTotal = (EditText) findViewById(R.id.inputTotal);
-        inputCurrent = (EditText) findViewById(R.id.inputCurrent);
-        inputDate = (EditText) findViewById(R.id.inputDate);
-
     }
 
     public void createGoal() {
+        try {
+            String name = inputName.getText().toString().trim();
+            int total = Integer.parseInt(inputTotal.getText().toString().trim());
+            int current = Integer.parseInt(inputCurrent.getText().toString().trim());
+            String date = inputDate.getText().toString().trim();
 
-        String name = inputName.getText().toString().trim();
-        int total = Integer.parseInt(inputTotal.getText().toString());
-        int current = Integer.parseInt(inputCurrent.getText().toString());
-        String date = inputDate.getText().toString();
+            boolean error = false;
+            boolean dateEmpty = false;
 
-        boolean error = false;
+            if (date.isEmpty())
+            {
+                dateEmpty = true;
+            }
 
-        if (name.isEmpty())
-        {
-            System.out.println("ErrorName");
-            error = true;
-        }
+            if (name.isEmpty())
+            {
+                System.out.println("ErrorName");
+                error = true;
+            }
 
-        if (total <= current)
-        {
-            System.out.println("Error1");
-            error = true;
-        }
+            if (total <= current)
+            {
+                System.out.println("Error1");
+                error = true;
+            }
 
-        if (total <= 0 || current < 0)
-        {
-            System.out.println("Error2");
-            error = true;
-        }
+            if (total <= 0 || current < 0)
+            {
+                System.out.println("Error2");
+                error = true;
+            }
 
-        if (!(checkDate(date)))
-        {
-            System.out.println("Error3");
-            error = true;
-        }
+            if (!(dateEmpty))
+            {
+                int checkDate = checkDate(date);
 
-        if (error == false)
-        {
-            Goal newGoal = new Goal(name, total, current);
-        }
+                if (checkDate != 0)
+                {
+                    error = true;
 
-        System.out.println("Test"+name+total+current+date);
+                    if (checkDate == 1)
+                    {
+                        System.out.println("Invalid Date Format");
+                    }
+                    if (checkDate == 2)
+                    {
+                        System.out.println("Entered date comes before current date");
+                    }
 
+                }
+            }
+
+            if (error == false)
+            {
+                //write this to a file
+                Goal newGoal = new Goal(name, total, current);
+
+                if (!(dateEmpty))
+                {
+                    newGoal.setDate(date);
+                }
+            }
+
+            System.out.println("Test"+name+total+current+date);
+        } catch (Exception e) {}
     }
 
-    public boolean checkDate(String date) {
+    public int checkDate(String date) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         format.setLenient(false);
 
@@ -98,18 +123,18 @@ public class CreateGoalActivity  extends AppCompatActivity {
         try {
             enteredDate = format.parse(date);
         } catch (ParseException e) {
-            return false;
+            return 1;
         }
 
         Date currentDate = new Date();
 
         if(enteredDate.after(currentDate))
         {
-            return true;
+            return 0;
         }
         else
         {
-            return false;
+            return 2;
         }
 
     }

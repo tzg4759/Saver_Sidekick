@@ -8,20 +8,12 @@ public class Goal {
     private int goalCurrent;
     private String date;
 
-    //constructor for goal object with date
-    public Goal(String name, int goalTotal, int goalCurrent, String date) {
+    //constructor for goal object
+    public Goal(String name, int goalTotal, int goalCurrent) {
         this.name = name;
         this.goalTotal = goalTotal;
         this.goalCurrent = goalCurrent;
         this.date = date;
-    }
-
-    //constructor for goal object without date
-    public Goal(String name, int goalTotal, int goalCurrent) {
-
-        this.name = name;
-        this.goalTotal = goalTotal;
-        this.goalCurrent = goalCurrent;
     }
 
     //getters and setters for variables of goal object
