@@ -9,5 +9,7 @@
     <string name="wants">Wants</string>
     <string name="savings">Savings</string>
     <string name="goals">Goals</string>
+    <string name="graph">Graph</string>
     <string name="your_earnings">Your Earnings:</string>
+    <string name="graph_description">Your chart description</string>
 </resources>
