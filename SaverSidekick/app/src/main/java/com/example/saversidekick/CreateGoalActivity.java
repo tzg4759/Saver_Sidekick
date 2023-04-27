@@ -2,18 +2,19 @@ package com.example.saversidekick;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -37,9 +38,15 @@ public class CreateGoalActivity  extends AppCompatActivity {
 
         Button createGoalButton = findViewById(R.id.createGoalButton);
         createGoalButton.setOnClickListener(view -> {
-            createGoal();
             Intent intent = new Intent(CreateGoalActivity.this, GoalsActivity.class);
-            startActivity(intent);
+            if (createGoal() == true)
+            {
+                startActivity(intent);
+            }
+            else
+            {
+                System.out.println("Error");
+            }
         });
 
         Button cancelButton = findViewById(R.id.cancelButton);
@@ -49,7 +56,7 @@ public class CreateGoalActivity  extends AppCompatActivity {
         });
     }
 
-    public void createGoal() {
+    public boolean createGoal() {
         try {
             String name = inputName.getText().toString().trim();
             int total = Integer.parseInt(inputTotal.getText().toString().trim());
@@ -96,6 +103,7 @@ public class CreateGoalActivity  extends AppCompatActivity {
                     }
                     if (checkDate == 2)
                     {
+                        Toast.makeText(getApplicationContext(), "Goal Created", Toast.LENGTH_SHORT);
                         System.out.println("Entered date comes before current date");
                     }
 
@@ -110,11 +118,13 @@ public class CreateGoalActivity  extends AppCompatActivity {
                 {
                     newGoal.setDate(date);
                 }
-                writeToFile("goals.txt", newGoal.toString());
+                writeToFile("goals.txt", newGoal.toString()+"\n");
+                return true;
             }
-
-            System.out.println("Test"+name+total+current+date);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
     }
 
     public int checkDate(String date) {

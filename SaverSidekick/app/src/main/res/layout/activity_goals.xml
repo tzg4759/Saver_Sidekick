@@ -6,6 +6,143 @@
     android:layout_height="match_parent"
     tools:context=".GoalsActivity">
 
+    <TextView
+        android:id="@+id/goal4Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Goal1"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal3" />
+
+    <TextView
+        android:id="@+id/dateGoal4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due by: "
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentGoal4" />
+
+    <TextView
+        android:id="@+id/currentGoal4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 / 0"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarGoal4" />
+
+    <ProgressBar
+        android:id="@+id/progressBarGoal4"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goal4Name" />
+
+    <TextView
+        android:id="@+id/goal3Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Goal1"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal2" />
+
+    <TextView
+        android:id="@+id/dateGoal3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due by: "
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentGoal3" />
+
+    <TextView
+        android:id="@+id/currentGoal3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 / 0"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarGoal3" />
+
+    <ProgressBar
+        android:id="@+id/progressBarGoal3"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goal3Name" />
+
+    <TextView
+        android:id="@+id/goal2Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Goal1"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal1" />
+
+    <TextView
+        android:id="@+id/dateGoal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due by: "
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentGoal2" />
+
+    <TextView
+        android:id="@+id/currentGoal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 / 0"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarGoal2" />
+
+    <ProgressBar
+        android:id="@+id/progressBarGoal2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goal2Name" />
+
+    <ProgressBar
+        android:id="@+id/progressBarGoal0"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goal0Name" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
@@ -55,13 +192,87 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/goal0Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:text="Goal1"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currentGoal0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 / 0"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarGoal0" />
+
+    <TextView
+        android:id="@+id/dateGoal0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due by: "
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentGoal0" />
+
+    <TextView
         android:id="@+id/textViewNoGoals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="128dp"
+        android:text="You do not have any goals set"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/currentGoalsText" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBarGoal1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="270dp"
+        android:layout_height="18dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goal1Name" />
+
+    <TextView
+        android:id="@+id/dateGoal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Due by: "
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentGoal1" />
+
+    <TextView
+        android:id="@+id/goal1Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Goal2"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal0" />
+
+    <TextView
+        android:id="@+id/currentGoal1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 / 0"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarGoal1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
