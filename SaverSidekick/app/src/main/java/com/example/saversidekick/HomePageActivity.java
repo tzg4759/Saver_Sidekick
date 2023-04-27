@@ -33,6 +33,12 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button graphButton = findViewById(R.id.graphButton);
+        graphButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
+            startActivity(intent);
+        });
+
         // Retrieve the weekly earnings from SharedPreferences
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
 
