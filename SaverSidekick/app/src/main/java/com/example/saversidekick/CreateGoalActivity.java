@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -103,11 +106,11 @@ public class CreateGoalActivity  extends AppCompatActivity {
             {
                 //write this to a file
                 Goal newGoal = new Goal(name, total, current);
-
                 if (!(dateEmpty))
                 {
                     newGoal.setDate(date);
                 }
+                writeToFile("goals.txt", newGoal.toString());
             }
 
             System.out.println("Test"+name+total+current+date);
@@ -136,6 +139,21 @@ public class CreateGoalActivity  extends AppCompatActivity {
         {
             return 2;
         }
+
+    }
+
+    public void writeToFile(String fileName, String goalString) {
+        File path = getApplicationContext().getFilesDir();
+        try {
+            FileOutputStream writer = new FileOutputStream(new File(path, fileName), true);
+            writer.write(goalString.getBytes());
+            writer.close();
+            Toast.makeText(getApplicationContext(), "Goal Created", Toast.LENGTH_SHORT);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
 
     }
 }
