@@ -12,4 +12,14 @@
     <string name="graph">Graph</string>
     <string name="your_earnings">Your Earnings:</string>
     <string name="graph_description">Your chart description</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register_here">Register Here</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="registerbutton">Register</string>
+    <string name="click_to_log_in">Click to Log In</string>
+    <string name="log_out">Log Out</string>
+    <string name="user_email">User Email</string>
 </resources>
