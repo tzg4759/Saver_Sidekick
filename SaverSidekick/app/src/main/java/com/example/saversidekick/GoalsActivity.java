@@ -27,21 +27,27 @@ public class GoalsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
         ArrayList<Goal> goalsList = new ArrayList<>();
-        String goals = loadGoals("goals.txt");
+        File path = getApplicationContext().getFilesDir();
+        File file = new File(path, "goals.txt");
 
-        String[] lines = goals.split(System.getProperty("line.separator"));
-
-        for (String line : lines)
+        if (file.isFile())
         {
-            String[] components = line.split("[|]");
-            String name = components[0];
-            int total = Integer.parseInt(components[1]);
-            int current = Integer.parseInt(components[2]);
-            String date = components[3];
+            String goals = loadGoals("goals.txt");
 
-            goalsList.add(new Goal(name, total, current, date));
+            String[] lines = goals.split(System.getProperty("line.separator"));
+
+            for (String line : lines)
+            {
+                String[] components = line.split("[|]");
+                String name = components[0];
+                int total = Integer.parseInt(components[1]);
+                int current = Integer.parseInt(components[2]);
+                String date = components[3];
+
+                goalsList.add(new Goal(name, total, current, date));
+            }
+
         }
-
         Button newGoalButton = findViewById(R.id.newGoalButton);
         newGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(GoalsActivity.this, CreateGoalActivity.class);
