@@ -3,8 +3,6 @@ package com.example.saversidekick;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
@@ -35,6 +33,12 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button budgetButton = findViewById(R.id.budgetButton);
+        budgetButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, BudgetActivity.class);
+            startActivity(intent);
+        });
+
         Button graphButton = findViewById(R.id.graphButton);
         graphButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
@@ -55,39 +59,9 @@ public class HomePageActivity extends AppCompatActivity {
         textViewSavings.setText(String.format(Locale.US, "Savings: $%.2f", savings));
         textViewEarnings.setText((String.format(Locale.US, "Your Earnings: $%.2f", weeklyEarnings)));
 
-        // Calculate the percentage for each category
-        double necessitiesPercentage = (necessities / weeklyEarnings) * 100;
-        double wantsPercentage = (wants / weeklyEarnings) * 100;
-        double savingsPercentage = (savings / weeklyEarnings) * 100;
+        progressBarNecessities.setProgress(50);
+        progressBarWants.setProgress(30);
+        progressBarSavings.setProgress(20);
 
-        // Set the progress of the progress bars
-        progressBarNecessities.setProgress((int) necessitiesPercentage);
-        progressBarWants.setProgress((int) wantsPercentage);
-        progressBarSavings.setProgress((int) savingsPercentage);
-
-        // Change the color of the progress bars based on their progress
-        if (necessitiesPercentage < 50) {
-            progressBarNecessities.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        } else if (necessitiesPercentage >= 50 && necessitiesPercentage < 70) {
-            progressBarNecessities.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        } else {
-            progressBarNecessities.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-
-        if (wantsPercentage < 30) {
-            progressBarWants.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        } else if (wantsPercentage >= 30 && wantsPercentage < 70) {
-            progressBarWants.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        } else {
-            progressBarWants.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-
-        if (savingsPercentage < 20) {
-            progressBarSavings.setProgressTintList(ColorStateList.valueOf(Color.RED));
-        } else if (savingsPercentage >= 20 && savingsPercentage < 50) {
-            progressBarSavings.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
-        } else {
-            progressBarSavings.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
-        }
     }
 }
