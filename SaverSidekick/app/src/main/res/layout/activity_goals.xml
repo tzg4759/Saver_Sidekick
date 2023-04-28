@@ -15,7 +15,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateGoal3" />
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal3"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/dateGoal4"
@@ -57,7 +58,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateGoal2" />
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal2"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/dateGoal3"
@@ -99,7 +101,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateGoal1" />
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal1"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/dateGoal2"
@@ -141,10 +144,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goal0Name" />
+        app:layout_constraintTop_toBottomOf="@+id/goal0Name"
+        />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/editGoalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -164,7 +168,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="5dp"
         android:text="New Goal"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/editGoalButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -200,7 +204,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/currentGoal0"
@@ -263,7 +268,8 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateGoal0" />
+        app:layout_constraintTop_toBottomOf="@+id/dateGoal0"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/currentGoal1"

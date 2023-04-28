@@ -7,9 +7,7 @@ public class Goal {
     private int goalTotal;
     private int goalCurrent;
     private String date;
-
-
-
+    private int progress;
     //getters and setters for variables of goal object
     public String getName() {
         return name;
@@ -43,22 +41,42 @@ public class Goal {
         this.date = date;
     }
 
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
     //constructor for goal object
     public Goal(String name, int goalTotal, int goalCurrent) {
         this.name = name;
         this.goalTotal = goalTotal;
         this.goalCurrent = goalCurrent;
+
+    }
+
+    public Goal(String name, int goalTotal, int goalCurrent, String date) {
+        this.name = name;
+        this.goalTotal = goalTotal;
+        this.goalCurrent = goalCurrent;
+        this.date = date;
+
+        this.progress = Math.round(((float)this.goalCurrent / (float)this.goalTotal) * 100);
     }
 
     public String toString() {
-        String output = name+","+goalTotal+","+goalCurrent;
+        String output = name+"|"+goalTotal+"|"+goalCurrent;
         if (this.date != null)
         {
-            output += ","+date;
+            output += "|"+date;
+        }
+        else
+        {
+            output += "|null";
         }
 
         return output;
     }
-
-
 }
