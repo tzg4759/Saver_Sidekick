@@ -1,12 +1,19 @@
 package com.example.saversidekick;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,6 +38,7 @@ public class HomePageActivity extends AppCompatActivity {
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
 
+
         Button goalsButton = findViewById(R.id.goalsButton);
         goalsButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, GoalsActivity.class);
@@ -45,7 +53,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         Button importButton = findViewById(R.id.importFileButton);
         importButton.setOnClickListener(view -> {
-            showFilePicker();
+            filePicker();
         });
 
         // Retrieve the weekly earnings from SharedPreferences
@@ -68,27 +76,25 @@ public class HomePageActivity extends AppCompatActivity {
 
     }
 
-    private void showFilePicker() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("%/%");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        Uri uri = data.getData();
+                    }
+                }
+            }
+    );
 
-        try {
-            startActivityForResult(Intent.createChooser(intent, "Select a CSV file"), 100);
-        } catch (Exception e) {
-            Toast.makeText(this, "Please install a file manager.", Toast.LENGTH_SHORT).show();
-        }
+    public void filePicker() {
+        Intent data = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        data.addCategory(Intent.CATEGORY_OPENABLE);
+        data.setType("*/*");
+        data = Intent.createChooser(data, "Select a CSV file");
+        activityResultLauncher.launch(data);
     }
 
-     protected void OnActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        if (requestCode == 100  && resultCode == RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            String path = uri.getPath();
-            File file = new File(path);
-
-            String result = path+file.getName();
-            System.out.println(result);
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-     }
 }
