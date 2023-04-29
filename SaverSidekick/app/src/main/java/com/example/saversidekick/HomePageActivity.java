@@ -1,14 +1,18 @@
 package com.example.saversidekick;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.Locale;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -39,6 +43,11 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button importButton = findViewById(R.id.importFileButton);
+        importButton.setOnClickListener(view -> {
+            showFilePicker();
+        });
+
         // Retrieve the weekly earnings from SharedPreferences
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
 
@@ -58,4 +67,28 @@ public class HomePageActivity extends AppCompatActivity {
         progressBarSavings.setProgress(20);
 
     }
+
+    private void showFilePicker() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("%/%");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        try {
+            startActivityForResult(Intent.createChooser(intent, "Select a CSV file"), 100);
+        } catch (Exception e) {
+            Toast.makeText(this, "Please install a file manager.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+     protected void OnActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        if (requestCode == 100  && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            String path = uri.getPath();
+            File file = new File(path);
+
+            String result = path+file.getName();
+            System.out.println(result);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+     }
 }
