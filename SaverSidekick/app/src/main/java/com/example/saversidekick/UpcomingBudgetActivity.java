@@ -13,7 +13,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class UpcomingBudgeActivity extends AppCompatActivity {
+public class UpcomingBudgetActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

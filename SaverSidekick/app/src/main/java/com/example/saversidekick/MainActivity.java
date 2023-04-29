@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button viewUpcomingExpense = findViewById(R.id.budge_button);
         viewUpcomingExpense.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, UpcomingBudgeActivity.class);
+            Intent i = new Intent(MainActivity.this, UpcomingBudgetActivity.class);
             startActivity(i);
         });
     }

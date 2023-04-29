@@ -18,7 +18,7 @@
             android:label="Create a new Income"
             android:parentActivityName=".EarningsActivity"/>
         <activity
-            android:name=".UpcomingBudgeActivity"
+            android:name=".UpcomingBudgetActivity"
             android:exported="false"
             android:label="My Upcoming Expense"
             android:parentActivityName=".MainActivity" />
