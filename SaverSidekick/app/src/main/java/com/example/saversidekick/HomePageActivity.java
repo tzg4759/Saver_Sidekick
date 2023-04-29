@@ -23,6 +23,9 @@ public class HomePageActivity extends AppCompatActivity {
         TextView textViewEverythingElse = findViewById(R.id.textViewWants);
         TextView textViewSavings = findViewById(R.id.textViewSavings);
         TextView textViewEarnings = findViewById(R.id.textViewEarnings);
+        TextView textViewWeeklyWage = findViewById(R.id.textViewWeeklyWage);
+        TextView textViewOtherIncome = findViewById(R.id.textViewNewIncome);
+
         ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
@@ -34,8 +37,12 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
         // Retrieve the weekly earnings from SharedPreferences
-        double weeklyTotalEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("totalEarnings", 0);
-        //if the
+        double weeklyWages = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
+        // retrieve the new income amount from SharedPreferences
+        double newIncomeAmount = PreferenceManager.getDefaultSharedPreferences(this).getFloat("newIncomeAmount",0);
+
+        double weeklyTotalEarnings = weeklyWages + newIncomeAmount;
+        String newIncomeType = PreferenceManager.getDefaultSharedPreferences(this).getString("incomeType","Other Income");
 
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
@@ -46,6 +53,8 @@ public class HomePageActivity extends AppCompatActivity {
         textViewNeeds.setText(String.format(Locale.US, "Necessities: $%.2f", necessities));
         textViewEverythingElse.setText(String.format(Locale.US, "Wants: $%.2f", wants));
         textViewSavings.setText(String.format(Locale.US, "Savings: $%.2f", savings));
+        textViewWeeklyWage.setText(String.format(Locale.US,"Your Weekly Wage: $%.2f", weeklyWages));
+        textViewOtherIncome.setText(String.format(Locale.US,"Your "+newIncomeType+": $%.2f", newIncomeAmount));
         textViewEarnings.setText((String.format(Locale.US, "Your total Earnings: $%.2f", weeklyTotalEarnings)));
 
         progressBarNecessities.setProgress(50);
