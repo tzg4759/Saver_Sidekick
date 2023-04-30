@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
@@ -20,12 +21,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
 
+
 public class GoalsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
+
         ArrayList<Goal> goalsList = new ArrayList<>();
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, "goals.txt");
@@ -218,5 +221,6 @@ public class GoalsActivity extends AppCompatActivity {
             e.printStackTrace();
             return "";
         }
+
     }
 }

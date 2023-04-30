@@ -1,6 +1,7 @@
 package com.example.saversidekick;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,11 +31,18 @@ public class MainActivity extends AppCompatActivity {
 
         // next button opens earnings page once clicked
         Button nextButton = findViewById(R.id.buttonNext);
+
         nextButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, EarningsActivity.class);
             startActivity(intent);
         });
 
+        Button viewUpcomingExpense = findViewById(R.id.budge_button);
+        viewUpcomingExpense.setOnClickListener(view -> {
+            Intent i = new Intent(MainActivity.this, UpcomingBudgetActivity.class);
+            startActivity(i);
+        });
+    }
 
         if (currentUser == null)    // if there is no current user go to the log in page
         {
@@ -58,4 +67,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

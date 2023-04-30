@@ -23,6 +23,7 @@ public class EarningsActivity extends AppCompatActivity {
         Button submitButton = findViewById(R.id.buttonSubmitEarnings);
         submitButton.setOnClickListener(view -> {
             String weeklyEarningsString = weeklyEarningsEditText.getText().toString();
+
             double weeklyEarnings = Double.parseDouble(weeklyEarningsString);
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EarningsActivity.this);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -31,5 +32,12 @@ public class EarningsActivity extends AppCompatActivity {
             Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
             startActivity(intent);
         });
+
+        Button createNewIncome = findViewById(R.id.button_createNewIncome);
+        createNewIncome.setOnClickListener(view -> {
+            Intent i = new Intent(EarningsActivity.this, CreateNewIncome.class);
+            startActivity(i);
+        });
+
     }
 }

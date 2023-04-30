@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -14,6 +16,16 @@
         android:textStyle="bold"
         android:textSize="50sp"
         android:textColor="#0025F1"/>
+
+
+    <Button
+        android:id="@+id/budget_button"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:onClick="showUpcomingBudgetPlan"
+        android:text="@string/view_my_upcoming_expense"
+        tools:ignore="TextSizeCheck" />
+        
 
     <Button
         android:id="@+id/buttonNext"
@@ -36,5 +48,6 @@
         android:text="@string/user_email"
         android:id="@+id/user_details"
         android:textColor="#0025F1"/>
+
 
 </LinearLayout>
