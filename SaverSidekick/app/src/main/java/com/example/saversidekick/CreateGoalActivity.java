@@ -156,7 +156,6 @@ public class CreateGoalActivity  extends AppCompatActivity {
         {
             return 2;
         }
-
     }
 
     public void writeToFile(String fileName, String goalString) {

@@ -19,7 +19,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.security.spec.ECField;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -29,6 +39,26 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        ArrayList<Transaction> transactionList = new ArrayList<>();
+        File path = getApplicationContext().getFilesDir();
+        File file = new File(path, "transactions.txt");
+
+        if (file.isFile())
+        {
+            String transactions = loadTransactions("transactions.txt");
+            String[] lines = transactions.split(System.getProperty("line.separator"));
+
+            for (String line : lines)
+            {
+                String[] components = line.split("[|]");
+                String date = components[0];
+                String memo = components[1];
+                float amount = Float.valueOf(components[2]);
+
+                transactionList.add(new Transaction(date, memo, amount));
+            }
+        }
+
         // Initialize the UI elements
         TextView textViewNeeds = findViewById(R.id.textViewNeeds);
         TextView textViewEverythingElse = findViewById(R.id.textViewWants);
@@ -37,7 +67,19 @@ public class HomePageActivity extends AppCompatActivity {
         ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
+        TextView summaryTextView = findViewById(R.id.summaryTextView);
+        TextView noTransactionsText = findViewById(R.id.noTransactionsText);
+        summaryTextView.setKeyListener(null);
 
+        if (transactionList.size() == 0)
+        {
+            noTransactionsText.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            loadTransactions("transactions.txt");
+            updateSummary(transactionList);
+        }
 
         Button goalsButton = findViewById(R.id.goalsButton);
         goalsButton.setOnClickListener(view -> {
@@ -78,13 +120,15 @@ public class HomePageActivity extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        Uri uri = data.getData();
-                    }
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK){
+                    Intent data = result.getData();
+                    Uri uri = data.getData();
+
+                    csvReader(uri);
+                }
+                else {
+                    Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
                 }
             }
     );
@@ -97,4 +141,103 @@ public class HomePageActivity extends AppCompatActivity {
         activityResultLauncher.launch(data);
     }
 
+    public void csvReader(Uri uri) {
+
+        ArrayList<Transaction> transactionList = new ArrayList<>();
+        String date;
+        String memo;
+        float amount;
+        int count = 0;
+
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(inputStream)
+            );
+
+            String line = "";
+            while ((line = reader.readLine()) != null)
+            {
+                String[] components = line.split(",");
+                count++;
+                if (count > 8)
+                {
+                    date = components[0];
+                    memo = components[5];
+                    amount = Float.valueOf(components[6]);
+
+                    transactionList.add(new Transaction(date, memo, amount));
+                }
+            }
+
+            reader.close();
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
+        }
+
+        if (transactionList.size() > 0)
+        {
+            Toast.makeText(this, "Opened file", Toast.LENGTH_SHORT).show();
+            for (Transaction t : transactionList)
+            {
+                writeToFile("transactions.txt", t);
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
+        }
+
+        for (Transaction t : transactionList)
+        {
+            System.out.println(t);
+        }
+
+        updateSummary(transactionList);
+    }
+
+    public void updateSummary(ArrayList<Transaction> transactions) {
+
+        TextView summaryTextView = findViewById(R.id.summaryTextView);
+
+        for (Transaction t : transactions)
+        {
+            String current = "";
+            current += summaryTextView.getText();
+            current += t.getDate()+"\n";
+            current += t.getMemo()+"\n";
+            current += t.getAmount()+"\n";
+            summaryTextView.setText(current+"-----------------------------------------------------------"+"\n");
+        }
+    }
+
+    public void writeToFile(String fileName, Transaction transaction) {
+        File path = getApplicationContext().getFilesDir();
+        try {
+            FileOutputStream writer = new FileOutputStream(new File(path, fileName), true);
+            writer.write(transaction.export().getBytes());
+            writer.close();
+
+        } catch (Exception e)
+        {
+            Toast.makeText(this, "Error writing to file.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public String loadTransactions(String fileName) {
+        File path = getApplicationContext().getFilesDir();
+        File file = new File(path, fileName);
+        byte[] content = new byte[(int) file.length()];
+        try {
+            FileInputStream stream = new FileInputStream(file);
+            stream.read(content);
+            stream.close();
+
+            return new String(content);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
 }
