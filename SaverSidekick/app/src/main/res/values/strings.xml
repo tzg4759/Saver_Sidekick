@@ -1,17 +1,20 @@
 <resources>
     <string name="app_name">Saver Sidekick</string>
     <string name="welcome_message">Welcome to Saver Sidekick!</string>
-    <string name="next_button_text">Go to Earning Page</string>
+
+    <string name="next_button_text">Next</string>
     <string name="earnings_activity_label">Earnings Activity</string>
-    <string name="enter_weekly_wage">Enter your weekly wage:</string>
+    <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
+
     <string name="submit_button">Submit</string>
     <string name="necessities">Necessities</string>
     <string name="wants">Wants</string>
     <string name="savings">Savings</string>
     <string name="goals">Goals</string>
+
     <string name="your_earnings">Your total Earnings:</string>
     <string name="your_otherIncome">Your other income:</string>
-    <string name="your_weeklyWage">Your weekly wage:</string>
+    <string name="your_weeklyEarnings">Your weekly Earnings:</string>
     <string name="view_my_upcoming_expense">View My Upcoming Expense</string>
     <string name="my_upcoming_expense">My Upcoming Expense</string>
     <string name="summary_of_my_upcoming_expense">Summary of upcoming expense</string>
@@ -36,4 +39,19 @@
     <string name="create_a_new_income_type">Create a new Income Type</string>
     <string name="_300">$300</string>
 
+
+    <string name="graph">Graph</string>
+    <string name="your_earnings">Your Earnings:</string>
+    <string name="graph_description">Your chart description</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register_here">Register Here</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="registerbutton">Register</string>
+    <string name="click_to_log_in">Click to Log In</string>
+    <string name="log_out">Log Out</string>
+    <string name="user_email">User Email</string>
+    
 </resources>
