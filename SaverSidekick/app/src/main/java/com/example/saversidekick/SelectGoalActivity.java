@@ -84,9 +84,6 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
             startActivity(intent);
         });
 
-        System.out.println(goalsList.size());
-        System.out.println(goalsList.get(3).getName());
-
         if (goalsList.size() > 0)
         {
             goal1Button.setVisibility(View.VISIBLE);

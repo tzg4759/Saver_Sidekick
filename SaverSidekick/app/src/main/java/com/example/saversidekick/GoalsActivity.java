@@ -40,11 +40,14 @@ public class GoalsActivity extends AppCompatActivity {
             {
                 String[] components = line.split("[|]");
                 String name = components[0];
-                int total = Integer.parseInt(components[1]);
-                int current = Integer.parseInt(components[2]);
-                String date = components[3];
+                if (!name.isEmpty())
+                {
+                    int total = Integer.parseInt(components[1]);
+                    int current = Integer.parseInt(components[2]);
+                    String date = components[3];
 
-                goalsList.add(new Goal(name, total, current, date));
+                    goalsList.add(new Goal(name, total, current, date));
+                }
             }
 
         }
