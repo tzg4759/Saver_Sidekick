@@ -1,11 +1,7 @@
 package com.example.saversidekick;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -25,39 +21,22 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.security.spec.ECField;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class HomePageActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity implements Serializable {
+
+    ArrayList<Transaction> transactionList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        ArrayList<Transaction> transactionList = new ArrayList<>();
-        File path = getApplicationContext().getFilesDir();
-        File file = new File(path, "transactions.txt");
-
-        if (file.isFile())
-        {
-            String transactions = loadTransactions("transactions.txt");
-            String[] lines = transactions.split(System.getProperty("line.separator"));
-
-            for (String line : lines)
-            {
-                String[] components = line.split("[|]");
-                String date = components[0];
-                String memo = components[1];
-                float amount = Float.valueOf(components[2]);
-
-                transactionList.add(new Transaction(date, memo, amount));
-            }
-        }
+        transactionList = reloadTransactions();
 
         // Initialize the UI elements
         TextView textViewNeeds = findViewById(R.id.textViewNeeds);
@@ -90,12 +69,14 @@ public class HomePageActivity extends AppCompatActivity {
         Button graphButton = findViewById(R.id.graphButton);
         graphButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
+            intent.putExtra("monthString", monthSums());
             startActivity(intent);
         });
 
         Button importButton = findViewById(R.id.importFileButton);
         importButton.setOnClickListener(view -> {
             filePicker();
+            transactionList = reloadTransactions();
         });
 
         // Retrieve the weekly earnings from SharedPreferences
@@ -160,11 +141,11 @@ public class HomePageActivity extends AppCompatActivity {
             {
                 String[] components = line.split(",");
                 count++;
-                if (count > 8)
+                if (count > 2)
                 {
                     date = components[0];
-                    memo = components[5];
-                    amount = Float.valueOf(components[6]);
+                    memo = components[1];
+                    amount = Float.valueOf(components[2]);
 
                     transactionList.add(new Transaction(date, memo, amount));
                 }
@@ -189,11 +170,6 @@ public class HomePageActivity extends AppCompatActivity {
             Toast.makeText(this, "Error reading file", Toast.LENGTH_SHORT).show();
         }
 
-        for (Transaction t : transactionList)
-        {
-            System.out.println(t);
-        }
-
         updateSummary(transactionList);
     }
 
@@ -207,9 +183,18 @@ public class HomePageActivity extends AppCompatActivity {
             current += summaryTextView.getText();
             current += t.getDate()+"\n";
             current += t.getMemo()+"\n";
-            current += t.getAmount()+"\n";
+            if (t.getAmount() > 0)
+            {
+                current += "+ $"+t.getAmount()+"\n";
+            }
+            else
+            {
+                current += "- $"+(t.getAmount() * -1)+"\n";
+
+            }
             summaryTextView.setText(current+"-----------------------------------------------------------"+"\n");
         }
+
     }
 
     public void writeToFile(String fileName, Transaction transaction) {
@@ -240,4 +225,108 @@ public class HomePageActivity extends AppCompatActivity {
             return "";
         }
     }
+
+    public String monthSums() {
+        ArrayList<Transaction> transactions = reloadTransactions();
+
+        float jan = 0.0f;
+        float feb = 0.0f;
+        float mar = 0.0f;
+        float apr = 0.0f;
+        float may = 0.0f;
+        float jun = 0.0f;
+        float jul = 0.0f;
+        float aug = 0.0f;
+        float sep = 0.0f;
+        float oct = 0.0f;
+        float nov = 0.0f;
+        float dec = 0.0f;
+
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String output = "";
+
+        System.out.println(transactions.size());
+
+        if (transactions.size() > 0)
+        {
+            for (Transaction t : transactions)
+            {
+                String currDate = t.getDate();
+                float currAmount = t.getAmount();
+                String[] components = currDate.split("/");
+                int currYear = Integer.parseInt(components[2]);
+                int currMonth = Integer.parseInt(components[1]);
+
+                if (currYear == year)
+                {
+                    switch (currMonth) {
+                        case 1:
+                            jan += currAmount;
+                            break;
+                        case 2:
+                            feb += currAmount;
+                            break;
+                        case 3:
+                            mar += currAmount;
+                            break;
+                        case 4:
+                            apr += currAmount;
+                            break;
+                        case 5:
+                            may += currAmount;
+                            break;
+                        case 6:
+                            jun += currAmount;
+                            break;
+                        case 7:
+                            jul += currAmount;
+                            break;
+                        case 8:
+                            aug += currAmount;
+                            break;
+                        case 9:
+                            sep += currAmount;
+                            break;
+                        case 10:
+                            oct += currAmount;
+                            break;
+                        case 11:
+                            nov += currAmount;
+                            break;
+                        case 12:
+                            dec += currAmount;
+                            break;
+                    }
+                }
+            }
+        }
+
+        output += jan+"|"+feb+"|"+mar+"|"+apr+"|"+may+"|"+jun+"|"+jul+"|"+aug+"|"+sep+"|"+oct+"|"+nov+"|"+dec;
+        return output;
+    }
+
+    public ArrayList<Transaction> reloadTransactions() {
+        ArrayList<Transaction> transactionList = new ArrayList<>();
+
+        File path = getApplicationContext().getFilesDir();
+        File file = new File(path, "transactions.txt");
+
+        if (file.isFile())
+        {
+            String transactions = loadTransactions("transactions.txt");
+            String[] lines = transactions.split(System.getProperty("line.separator"));
+
+            for (String line : lines)
+            {
+                String[] components = line.split("[|]");
+                String date = components[0];
+                String memo = components[1];
+                float amount = Float.valueOf(components[2]);
+
+                transactionList.add(new Transaction(date, memo, amount));
+            }
+        }
+        return transactionList;
+    }
+
 }
