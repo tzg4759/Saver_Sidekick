@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Saver Sidekick</string>
+    <string name="welcome_message">Welcome to Saver Sidekick!</string>
+    <string name="next_button_text">Next</string>
+    <string name="earnings_activity_label">Earnings Activity</string>
+    <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
+    <string name="submit_button">Submit</string>
+    <string name="necessities">Necessities</string>
+    <string name="wants">Wants</string>
+    <string name="savings">Savings</string>
+    <string name="goals">Goals</string>
+    <string name="your_earnings">Your Earnings:</string>
+    <string name="to_graph">Graph</string>
+    <string name="graph">Graph</string>
+    <string name="Graphpage">Graph page</string>
+    <string name="Graphpage_label">Graph page</string>
+    <string name="title_activity_manual_input_expanse">ManualInputExpanse</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="financial">Financial</string>
+</resources>
