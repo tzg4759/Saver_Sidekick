@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="#040925"
-    android:padding="300dp"
+    android:padding="50dp"
     tools:context=".Login">
 
     <TextView
