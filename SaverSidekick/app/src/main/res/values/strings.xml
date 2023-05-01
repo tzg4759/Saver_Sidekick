@@ -12,7 +12,7 @@
     <string name="savings">Savings</string>
     <string name="goals">Goals</string>
 
-    <string name="your_earnings">Your total Earnings:</string>
+    <string name="your_total_earnings">Your total Earnings:</string>
     <string name="your_otherIncome">Your other income:</string>
     <string name="your_weeklyEarnings">Your weekly Earnings:</string>
     <string name="view_my_upcoming_expense">View My Upcoming Expense</string>
@@ -28,6 +28,8 @@
     <string name="_400">$400</string>
     <string name="_15_05_2023">15/05/2023</string>
     <string name="petrol_vehicles">Petrol/Vehicles</string>
+    <string name="your_weeklyEarning">Your Weekly Earning</string>
+
 
     <string name="_20_05_2023">20/05/2023</string>
     <string name="others">Others</string>

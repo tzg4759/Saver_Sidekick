@@ -148,7 +148,7 @@
 
 
     <TextView
-        android:id="@+id/textViewWeeklyEarning"
+        android:id="@+id/textViewWeeklyEarnings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
