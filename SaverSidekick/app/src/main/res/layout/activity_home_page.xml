@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:ignore="ExtraText">
+
 
     <Button
         android:id="@+id/goalsButton"
@@ -15,6 +18,22 @@
         android:text="@string/goals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/graphButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="327dp"
+        android:text="@string/graph"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
+        app:layout_constraintEnd_toStartOf="@+id/goalsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -91,6 +110,7 @@
                 android:layout_marginStart="20dp" />
         </TableRow>
 
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -101,7 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
-        android:layout_marginTop="438dp"
+        android:layout_marginTop="430dp"
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
         android:text="@string/your_earnings"
@@ -110,5 +130,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNewIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="360dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/your_otherIncome"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textViewWeeklyEarnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/your_weeklyEarning"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

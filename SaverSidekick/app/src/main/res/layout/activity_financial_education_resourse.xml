@@ -7,10 +7,10 @@
     tools:context=".FinancialEducationResourse">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView_reserve_bank"
         android:layout_width="318dp"
         android:layout_height="93dp"
-        android:text="Reserve Bank of NZ : This section contains a collection of resources for the general public, communities, schools and others with an interest in understanding more about key financial topics"
+        android:text="@string/reserve_bank_of_nz_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,24 +18,11 @@
         app:layout_constraintVertical_bias="0.848" />
 
     <Button
-        android:id="@+id/Politechic"
-        android:layout_width="104dp"
-        android:layout_height="64dp"
-        android:text="Open Politechic"
-        android:textSize="10.8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.665" />
-
-    <Button
         android:id="@+id/MoneyHub"
-        android:layout_width="104dp"
-        android:layout_height="64dp"
-        android:text="Money Hub"
-        android:textSize="11dp"
+        android:layout_width="154dp"
+        android:layout_height="61dp"
+        android:text="@string/money_hub_button"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.908"
@@ -44,11 +31,11 @@
         app:layout_constraintVertical_bias="0.382" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_financial_education"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Financial Education Resource"
-        android:textSize="20dp"
+        android:text="@string/financial_education_resource"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,20 +48,20 @@
         android:id="@+id/ReservedBank"
         android:layout_width="104dp"
         android:layout_height="64dp"
-        android:text="Reserved Bank"
-        android:textSize="13dp"
+        android:text="@string/Resource_reserved_bank_button"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.908"
+        app:layout_constraintHorizontal_bias="0.885"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.971" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="315dp"
         android:layout_height="104dp"
-        android:text="MoneyHub NZ : Free Financial Literacy Classes Our directory lists free financial literacy courses offered by the Open Polytechnic, Christians Against Poverty, Te Wānanga o Aotearoa, Westpac, Banqer, ASB, Sorted in Schools and MoneyTime."
+        android:text="@string/MoneyNZ_info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -83,16 +70,28 @@
         app:layout_constraintVertical_bias="0.19" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView_Politec_info"
         android:layout_width="319dp"
         android:layout_height="88dp"
-        android:text="Open Polytechic : Decision making in terms of personal income and
-Budgeting and managing personal finances"
+        android:text="@string/Politec_info"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.532" />
+
+    <Button
+        android:id="@+id/Politechic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/to_politechnic_button"
+        app:layout_constraintBottom_toTopOf="@+id/textView_reserve_bank"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MoneyHub" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
