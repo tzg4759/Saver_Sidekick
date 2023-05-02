@@ -42,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, UpcomingBudgetActivity.class);
             startActivity(i);
         });
-
+        Tostheavings.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, SavingSearch.class);
+            startActivity(intent);
+        });
         if (currentUser == null)    // if there is no current user go to the log in page
         {
             Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -64,10 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        });
-        Tostheavings.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, SavingSearch.class);
-            startActivity(intent);
         });
         }
     }

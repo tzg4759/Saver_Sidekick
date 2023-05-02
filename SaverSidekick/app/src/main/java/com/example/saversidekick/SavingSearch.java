@@ -15,18 +15,19 @@ import android.widget.Toast;
 public class SavingSearch extends AppCompatActivity {
     EditText Start, num;
     Button toGraph;
+    Button toEdu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saving_search);
-        toGraph =findViewById(R.id.TotheGraphPageButton);
+        toGraph=findViewById(R.id.TotheGraphPageButton);
+        toEdu =findViewById(R.id.ToEduRef);
         Start = findViewById(R.id.StartMonth);
         num = findViewById(R.id.NumMonth);
-        Button toEdu =findViewById(R.id.ToEduRef);
+
         toGraph.setOnClickListener(view -> {
             String getStart = Start.getText().toString();
             String getNumber = num.getText().toString();
-            Intent intent = new Intent(SavingSearch.this, SavingsGraph.class);
             //Pass data to 2nd activity
             if (TextUtils.isEmpty(getStart)) {
                 Toast.makeText(SavingSearch.this,"Please enter a number in the Start box(1-11)",Toast.LENGTH_SHORT).show();
@@ -59,6 +60,7 @@ public class SavingSearch extends AppCompatActivity {
                 e.printStackTrace();
             }
             //Get data from input field
+            Intent intent = new Intent(SavingSearch.this, SavingsGraph.class);
             intent.putExtra("start", getStart);
             intent.putExtra("number", getNumber);
             startActivity(intent);

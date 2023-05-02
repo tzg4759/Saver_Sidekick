@@ -13,25 +13,25 @@
         android:layout_marginTop="120dp"
         android:hint="Starting month"
         android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/NumMonth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
 
     <EditText
         android:id="@+id/NumMonth"
         android:layout_width="313dp"
         android:layout_height="72dp"
-        android:layout_below="@+id/nameET"
-        android:layout_marginBottom="420dp"
         android:hint="Number of Month to display"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/TotheGraphPageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameET"
-        app:layout_constraintVertical_bias="0.134" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.613" />
 
     <Button
         android:id="@+id/TotheGraphPageButton"
@@ -55,6 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameET"
+        app:layout_constraintTop_toBottomOf="@+id/TotheGraphPageButton"
         app:layout_constraintVertical_bias="0.881" />
 </androidx.constraintlayout.widget.ConstraintLayout>
