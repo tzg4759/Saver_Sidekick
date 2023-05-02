@@ -36,6 +36,7 @@ public class HomePageActivity extends AppCompatActivity implements Serializable 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        //test
         transactionList = reloadTransactions();
 
         // Initialize the UI elements
