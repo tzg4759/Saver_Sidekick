@@ -17,16 +17,6 @@
         android:textSize="50sp"
         android:textColor="#0025F1"/>
 
-
-    <Button
-        android:id="@+id/budget_button"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:onClick="showUpcomingBudgetPlan"
-        android:text="@string/view_my_upcoming_expense"
-        tools:ignore="TextSizeCheck" />
-        
-
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="wrap_content"

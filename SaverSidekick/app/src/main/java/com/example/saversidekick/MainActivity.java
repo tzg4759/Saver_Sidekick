@@ -37,11 +37,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button viewUpcomingExpense = findViewById(R.id.budget_button);
-        viewUpcomingExpense.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, UpcomingBudgetActivity.class);
-            startActivity(i);
-        });
 
         if (currentUser == null)    // if there is no current user go to the log in page
         {
