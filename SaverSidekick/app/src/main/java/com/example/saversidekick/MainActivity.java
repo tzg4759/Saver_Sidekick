@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         });
         Tostheavings.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, SavingSearch.class);
+            Intent intent = new Intent(MainActivity.this, SavingGraphSearch.class);
             startActivity(intent);
         });
         if (currentUser == null)    // if there is no current user go to the log in page
