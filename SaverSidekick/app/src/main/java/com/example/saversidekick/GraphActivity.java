@@ -25,7 +25,6 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_graph);
 
         String monthSums = (String) getIntent().getSerializableExtra("monthString");
-        System.out.println(monthSums);
 
         BarChart barChart = findViewById(R.id.barChart);
 

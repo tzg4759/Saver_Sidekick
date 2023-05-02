@@ -292,8 +292,6 @@ public class HomePageActivity extends AppCompatActivity {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         String output = "";
 
-        System.out.println(transactions.size());
-
         if (transactions.size() > 0)
         {
             for (Transaction t : transactions)
