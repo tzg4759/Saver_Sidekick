@@ -49,5 +49,11 @@
         android:id="@+id/user_details"
         android:textColor="#0025F1"/>
 
+    <Button
+        android:id="@+id/TotheSaving"
+        android:layout_width="170dp"
+        android:layout_height="69dp"
+        android:text="@string/to_the_saving_history" />
+
 
 </LinearLayout>

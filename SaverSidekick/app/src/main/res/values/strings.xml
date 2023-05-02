@@ -77,5 +77,8 @@
     <string name="to_politechnic_button">To Politechnic</string>
     <string name="to_graph">To the Graph Page</string>
     <string name="financial">To the Edu resource page</string>
+    <string name="to_the_saving_history">To the Saving history</string>
+    <string name="to_the_saving_graph">To the Saving Graph</string>
+    <string name="finalcial_education_resource">Finalcial Education resource</string>
 
 </resources>

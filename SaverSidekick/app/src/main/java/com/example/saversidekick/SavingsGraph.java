@@ -1,7 +1,9 @@
 package com.example.saversidekick;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,29 +17,31 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SavingsGraph extends AppCompatActivity {
     String[] labels = new String[] {"Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Au", "Sep", "Oct","Dec"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savings_graph);
+        Intent intent = getIntent();
+        int getStartMonth = 5;
+        int getNumber = 5;
+        //Set Text
         // on below line we are initializing our graph view.
         LineChart chart = findViewById(R.id.Graph);
         List<Entry> entries = new ArrayList<Entry>();
         // this will be from the database after it is setup
-        entries.add(new Entry(0, 100));
-        entries.add(new Entry(1, 200));
-        entries.add(new Entry(2, 150));
-        entries.add(new Entry(3, 200));
-        entries.add(new Entry(4, 210));
+        String []finallabel = new String[getNumber];
+
+
 
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setLabelCount(5); // set the number of labels to display on the X-axis
         xAxis.setGranularity(1f);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep","Oct","Nov","Dec"})); // set the labels for the X-axis
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels)); // set the labels for the X-axis
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // set the position of the X-axis labels
         LineDataSet dataSet = new LineDataSet(entries, "Label");
         LineData lineData = new LineData(dataSet);

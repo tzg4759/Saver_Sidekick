@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".financial_education_resourse">
+    tools:context=".FinancialEducationResourse">
 
     <TextView
         android:id="@+id/textView_reserve_bank"
@@ -22,7 +22,7 @@
         android:layout_width="154dp"
         android:layout_height="61dp"
         android:text="@string/money_hub_button"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.908"

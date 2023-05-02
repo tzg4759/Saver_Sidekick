@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         // next button opens earnings page once clicked
         Button nextButton = findViewById(R.id.buttonNext);
-
+        Button Tostheavings = findViewById(R.id.TotheSaving);
         nextButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, EarningsActivity.class);
             startActivity(intent);
@@ -65,5 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+        Tostheavings.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, SavingSearch.class);
+            startActivity(intent);
+        });
+        }
     }
-}
+
