@@ -175,17 +175,16 @@
 
     <EditText
         android:id="@+id/summaryTextView"
-        android:layout_width="393dp"
-        android:layout_height="277dp"
+        android:layout_width="386dp"
+        android:layout_height="153dp"
         android:ems="10"
         android:inputType="none"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
+        app:layout_constraintBottom_toTopOf="@+id/textViewWeeklyEarnings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/summaryText"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/importFileButton"

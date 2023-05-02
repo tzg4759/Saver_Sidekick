@@ -1,11 +1,13 @@
 package com.example.saversidekick;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
@@ -49,5 +51,17 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Monthly Spending");
+        dataSet.setColor(Color.parseColor("#FFA726"));
+        BarData barData = new BarData(dataSet);
+        barData.setBarWidth(0.9f);
+
+        // Customize x-axis labels
+        String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
+        barChart.getXAxis().setGranularity(1f);
+
+        // Set data and refresh the chart
+        barChart.setData(barData);
+        barChart.invalidate();
     }
 }
