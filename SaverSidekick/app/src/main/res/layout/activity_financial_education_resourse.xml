@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinancialEducationResourse">
+    tools:context=".financial_education_resourse">
 
     <TextView
         android:id="@+id/textView_reserve_bank"
