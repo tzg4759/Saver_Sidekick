@@ -20,21 +20,27 @@ import java.util.List;
 import java.util.Random;
 
 public class SavingsGraph extends AppCompatActivity {
+    TextView name, number;
     String[] labels = new String[] {"Jan", "Feb", "Mar", "Apr", "May","Jun", "Jul", "Au", "Sep", "Oct","Dec"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_savings_graph);
         Intent intent = getIntent();
-        int getStartMonth = 5;
-        int getNumber = 5;
+        name = findViewById(R.id.textView5);
+        number = findViewById(R.id.textView6);
+        String getName = intent.getStringExtra("start");
+        String getNumber = intent.getStringExtra("number");
         //Set Text
         // on below line we are initializing our graph view.
         LineChart chart = findViewById(R.id.Graph);
         List<Entry> entries = new ArrayList<Entry>();
         // this will be from the database after it is setup
-        String []finallabel = new String[getNumber];
+        String []finallabel = new String[10];
 
+        for(int i=0;i<=4;i++){
+            boolean add = entries.add(new Entry(i, 100));
+        }
 
 
 
