@@ -21,6 +21,16 @@
 
 
     <Button
+        android:id="@+id/budgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/budgeted_expenses"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="222dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
         android:id="@+id/graphButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

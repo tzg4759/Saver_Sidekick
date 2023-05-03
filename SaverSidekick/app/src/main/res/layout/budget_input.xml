@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/expenseNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expense Name"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/expenseAmountEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Budgeted Amount"
+            android:textSize="20dp"
+            android:layout_below="@+id/expenseNameEdit"/>
+
+        <EditText
+            android:id="@+id/expenseDateEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Payment Date"
+            android:textSize="20dp"
+            android:layout_below="@+id/expenseAmountEdit"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

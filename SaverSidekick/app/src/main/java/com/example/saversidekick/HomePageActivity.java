@@ -75,6 +75,12 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button budgetButton = findViewById(R.id.budgetButton);
+        budgetButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, BudgetActivity.class);
+            startActivity(intent);
+        });
+
         Button graphButton = findViewById(R.id.graphButton);
         graphButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);

@@ -55,5 +55,7 @@
     <string name="click_to_log_in">Click to Log In</string>
     <string name="log_out">Log Out</string>
     <string name="user_email">User Email</string>
-    
+    <string name="budgeted_expenses">Budgeted Expenses</string>
+    <string name="budget_desc">Please click below to enter the name of your budgeted expense and the weekly amount allocated to each expense</string>
+
 </resources>
