@@ -9,12 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BudgetActivity extends AppCompatActivity {
 
+
+    FirebaseAuth auth;      // firebase authentication
+    FirebaseUser currentUser;       // variable to store current user details from firebase
     Button addButton;  // button to add a budget record to the page/shared prefs
     Button clearButton;     // button to clear the budget records/shared prefs
     Button nextButton;      // button the navigate to the next page (UpComingBudgetExpense)
@@ -22,20 +27,20 @@ public class BudgetActivity extends AppCompatActivity {
     LinearLayout layout;       // instance for the page layout container
     private SharedPreferences budgetData;       // shared preferences instance which records will be saved
     private SharedPreferences.Editor editor;        // shared preferences editor instance to alter the records in shared preferences
-    private static final String PREFS_NAME = "BudgetInput";  // shared preferences label
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_budget);
 
+        auth = FirebaseAuth.getInstance();          // initialise the firebase authentication
+        currentUser = auth.getCurrentUser();        // fetch the current user
         addButton = findViewById(R.id.addButton);       // initialise the add button
         nextButton = findViewById(R.id.nextButton);     // initialise the next button
         clearButton = findViewById(R.id.clearButton);       // initialise the clear button
-        layout = findViewById(R.id.container);
+        layout = findViewById(R.id.container);          // initialise the layout container
 
-        budgetData = getSharedPreferences(PREFS_NAME, 0);       // retrieve stored shared preferences using prefs_name
+        budgetData = getSharedPreferences("Input" + currentUser.getEmail(), 0);       // retrieve stored shared preferences using prefs_name
         editor = budgetData.edit();         // initialise shared preferences editor
 
         buildDialog();      // run build dialog function to display a budget entry on the page and save into shared prefs
@@ -76,7 +81,7 @@ public class BudgetActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        addCard(expenseName.getText().toString(), "$" + expenseAmount.getText().toString() + " p/w", "Due: " + expenseDate.getText().toString());      // adds new card to the view so record is displayed on page
+                        addCard(expenseName.getText().toString(), "$" + expenseAmount.getText().toString() + " p/w", "Payment Due: " + expenseDate.getText().toString());      // adds new card to the view so record is displayed on page
                         int count = budgetData.getInt("entry_count", 0);        // create count int which tells program where the last saved record is in shared prefs
                         editor.putString("entry_label_" + count, expenseName.getText().toString());     // save expense name user input into shared preferences
                         editor.putInt("entry_value_" + count, Integer.parseInt(expenseAmount.getText().toString()));        // save expense amount user input into shared prefs
@@ -123,7 +128,7 @@ public class BudgetActivity extends AppCompatActivity {
     // function for the clear data button where a user can clear the data in the arraylist/budget table
     private void clearData()
     {
-        SharedPreferences budgetData = getSharedPreferences(PREFS_NAME, 0);     // access shared prefs instance
+        SharedPreferences budgetData = getSharedPreferences("Input" + currentUser.getEmail(), 0);     // access user shared prefs instance
         SharedPreferences.Editor editor = budgetData.edit(); // access the shared pref editor
         editor.clear();     // clear shared preferences
         editor.apply();     // apply changes to shared preferences
@@ -133,7 +138,7 @@ public class BudgetActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        budgetData = getSharedPreferences(PREFS_NAME, 0);       // access shared preferences
+        budgetData = getSharedPreferences("Input" + currentUser.getEmail(), 0);       // access user shared preferences
 
         int count = budgetData.getInt("entry_count", 0);        // get array size of shared preferences
 
@@ -142,7 +147,7 @@ public class BudgetActivity extends AppCompatActivity {
             String label = budgetData.getString("entry_label_" + i, "");       // add expense name to variable
             int value = budgetData.getInt("entry_value_"+i, 0);     // add expense amount to a variable
             String date = budgetData.getString("entry_date_"+i, "");        // add expense date to a variable
-            addCard(label, "$" + value + " p/w", date);     // add card to the budget page with shared preferences data
+            addCard(label, "$" + value + " p/w", "Payment Due: " + date);     // add card to the budget page with shared preferences data
         }
 
     }
