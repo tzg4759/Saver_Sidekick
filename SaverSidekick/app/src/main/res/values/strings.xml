@@ -1,39 +1,53 @@
 <resources>
     <string name="app_name">Saver Sidekick</string>
     <string name="welcome_message">Welcome to Saver Sidekick!</string>
-    <string name="next_button_text">Go to Earning Page</string>
+
+    <string name="next_button_text">Next</string>
     <string name="earnings_activity_label">Earnings Activity</string>
-    <string name="enter_weekly_wage">Enter your weekly wage:</string>
+    <string name="enter_weekly_earnings">Enter your weekly earnings:</string>
+
     <string name="submit_button">Submit</string>
     <string name="necessities">Necessities</string>
     <string name="wants">Wants</string>
     <string name="savings">Savings</string>
     <string name="goals">Goals</string>
-    <string name="your_earnings">Your total Earnings:</string>
+
+    <string name="your_total_earnings">Your total Earnings:</string>
     <string name="your_otherIncome">Your other income:</string>
-    <string name="your_weeklyWage">Your weekly wage:</string>
+    <string name="your_weeklyEarnings">Your weekly Earnings:</string>
     <string name="view_my_upcoming_expense">View My Upcoming Expense</string>
     <string name="my_upcoming_expense">My Upcoming Expense</string>
-    <string name="summary_of_my_upcoming_expense">Summary of upcoming expense</string>
-    <string name="categories">Categories</string>
-    <string name="amount">Amount</string>
-    <string name="pay_date">Pay Date</string>
-    <string name="rent_mortgage">Rent/Mortgage</string>
-    <string name="_500">$500</string>
-    <string name="_10_05_2023">10/05/2023</string>
-    <string name="groceries">Groceries</string>
-    <string name="_400">$400</string>
-    <string name="_15_05_2023">15/05/2023</string>
-    <string name="petrol_vehicles">Petrol/Vehicles</string>
 
-    <string name="_20_05_2023">20/05/2023</string>
-    <string name="others">Others</string>
-    <string name="_200">$200</string>
-    <string name="_31_05_2023">31/05/2023</string>
     <string name="enter_income_type">Enter Income Type</string>
     <string name="enter_new_income_amount">Enter New Income Amount</string>
     <string name="add_income">Add Income</string>
     <string name="create_a_new_income_type">Create a new Income Type</string>
-    <string name="_300">$300</string>
 
+    <string name="graph">Graph</string>
+    <string name="your_earnings">Your Earnings:</string>
+    <string name="graph_description">Your chart description</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register_here">Register Here</string>
+    <string name="log_in">Log In</string>
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="registerbutton">Register</string>
+    <string name="click_to_log_in">Click to Log In</string>
+    <string name="log_out">Log Out</string>
+    <string name="user_email">User Email</string>
+    <string name="budget_page">Budget Page</string>
+    <string name="budget_desc">Please click "add expense button" to enter the Name, Amount and Pay Date of your budgeted expense allocated in each category</string>
+    <string name="summary_of_upcoming_expense">Summary of upcoming expense</string>
+    <string name="expense_title">SaverSidekick</string>
+    <string name="view_budget">View Budget Info</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="delete_budget_btn">Delete</string>
+    <string name="pay_date">Pay Date</string>
+    <string name="budget_amount">Amount</string>
+    <string name="budget_name">Name</string>
+    <string name="budgeted_amount">Budgeted Amount</string>
+    <string name="expense_name">Expense Name</string>
+    <string name="pay_date_input">Pay Date</string>
+    
 </resources>

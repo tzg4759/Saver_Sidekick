@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:ignore="ExtraText">
+
 
     <Button
         android:id="@+id/goalsButton"
@@ -16,6 +18,23 @@
         android:text="@string/goals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/graphButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="327dp"
+        android:text="@string/graph"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
+        app:layout_constraintEnd_toStartOf="@+id/goalsButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -92,6 +111,10 @@
                 android:layout_marginStart="20dp" />
         </TableRow>
 
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </TableLayout>
 
     <TextView
@@ -126,19 +149,78 @@
 
 
     <TextView
-        android:id="@+id/textViewWeeklyWage"
+        android:id="@+id/textViewWeeklyEarnings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
         android:layout_marginTop="290dp"
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
-        android:text="@string/your_weeklyWage"
+        android:text="@string/your_weeklyEarnings"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Recent Activity"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/importFileButton" />
+
+    <EditText
+        android:id="@+id/summaryTextView"
+        android:layout_width="386dp"
+        android:layout_height="153dp"
+        android:ems="10"
+        android:inputType="none"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textViewWeeklyEarnings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summaryText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/importFileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:text="Import CSV File"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.286"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/budget_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/importFileButton"
+        android:layout_marginTop="96dp"
+        android:onClick="showUpcomingBudgetPlan"
+        android:text="Budget"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.701"
+        app:layout_constraintStart_toEndOf="@+id/importFileButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noTransactionsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="You have not imported any transactions"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summaryText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
