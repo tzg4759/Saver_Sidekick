@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="#F9CCC6"
     android:padding="16dp"
     tools:context=".EarningsActivity">
 
@@ -27,13 +28,15 @@
         android:layout_height="wrap_content"
         android:minWidth="100dp"
         android:minHeight="48dp"
-        android:text="@string/submit_button" />
+        android:text="@string/submit_button"
+        android:textColor="#FFFFFF" />
 
     <Button
         android:id="@+id/button_createNewIncome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_a_new_income_type"
+        android:textColor="#FFFFFF"
         android:minWidth="100dp"
         android:minHeight="48dp"
          />

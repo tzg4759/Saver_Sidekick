@@ -6,30 +6,39 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#040925">
+    android:background="#F9CCC6">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/saver_sidekick"
+        android:contentDescription="@string/Saver_sidekick"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to\nSaverSidekick"
+        android:text="Welcome to\nSaver Sidekick"
         android:gravity="center"
         android:textStyle="bold"
-        android:textSize="50sp"
-        android:textColor="#0025F1"/>
+        android:textSize="40dp"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next_button_text"
-        android:backgroundTint="#0025F1"/>
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#A3657A"/>
 
     <Button
         android:text="@string/log_out"
         android:id="@+id/logout"
+        android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#0025F1"
+        android:backgroundTint="#A3657A"
         />
 
     <TextView
@@ -37,7 +46,6 @@
         android:layout_height="wrap_content"
         android:text="@string/user_email"
         android:id="@+id/user_details"
-        android:textColor="#0025F1"/>
-
+        android:textColor="@color/black"/>
 
 </LinearLayout>

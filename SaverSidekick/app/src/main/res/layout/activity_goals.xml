@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#F9CCC6"
     android:layout_height="match_parent"
     tools:context=".GoalsActivity">
 
@@ -155,6 +156,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="80dp"
         android:text="Edit Goal"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/newGoalButton"
@@ -167,6 +169,7 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="5dp"
+        android:textColor="#FFFFFF"
         android:text="New Goal"
         app:layout_constraintEnd_toStartOf="@+id/editGoalButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -190,6 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Return to Home Page"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

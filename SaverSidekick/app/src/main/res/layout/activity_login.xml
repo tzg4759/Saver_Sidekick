@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#040925"
+    android:background="#F9CCC6"
     android:padding="50dp"
     tools:context=".Login">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/Saver_sidekick"
+        android:src="@drawable/saver_sidekick1" />
+
     <TextView
-        android:text="SaverSidekick"
-        android:textColor="#0025F1"
-        android:textSize="50sp"
+        android:text="Saver Sidekick"
+        android:textColor="@color/black"
+        android:textSize="40dp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="20dp"
@@ -23,7 +30,7 @@
     <TextView
         android:text="@string/log_in"
         android:textSize="24sp"
-        android:textColor="#0025F1"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="20dp"
@@ -36,8 +43,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:hint="@string/email"
-            android:textColor="#0025F1"
-            android:backgroundTint="#8292ED"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -49,8 +56,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
             android:hint="@string/password"
-            android:textColor="#0025F1"
-            android:backgroundTint="#8292ED"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -66,13 +73,14 @@
         android:text="@string/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#0025F1"/>
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#A3657A"/>
 
     <TextView
         android:textStyle="bold"
         android:textSize="20sp"
         android:gravity="center"
-        android:textColor="#0025F1"
+        android:textColor="@color/black"
         android:id="@+id/registerLink"
         android:text="@string/register_here"
         android:layout_width="match_parent"

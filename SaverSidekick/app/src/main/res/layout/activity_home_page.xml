@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="#F9CCC6"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
+        android:textColor="#FFFFFF"
         android:text="@string/goals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="@string/budgeted_expenses"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="13dp"
         tools:layout_editor_absoluteY="222dp"
         tools:ignore="MissingConstraints" />
@@ -39,6 +41,7 @@
         android:layout_marginEnd="108dp"
         android:layout_marginBottom="327dp"
         android:text="@string/graph"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
         app:layout_constraintEnd_toStartOf="@+id/goalsButton"
         app:layout_constraintHorizontal_bias="1.0"
@@ -203,6 +206,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:text="Import CSV File"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
