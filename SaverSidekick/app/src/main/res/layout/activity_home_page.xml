@@ -71,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="4dp"
+                android:textColor="@color/black"
                 android:text="@string/necessities"
                 android:textSize="18sp" />
 
@@ -93,6 +94,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/wants"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <ProgressBar
@@ -114,6 +116,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/savings"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <ProgressBar
@@ -139,6 +142,7 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
         android:text="@string/your_earnings"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +158,7 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
         android:text="@string/your_otherIncome"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -170,6 +175,7 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
         android:text="@string/your_weeklyEarning"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -182,6 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Recent Activity"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -217,6 +224,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="You have not imported any transactions"
+        android:textColor="@color/black"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
