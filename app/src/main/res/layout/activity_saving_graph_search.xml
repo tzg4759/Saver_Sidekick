@@ -20,7 +20,20 @@
         app:layout_constraintVertical_bias="0.208" />
 
     <EditText
-        android:id="@+id/NumMonth"
+        android:id="@+id/thisMonthSavings"
+        android:layout_width="313dp"
+        android:layout_height="72dp"
+        android:hint="This Month Savings"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/ToEduRef"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.606" />
+
+    <EditText
+        android:id="@+id/numMonth"
         android:layout_width="313dp"
         android:layout_height="72dp"
         android:hint="Number of Month to display"

@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SavingGraphSearch extends AppCompatActivity {
-    EditText Start, num;
+    EditText Start, num,Savings;
     Button toGraph;
     Button toEdu;
     @Override
@@ -23,11 +23,13 @@ public class SavingGraphSearch extends AppCompatActivity {
         toGraph=findViewById(R.id.TotheGraphPageButton);
         toEdu =findViewById(R.id.ToEduRef);
         Start = findViewById(R.id.StartMonth);
-        num = findViewById(R.id.NumMonth);
+        num = findViewById(R.id.numMonth);
+        Savings = findViewById(R.id.thisMonthSavings);
 
         toGraph.setOnClickListener(view -> {
             String getStart = Start.getText().toString();
             String getNumber = num.getText().toString();
+            String Savingstxt = Savings.getText().toString();
             //Pass data to 2nd activity
             if (TextUtils.isEmpty(getStart)) {
                 Toast.makeText(SavingGraphSearch.this,"Please enter a number in the Start box(1-11)",Toast.LENGTH_SHORT).show();
@@ -35,6 +37,10 @@ public class SavingGraphSearch extends AppCompatActivity {
             }
             if (TextUtils.isEmpty(getNumber)) {
                 Toast.makeText(SavingGraphSearch.this,"Please enter a number in the Number box",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(Savingstxt)) {
+                Toast.makeText(SavingGraphSearch.this,"Please enter this month Savings Please",Toast.LENGTH_SHORT).show();
                 return;
             }
             // changing input to integer
@@ -63,6 +69,7 @@ public class SavingGraphSearch extends AppCompatActivity {
             Intent intent = new Intent(SavingGraphSearch.this, SavingsGraph.class);
             intent.putExtra("start", getStart);
             intent.putExtra("number", getNumber);
+            intent.putExtra("Savings", Savingstxt);
             startActivity(intent);
         });
         toEdu.setOnClickListener(view -> {

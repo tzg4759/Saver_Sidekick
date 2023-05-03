@@ -27,7 +27,7 @@
             android:name=".CreateNewIncome"
             android:exported="false"
             android:label="Create a new Income"
-            android:parentActivityName=".EarningsActivity" />
+            android:parentActivityName=".CreateNewIncome$EarningsActivity" />
         <activity
             android:name=".UpcomingBudgetActivity"
             android:exported="false"
@@ -50,7 +50,7 @@
             android:exported="true"
             android:label="@string/app_name" />
         <activity
-            android:name=".EarningsActivity"
+            android:name=".CreateNewIncome$EarningsActivity"
             android:exported="true"
             android:label="@string/earnings_activity_label" />
         <activity

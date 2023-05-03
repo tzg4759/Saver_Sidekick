@@ -32,23 +32,29 @@ public class SavingsGraph extends AppCompatActivity {
         number = findViewById(R.id.textView6);
         String getstart = intent.getStringExtra("start");
         String getNumber = intent.getStringExtra("number");
+        String getSavings = intent.getStringExtra("Savings");
         //Set Text
-        name.setText("you have entered the starting month"+getstart);
-        number.setText("you have entered the num of month"+ getNumber);
+        name.setText("you have entered the starting month: "+getstart+"you have entered the num of month: "+ getNumber);
+        number.setText("you have entered the Saving for this of month: "+ getSavings);
         int Startnum =Integer.parseInt(getstart)-1;
         int Monthnum = Integer.parseInt(getNumber);
+        int Savingnum =Integer.parseInt(getSavings);
         // on below line we are initializing our graph view.
         LineChart chart = findViewById(R.id.Graph);
         List<Entry> entries = new ArrayList<Entry>();
         // this will be from the database after it is setup
         String []finallabel = new String[12];
 
-        for(int i=0;i<=Monthnum-1;i++){
+        for(int i=0;i<Monthnum;i++){
             finallabel[i]=labels[Startnum+i];
-            int int_random = rand.nextInt(300);
-            boolean add = entries.add(new Entry(i, int_random));
+            if(i==Monthnum-1){
+                boolean finaladd= entries.add(new Entry(i, Savingnum));
+            }
+            else {
+                int int_random = rand.nextInt(300);
+                boolean add = entries.add(new Entry(i, int_random));
+            }
         }
-
 
 
         XAxis xAxis = chart.getXAxis();

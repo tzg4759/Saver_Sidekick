@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         // next button opens earnings page once clicked
         Button nextButton = findViewById(R.id.buttonNext);
-        Button Tostheavings = findViewById(R.id.TotheSaving);
+        Button Tothesavings = findViewById(R.id.TotheSaving);
         nextButton.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, EarningsActivity.class);
+            Intent intent = new Intent(MainActivity.this, CreateNewIncome.EarningsActivity.class);
             startActivity(intent);
         });
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, UpcomingBudgetActivity.class);
             startActivity(i);
         });
-        Tostheavings.setOnClickListener(view -> {
+        Tothesavings.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, SavingGraphSearch.class);
             startActivity(intent);
         });
