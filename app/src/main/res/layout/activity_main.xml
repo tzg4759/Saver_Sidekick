@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#040925">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to\nSaverSidekick"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        android:textColor="#0025F1"/>
+
+
+    <Button
+        android:id="@+id/budget_button"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:onClick="showUpcomingBudgetPlan"
+        android:text="@string/view_my_upcoming_expense"
+        tools:ignore="TextSizeCheck" />
+        
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button_text"
+        android:backgroundTint="#0025F1"/>
+
+    <Button
+        android:text="@string/log_out"
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0025F1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_email"
+        android:id="@+id/user_details"
+        android:textColor="#0025F1"/>
+
+    <Button
+        android:id="@+id/TotheSaving"
+        android:layout_width="170dp"
+        android:layout_height="69dp"
+        android:text="@string/to_the_saving_history" />
+
+
+</LinearLayout>

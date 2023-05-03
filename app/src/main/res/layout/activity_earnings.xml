@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".EarningsActivity">
+
+
+    <EditText
+        android:id="@+id/editTextWeeklyEarnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="none"
+        android:hint="@string/enter_weekly_earnings"
+        android:inputType="numberDecimal"
+        android:minWidth="300dp"
+        android:minHeight="48dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
+    <Button
+        android:id="@+id/buttonSubmitEarnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="100dp"
+        android:minHeight="48dp"
+        android:text="@string/submit_button" />
+
+    <Button
+        android:id="@+id/button_createNewIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_a_new_income_type"
+        android:minWidth="100dp"
+        android:minHeight="48dp"
+         />
+
+
+</LinearLayout>

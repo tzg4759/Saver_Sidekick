@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SavingGraphSearch">
+
+    <EditText
+        android:id="@+id/StartMonth"
+        android:layout_width="316dp"
+        android:layout_height="71dp"
+        android:hint="Starting month"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <EditText
+        android:id="@+id/NumMonth"
+        android:layout_width="313dp"
+        android:layout_height="72dp"
+        android:hint="Number of Month to display"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/ToEduRef"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.436" />
+
+    <Button
+        android:id="@+id/TotheGraphPageButton"
+        android:layout_width="211dp"
+        android:layout_height="67dp"
+        android:text="View my Saving in A period"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763" />
+
+    <Button
+        android:id="@+id/ToEduRef"
+        android:layout_width="209dp"
+        android:layout_height="77dp"
+        android:background="@android:color/black"
+        android:text="@string/finalcial_education_resource"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TotheGraphPageButton"
+        app:layout_constraintVertical_bias="0.387" />
+</androidx.constraintlayout.widget.ConstraintLayout>
