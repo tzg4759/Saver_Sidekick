@@ -69,16 +69,18 @@ public class BudgetActivity extends AppCompatActivity {
 
         EditText expenseName =  view.findViewById(R.id.expenseNameEdit);        // saves expense name user input into variable
         EditText expenseAmount =  view.findViewById(R.id.expenseAmountEdit);       // saves expense amount user input into variable
+        EditText expenseDate = view.findViewById(R.id.expenseDateEdit); // saves expense date user input into variable
 
         builder.setView(view);
         builder.setTitle("Enter Budgeted Expense Name & Amount:")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        addCard(expenseName.getText().toString(), "$" + expenseAmount.getText().toString() + " p/w");      // adds new card to the view so record is displayed on page
+                        addCard(expenseName.getText().toString(), "$" + expenseAmount.getText().toString() + " p/w", "Due: " + expenseDate.getText().toString());      // adds new card to the view so record is displayed on page
                         int count = budgetData.getInt("entry_count", 0);        // create count int which tells program where the last saved record is in shared prefs
                         editor.putString("entry_label_" + count, expenseName.getText().toString());     // save expense name user input into shared preferences
                         editor.putInt("entry_value_" + count, Integer.parseInt(expenseAmount.getText().toString()));        // save expense amount user input into shared prefs
+                        editor.putString("entry_date_" +count, expenseDate.getText().toString());  //save expense date user input
                         editor.putInt("entry_count", count + 1);        // update the count in shared prefs after new data is added
                         editor.apply();
                     }
@@ -95,15 +97,17 @@ public class BudgetActivity extends AppCompatActivity {
     }
 
     //function adds a budget expense card object to the page which displays the entries back to the user
-    private void addCard(String name, String amount) {
+    private void addCard(String name, String amount, String date) {
         View view = getLayoutInflater().inflate(R.layout.budget_card, null);
 
         TextView nameView = view.findViewById(R.id.expenseName);        // initialise expense name input variable
         TextView amountView = view.findViewById(R.id.expenseAmount);    // initialise expense amount input variable
+        TextView dateView = view.findViewById(R.id.expensePayDate);
         Button delete = view.findViewById(R.id.deleteButton1);      // initialise delete record button for each card entry
 
         nameView.setText(name);     // set the card's expense name
         amountView.setText(amount);     // set the card's expense amount
+        dateView.setText(date);     // set the card's expense date
 
         // on click action for the delete button
         delete.setOnClickListener(new View.OnClickListener() {
@@ -125,18 +129,20 @@ public class BudgetActivity extends AppCompatActivity {
         editor.apply();     // apply changes to shared preferences
     }
 
+    // this function restores the saved expense cards to the budget page
     protected void onResume()
     {
         super.onResume();
-        budgetData = getSharedPreferences(PREFS_NAME, 0);
+        budgetData = getSharedPreferences(PREFS_NAME, 0);       // access shared preferences
 
-        int count = budgetData.getInt("entry_count", 0);
+        int count = budgetData.getInt("entry_count", 0);        // get array size of shared preferences
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)     // loop through the shared prefs array to save/retrieve the data
         {
-            String label = budgetData.getString("entry_label_" + i, "");
-            int value = budgetData.getInt("entry_value_"+i, 0);
-            addCard(label, "$" + value + " p/w");
+            String label = budgetData.getString("entry_label_" + i, "");       // add expense name to variable
+            int value = budgetData.getInt("entry_value_"+i, 0);     // add expense amount to a variable
+            String date = budgetData.getString("entry_date_"+i, "");        // add expense date to a variable
+            addCard(label, "$" + value + " p/w", date);     // add card to the budget page with shared preferences data
         }
 
     }
