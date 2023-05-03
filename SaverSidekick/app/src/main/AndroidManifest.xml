@@ -15,9 +15,12 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
+            android:name=".DisplayBudgetActivity"
+            android:exported="false" />
+        <activity
             android:name=".BudgetActivity"
             android:exported="true"
-            android:label="Budgeted Expense Input"/>
+            android:label="Budgeted Expense Input" />
         <activity
             android:name=".CreateNewIncome"
             android:exported="false"

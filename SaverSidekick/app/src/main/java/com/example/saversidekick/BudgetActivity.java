@@ -55,7 +55,7 @@ public class BudgetActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BudgetActivity.this, UpcomingBudgetActivity.class);     // click action for the next button goes to UpcomingBudgetActivity page
+                Intent intent = new Intent(BudgetActivity.this, DisplayBudgetActivity.class);     // click action for the next button goes to UpcomingBudgetActivity page
                 startActivity(intent);
             }
         });
@@ -138,8 +138,9 @@ public class BudgetActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        budgetData = getSharedPreferences("Input" + currentUser.getEmail(), 0);       // access user shared preferences
+        layout.removeAllViews();
 
+        budgetData = getSharedPreferences("Input" + currentUser.getEmail(), 0);       // access user shared preferences
         int count = budgetData.getInt("entry_count", 0);        // get array size of shared preferences
 
         for (int i = 0; i < count; i++)     // loop through the shared prefs array to save/retrieve the data
