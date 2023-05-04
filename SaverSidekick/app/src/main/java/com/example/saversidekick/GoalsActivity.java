@@ -21,13 +21,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
 
-
+//activity displays all current goals the user has set
 public class GoalsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
+
+        //read file if it exists
 
         ArrayList<Goal> goalsList = new ArrayList<>();
         File path = getApplicationContext().getFilesDir();
@@ -54,6 +56,8 @@ public class GoalsActivity extends AppCompatActivity {
             }
 
         }
+
+        //UI components
         Button newGoalButton = findViewById(R.id.newGoalButton);
         newGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(GoalsActivity.this, CreateGoalActivity.class);
@@ -111,6 +115,7 @@ public class GoalsActivity extends AppCompatActivity {
         TextView date5 = findViewById(R.id.dateGoal4);
 
 
+        //set components visible if goal objects exist
         if (goalsList.size() == 0)
         {
             TextView textViewNoGoals = findViewById(R.id.textViewNoGoals);
@@ -207,6 +212,7 @@ public class GoalsActivity extends AppCompatActivity {
         }
     }
 
+    //method to load goals from a file
     public String loadGoals(String fileName) {
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, fileName);

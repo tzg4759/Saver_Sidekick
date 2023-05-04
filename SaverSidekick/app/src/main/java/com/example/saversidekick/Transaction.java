@@ -1,10 +1,12 @@
 package com.example.saversidekick;
 
+//transaction object class
 public class Transaction {
     private float amount;
     private String date;
     private String memo;
 
+    //constructor methods
     public Transaction(float amount) {
         this.amount = amount;
     }
@@ -16,15 +18,18 @@ public class Transaction {
         this.amount = amount;
     }
 
+    //method to export object data
     public String export(){
         return date+"|"+memo+"|"+amount+"\n";
     }
 
+    //toString method
     @Override
     public String toString() {
         return date+"\n"+memo+" "+amount+"\n";
     }
 
+    //getters and setters
     public float getAmount() {
         return amount;
     }
