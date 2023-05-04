@@ -58,5 +58,17 @@
     <string name="user_email">User Email</string>
     <string name="budgeted_expenses">Budgeted Expenses</string>
     <string name="budget_desc">Please click below to enter the name of your budgeted expense and the weekly amount allocated to each expense</string>
+    <string name="LineGraph_history_text">1</string>
+    <string name="LineGraph_recent_history_text">null</string>
+    <string name="LineGraph_saving_historytext">null</string>
+    <string name="finalcial_education_resource">finalcial education resources</string>
+    <string name="reserve_bank_of_nz_text">Reserve Bank Of Nz</string>
+    <string name="money_hub_button">To money Hub</string>
+    <string name="financial_education_resource">Finalcial Education Resource</string>
+    <string name="Resource_reserved_bank_button">To Reserved Bank</string>
+    <string name="MoneyNZ_info">Our directory lists free financial literacy courses offered by the Open Polytechnic, Christians Against Poverty, Te Wānanga o Aotearoa, Westpac, Banqer, ASB, Sorted in Schools and MoneyTime.</string>
+    <string name="Politec_info">Gain skills and confidence in a number of areas that are required for successful participation in our society anytime and anywhere you want with New Zealand\'s specialised provider of distance and online learning courses and qualifications, Open Polytechnic NZ</string>
+    <string name="to_politechnic_button">To Politech</string>
+    <string name="RSBanktext">This section contains a collection of resources for the general public, communities, schools and others with an interest in understanding more about key financial topics like inflation, monetary policy and the economy, and our role and history.</string>
 
 </resources>

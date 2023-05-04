@@ -15,6 +15,15 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
+            android:name=".finacial_education_resource"
+            android:exported="false" />
+        <activity
+            android:name=".SavingGraphSearch"
+            android:exported="false" />
+        <activity
+            android:name=".SavingsGraph"
+            android:exported="false" />
+        <activity
             android:name=".DisplayBudgetActivity"
             android:exported="false" />
         <activity
