@@ -65,7 +65,6 @@ public class CreateNewIncome extends AppCompatActivity {
                 Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
                 startActivity(intent);
             });
-
             Button createNewIncome = findViewById(R.id.button_createNewIncome);
             createNewIncome.setOnClickListener(view -> {
                 Intent i = new Intent(EarningsActivity.this, CreateNewIncome.class);
