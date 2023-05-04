@@ -15,9 +15,6 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
-            android:name=".MergeTesting"
-            android:exported="false" />
-        <activity
             android:name=".DisplayBudgetActivity"
             android:exported="false" />
         <activity
