@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -16,7 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BudgetActivity extends AppCompatActivity {
-
 
     FirebaseAuth auth;      // firebase authentication
     FirebaseUser currentUser;       // variable to store current user details from firebase
@@ -48,14 +49,15 @@ public class BudgetActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
-            }       // click action for add Button adds new entry dialog to the page
+                dialog.show();      // click action for add Button adds new entry dialog to the page
+            }
         });
+
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BudgetActivity.this, DisplayBudgetActivity.class);     // click action for the next button goes to UpcomingBudgetActivity page
+                Intent intent = new Intent(BudgetActivity.this, DisplayBudgetActivity.class);     // click action for the next button goes to DisplayBudgetActivity page
                 startActivity(intent);
             }
         });
@@ -64,10 +66,12 @@ public class BudgetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clearData();
-                layout.removeAllViews();
-            }       // click action which will clear the data in shared preferences
+                layout.removeAllViews();    // click action which will clear the data in shared preferences
+            }
         });
     }
+
+    //this function will take user input in the form of dialog and add this input to a card which can be displayed on the view
     private void buildDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.budget_input, null);
@@ -94,7 +98,7 @@ public class BudgetActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
-                        // insert error message here
+                        Toast.makeText(BudgetActivity.this, "Error: Budget entry not created/saved. Please try again", Toast.LENGTH_SHORT).show();      // error message if cannot save or create the budget list card
                     }
                 });
 
@@ -134,11 +138,11 @@ public class BudgetActivity extends AppCompatActivity {
         editor.apply();     // apply changes to shared preferences
     }
 
-    // this function restores the saved expense cards to the budget page
+    // this function restores the saved expense cards to the budget page's view
     protected void onResume()
     {
         super.onResume();
-        layout.removeAllViews();
+        layout.removeAllViews();    // clear the current cards on the view if any
 
         budgetData = getSharedPreferences("Input" + currentUser.getEmail(), 0);       // access user shared preferences
         int count = budgetData.getInt("entry_count", 0);        // get array size of shared preferences
