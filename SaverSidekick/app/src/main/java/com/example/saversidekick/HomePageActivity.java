@@ -51,7 +51,13 @@ public class HomePageActivity extends AppCompatActivity {
         ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
+        // To the Search page for the liner graph Button
+        Button toSavings = findViewById(R.id.SavingHistory);
 
+        toSavings.setOnClickListener(view -> {Intent intent = new Intent(HomePageActivity.this, SavingGraphSearch.class);
+            startActivity(intent);
+      });
+        //To the Search page for the liner graph Button ends
 
         transactionList = reloadTransactions();
 
