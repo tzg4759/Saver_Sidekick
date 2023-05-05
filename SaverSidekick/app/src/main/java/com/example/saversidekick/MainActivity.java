@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         if (currentUser == null)    // if there is no current user go to the log in page
         {
             Intent intent = new Intent(getApplicationContext(), Login.class);

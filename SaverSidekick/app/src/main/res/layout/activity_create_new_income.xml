@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="#F9CCC6"
     android:padding="16dp"
     tools:context=".CreateNewIncome">
 
@@ -12,7 +13,7 @@
         android:id="@+id/editTextIncomeType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_income_type"
+        android:text="@string/enter_income_type"
         android:autofillHints="none"
         android:inputType="text"
         android:minWidth="300dp"
@@ -25,7 +26,7 @@
         android:id="@+id/editTextNewIncomeAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_new_income_amount"
+        android:text="@string/enter_new_income_amount"
         android:autofillHints="none"
         android:inputType="numberDecimal"
         android:minWidth="300dp"

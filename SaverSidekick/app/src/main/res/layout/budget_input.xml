@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#F9CCC6"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -13,21 +14,22 @@
             android:id="@+id/expenseNameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/expense_name"
+            android:hint="Expense Name"
             android:textSize="20dp"/>
 
         <EditText
             android:id="@+id/expenseAmountEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/budgeted_amount"
+            android:hint="Budgeted Amount"
             android:textSize="20dp"
             android:layout_below="@+id/expenseNameEdit"/>
+
         <EditText
+            android:id="@+id/expenseDateEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/expensePayDate"
-            android:hint="@string/pay_date_input"
+            android:hint="Payment Date"
             android:textSize="20dp"
             android:layout_below="@+id/expenseAmountEdit"/>
 

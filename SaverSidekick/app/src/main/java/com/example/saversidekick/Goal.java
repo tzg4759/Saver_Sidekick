@@ -2,6 +2,7 @@ package com.example.saversidekick;
 
 import java.util.Date;
 
+//class for a goal object
 public class Goal {
     private String name;
     private int goalTotal;
@@ -66,6 +67,7 @@ public class Goal {
         this.progress = Math.round(((float)this.goalCurrent / (float)this.goalTotal) * 100);
     }
 
+    //toString method for a goal object to return all the variables of the object
     public String toString() {
         String output = name+"|"+goalTotal+"|"+goalCurrent;
         if (this.date != null)

@@ -11,17 +11,37 @@
     <string name="wants">Wants</string>
     <string name="savings">Savings</string>
     <string name="goals">Goals</string>
+    <string name="Saver_sidekick"></string>
 
-    <string name="your_total_earnings">Your total Earnings:</string>
+    <string name="your_total_earnings">Your Total Earnings:</string>
     <string name="your_otherIncome">Your other income:</string>
     <string name="your_weeklyEarnings">Your weekly Earnings:</string>
     <string name="view_my_upcoming_expense">View My Upcoming Expense</string>
     <string name="my_upcoming_expense">My Upcoming Expense</string>
+    <string name="summary_of_my_upcoming_expense">Summary of upcoming expense</string>
+    <string name="categories">Categories</string>
+    <string name="amount">Amount</string>
+    <string name="pay_date">Pay Date</string>
+    <string name="rent_mortgage">Rent/Mortgage</string>
+    <string name="_500">$500</string>
+    <string name="_10_05_2023">10/05/2023</string>
+    <string name="groceries">Groceries</string>
+    <string name="_400">$400</string>
+    <string name="_15_05_2023">15/05/2023</string>
+    <string name="petrol_vehicles">Petrol/Vehicles</string>
+    <string name="your_weeklyEarning">Your Weekly Earning</string>
 
+
+    <string name="_20_05_2023">20/05/2023</string>
+    <string name="others">Others</string>
+    <string name="_200">$200</string>
+    <string name="_31_05_2023">31/05/2023</string>
     <string name="enter_income_type">Enter Income Type</string>
     <string name="enter_new_income_amount">Enter New Income Amount</string>
     <string name="add_income">Add Income</string>
     <string name="create_a_new_income_type">Create a new Income Type</string>
+    <string name="_300">$300</string>
+
 
     <string name="graph">Graph</string>
     <string name="your_earnings">Your Earnings:</string>
@@ -36,18 +56,20 @@
     <string name="click_to_log_in">Click to Log In</string>
     <string name="log_out">Log Out</string>
     <string name="user_email">User Email</string>
-    <string name="budget_page">Budget Page</string>
-    <string name="budget_desc">Please click "add expense button" to enter the Name, Amount and Pay Date of your budgeted expense allocated in each category</string>
-    <string name="summary_of_upcoming_expense">Summary of upcoming expense</string>
-    <string name="expense_title">SaverSidekick</string>
-    <string name="view_budget">View Budget Info</string>
-    <string name="add_expense">Add Expense</string>
-    <string name="delete_budget_btn">Delete</string>
-    <string name="pay_date">Pay Date</string>
-    <string name="budget_amount">Amount</string>
-    <string name="budget_name">Name</string>
-    <string name="budgeted_amount">Budgeted Amount</string>
-    <string name="expense_name">Expense Name</string>
-    <string name="pay_date_input">Pay Date</string>
-    
+    <string name="budgeted_expenses">Budgeted Expenses</string>
+    <string name="budget_desc">Please click below to enter the name of your budgeted expense and the weekly amount allocated to each expense</string>
+    <string name="LineGraph_history_text">1</string>
+    <string name="LineGraph_recent_history_text">null</string>
+    <string name="LineGraph_saving_historytext">null</string>
+    <string name="finalcial_education_resource">finalcial education resources</string>
+    <string name="reserve_bank_of_nz_text">Reserve Bank Of Nz</string>
+    <string name="money_hub_button">To money Hub</string>
+    <string name="financial_education_resource">Finalcial Education Resource</string>
+    <string name="Resource_reserved_bank_button">To Reserved Bank</string>
+    <string name="MoneyNZ_info">Our directory lists free financial literacy courses offered by the Open Polytechnic, Christians Against Poverty, Te Wānanga o Aotearoa, Westpac, Banqer, ASB, Sorted in Schools and MoneyTime.</string>
+    <string name="Politec_info">Gain skills and confidence in a number of areas that are required for successful participation in our society anytime and anywhere you want with New Zealand\'s specialised provider of distance and online learning courses and qualifications, Open Polytechnic NZ</string>
+    <string name="to_politechnic_button">To Politech</string>
+    <string name="RSBanktext">This section contains a collection of resources for the general public, communities, schools and others with an interest in understanding more about key financial topics like inflation, monetary policy and the economy, and our role and history.</string>
+    <string name="SavingHistory">SavingHistory</string>
+
 </resources>

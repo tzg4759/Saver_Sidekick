@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +14,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
-
 import java.util.ArrayList;
 
 public class DisplayBudgetActivity extends AppCompatActivity
@@ -20,18 +21,18 @@ public class DisplayBudgetActivity extends AppCompatActivity
     private SharedPreferences budgetList;
     private ArrayList<Budget_tableRow> entries;
     private TextView textView1;
-
-    private static final String PREFS_NAME = "BudgetInput";
+    FirebaseAuth auth;      // firebase authentication
+    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_budget);
 
-
-
-        budgetList = getSharedPreferences(PREFS_NAME, 0);
         entries = new ArrayList<>();
+        auth = FirebaseAuth.getInstance();          // initialise the firebase authentication
+        currentUser = auth.getCurrentUser();
+        budgetList = getSharedPreferences("Input" + currentUser.getEmail(), 0);
 
         int count = budgetList.getInt("entry_count", 0);
 
@@ -40,7 +41,7 @@ public class DisplayBudgetActivity extends AppCompatActivity
             String label = budgetList.getString("entry_label_" + i, "");
             int value = budgetList.getInt("entry_value_"+i, 0);
             String date = budgetList.getString("entry_date_"+i,"");
-            entries.add(new Budget_tableRow(value, label,date));
+            entries.add(new Budget_tableRow(value, label, date));
         }
 
         textView1 = findViewById(R.id.textView);
@@ -51,7 +52,7 @@ public class DisplayBudgetActivity extends AppCompatActivity
         {
             sb.append(entries.get(i).getText()).append("   ").append(entries.get(i).getNum()).append("   ").append(entries.get(i).getDate()).append("\n");
         }
-            textView1.setText(sb.toString());
+        textView1.setText(sb.toString());
         //build the pie Chart with the data
         PieChart pieChart = findViewById(R.id.pieChart);
         ArrayList<PieEntry> upcomingExpense = new ArrayList<>();
@@ -71,4 +72,3 @@ public class DisplayBudgetActivity extends AppCompatActivity
 
     }
 }
-

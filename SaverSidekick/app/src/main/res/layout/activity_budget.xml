@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="#F9CCC6"
     tools:context=".BudgetActivity"
     android:padding="30dp">
 
     <TextView
-        android:text="@string/expense_title"
+        android:text="Weekly Budget Expense List"
         android:id="@+id/title"
-        android:textColor="#0025F1"
-        android:textSize="50sp"
+        android:textColor="@color/black"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="20dp"
@@ -22,8 +24,8 @@
     <TextView
         android:text="@string/budget_desc"
         android:id="@+id/desc"
-        android:textSize="24sp"
-        android:textColor="#0025F1"
+        android:textSize="15sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="20dp"
@@ -32,41 +34,45 @@
         android:layout_below="@+id/title"
         />
 
-    <Button
-        android:id="@+id/addBudgetButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/clearButton"
-        android:layout_alignLeft="@id/viewUpcomingBudgetButton"
-        android:layout_marginLeft="188dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:text="@string/add_expense" />
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true">
 
-    <Button
-        android:id="@+id/viewUpcomingBudgetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:text="@string/view_budget" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:id="@+id/addButton"
+            android:text="Add New" />
 
-    <Button
-        android:id="@+id/clearButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/viewUpcomingBudgetButton"
-        android:layout_marginBottom="9dp"
-        android:text="Clear Saved Budget Entries" />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:id="@+id/nextButton"
+            android:text="Graph Page"		/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:id="@+id/clearButton"
+            android:text="Clear Entries" />
+
+    </LinearLayout>
 
     <ScrollView
-        android:layout_width="353dp"
-        android:layout_height="325dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/desc"
-        android:layout_marginTop="-5dp"
         android:layout_marginBottom="70dp"
-        android:scrollbars="none"
-        tools:ignore="SpeakableTextPresentCheck">
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/container"

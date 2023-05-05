@@ -5,9 +5,17 @@ public class Budget_tableRow {
     private int num;
     private String text;
     private String date;
-    public String getDate(){ return date;}
-    public void setDate(String date){ this.date = date;}
-    public String getText() {
+
+
+    public Budget_tableRow(int value, String label, String date)
+    {
+        this.num = value;
+        this.text = label;
+        this.date = date;
+    }
+
+    public String getText()
+    {
         return text;
     }
 
@@ -25,10 +33,14 @@ public class Budget_tableRow {
         this.num = num;
     }
 
-    public Budget_tableRow(int value, String label, String date)
+    public String getDate()
     {
-        this.num = value;
-        this.text = label;
+        return date;
+    }
+
+    public void setDate(String date)
+    {
         this.date = date;
     }
+
 }

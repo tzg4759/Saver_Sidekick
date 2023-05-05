@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="#F9CCC6"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,24 +14,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="40dp"
         android:text="@string/goals"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
+        android:id="@+id/budgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="32dp"
+        android:text="@string/budgeted_expenses"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/goalsButton"
+        app:layout_constraintStart_toEndOf="@+id/graphButton"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
         android:id="@+id/graphButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="108dp"
         android:layout_marginBottom="327dp"
         android:text="@string/graph"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
-        app:layout_constraintEnd_toStartOf="@+id/goalsButton"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -58,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="4dp"
+                android:textColor="@color/black"
                 android:text="@string/necessities"
                 android:textSize="18sp" />
 
@@ -80,6 +91,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/wants"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <ProgressBar
@@ -101,6 +113,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/savings"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <ProgressBar
@@ -126,6 +139,7 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
         android:text="@string/your_earnings"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +155,7 @@
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
         android:text="@string/your_otherIncome"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -156,7 +171,8 @@
         android:layout_marginTop="290dp"
         android:layout_marginEnd="143dp"
         android:layout_marginBottom="60dp"
-        android:text="@string/your_weeklyEarnings"
+        android:text="@string/your_weeklyEarning"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -169,6 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Recent Activity"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -191,24 +208,11 @@
         android:id="@+id/importFileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="88dp"
         android:text="Import CSV File"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.286"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/budget_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/importFileButton"
-        android:layout_marginTop="96dp"
-        android:onClick="showUpcomingBudgetPlan"
-        android:text="Budget"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.701"
-        app:layout_constraintStart_toEndOf="@+id/importFileButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -217,10 +221,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="You have not imported any transactions"
+        android:textColor="@color/black"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/summaryText" />
+
+    <Button
+        android:id="@+id/SavingHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SavingHistory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.989" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

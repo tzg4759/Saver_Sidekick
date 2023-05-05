@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-
+//activity to create a goal
 public class CreateGoalActivity  extends AppCompatActivity {
 
     EditText inputName;
@@ -31,6 +31,8 @@ public class CreateGoalActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
 
+
+        //UI components
         inputName = (EditText) findViewById(R.id.inputName);
         inputTotal = (EditText) findViewById(R.id.inputTotal);
         inputCurrent = (EditText) findViewById(R.id.inputCurrent);
@@ -56,6 +58,7 @@ public class CreateGoalActivity  extends AppCompatActivity {
         });
     }
 
+    //method to create a goal using user input
     public boolean createGoal() {
         try {
             String name = inputName.getText().toString().trim();
@@ -134,6 +137,7 @@ public class CreateGoalActivity  extends AppCompatActivity {
         return false;
     }
 
+    //method to check the date the user has entered
     public int checkDate(String date) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         format.setLenient(false);
@@ -159,6 +163,7 @@ public class CreateGoalActivity  extends AppCompatActivity {
 
     }
 
+    //method to write new goal to a file
     public void writeToFile(String fileName, String goalString) {
         File path = getApplicationContext().getFilesDir();
         try {

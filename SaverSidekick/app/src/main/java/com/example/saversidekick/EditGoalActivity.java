@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+//activity used to edit goals the user has set
 public class EditGoalActivity extends AppCompatActivity implements Serializable {
 
     EditText inputName;
@@ -34,6 +35,8 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
+
+        //UI components
 
         inputName = (EditText) findViewById(R.id.inputName);
         inputTotal = (EditText) findViewById(R.id.inputTotal);
@@ -115,6 +118,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         });
     }
 
+    //method to load goals from file
     public String loadGoals(String fileName) {
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, fileName);
@@ -131,6 +135,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         }
     }
 
+    //method to remove line if goal is deleted
     public void removeLine(ArrayList<Goal> goals, int index) throws IOException {
         File path = getApplicationContext().getFilesDir();
         File goalsFile = new File(path, "goals.txt");
@@ -153,6 +158,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         tempFile.renameTo(goalsFile);
     }
 
+    //method to edit goals based on user input
     public boolean editGoal() {
         try {
             String name = inputName.getText().toString().trim();
@@ -231,6 +237,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         return false;
     }
 
+    //method to check the date the user has entered
     public int checkDate(String date) {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         format.setLenient(false);
@@ -255,6 +262,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         }
     }
 
+    //method to write edited goals to file
     public void writeToFile(String fileName, String goalString) {
         File path = getApplicationContext().getFilesDir();
         try {

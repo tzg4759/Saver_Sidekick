@@ -51,7 +51,13 @@ public class HomePageActivity extends AppCompatActivity {
         ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
+        // To the Search page for the liner graph Button
+        Button toSavings = findViewById(R.id.SavingHistory);
 
+        toSavings.setOnClickListener(view -> {Intent intent = new Intent(HomePageActivity.this, SavingGraphSearch.class);
+            startActivity(intent);
+      });
+        //To the Search page for the liner graph Button ends
 
         transactionList = reloadTransactions();
 
@@ -75,6 +81,12 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button budgetButton = findViewById(R.id.budgetButton);
+        budgetButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, BudgetActivity.class);
+            startActivity(intent);
+        });
+
         Button graphButton = findViewById(R.id.graphButton);
         graphButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
@@ -86,11 +98,6 @@ public class HomePageActivity extends AppCompatActivity {
         importButton.setOnClickListener(view -> {
             filePicker();
             transactionList = reloadTransactions();
-        });
-        Button viewUpcomingExpense = findViewById(R.id.budget_button);
-        viewUpcomingExpense.setOnClickListener(view -> {
-            Intent i = new Intent(HomePageActivity.this, BudgetActivity.class);
-            startActivity(i);
         });
 
         // Retrieve the weekly earnings from SharedPreferences
@@ -151,6 +158,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
+    //activity to get results from the filepicker
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -166,6 +174,7 @@ public class HomePageActivity extends AppCompatActivity {
             }
     );
 
+    //method to start the filepicker so the user can select a csv file
     public void filePicker() {
         Intent data = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         data.addCategory(Intent.CATEGORY_OPENABLE);
@@ -174,6 +183,7 @@ public class HomePageActivity extends AppCompatActivity {
         activityResultLauncher.launch(data);
     }
 
+    //method to read the contents of a csv file into an arraylist of transactions
     public void csvReader(Uri uri) {
 
         ArrayList<Transaction> transactionList = new ArrayList<>();
@@ -225,6 +235,7 @@ public class HomePageActivity extends AppCompatActivity {
         updateSummary(transactionList);
     }
 
+    //method to update the summary on the home page
     public void updateSummary(ArrayList<Transaction> transactions) {
 
         TextView summaryTextView = findViewById(R.id.summaryTextView);
@@ -249,6 +260,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     }
 
+    //method to write transactions objects to a file
     public void writeToFile(String fileName, Transaction transaction) {
         File path = getApplicationContext().getFilesDir();
         try {
@@ -262,6 +274,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
+    //method to load transactions from a file and return as a string
     public String loadTransactions(String fileName) {
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, fileName);
@@ -278,6 +291,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
+    //method to sum the transactions for each month and return as a string
     public String monthSums() {
         ArrayList<Transaction> transactions = reloadTransactions();
 
@@ -355,6 +369,7 @@ public class HomePageActivity extends AppCompatActivity {
         return output;
     }
 
+    //method to reload the transactions on the home page
     public ArrayList<Transaction> reloadTransactions() {
         ArrayList<Transaction> transactionList = new ArrayList<>();
 
