@@ -18,7 +18,6 @@ public class Budget_tableRow {
     {
         return text;
     }
-
     public void setText(String text) {
         this.text = text;
     }
