@@ -18,6 +18,12 @@
             android:name=".CheckPeriodPayment"
             android:label="Check a period of upcoming payment"
             android:exported="false" />
+       <activity
+            android:name=".OverTimeHoursWorked"
+            android:exported="false" />
+        <activity
+            android:name=".NextPaymentCycle"
+            android:exported="false" />
         <activity
             android:name=".finacial_education_resource"
             android:exported="false" />
