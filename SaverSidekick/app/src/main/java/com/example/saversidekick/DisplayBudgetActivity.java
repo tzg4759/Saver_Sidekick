@@ -1,8 +1,10 @@
 package com.example.saversidekick;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +23,7 @@ public class DisplayBudgetActivity extends AppCompatActivity
     private SharedPreferences budgetList;
     private ArrayList<Budget_tableRow> entries;
     private TextView textView1;
+    private Button checkPeriodPaymentButton;
     FirebaseAuth auth;      // firebase authentication
     FirebaseUser currentUser;
 
@@ -69,6 +72,13 @@ public class DisplayBudgetActivity extends AppCompatActivity
         pieChart.getDescription().setEnabled(false);
         pieChart.setCenterText("Upcoming Expense");
         pieChart.animate();
+
+        // add check period payment/expense button
+        checkPeriodPaymentButton = findViewById(R.id.check_period_paymentButton);
+        checkPeriodPaymentButton.setOnClickListener(view -> {
+            Intent intent = new Intent(DisplayBudgetActivity.this, CheckPeriodPayment.class);
+            startActivity(intent);
+        });
 
     }
 }

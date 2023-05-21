@@ -71,5 +71,8 @@
     <string name="to_politechnic_button">To Politech</string>
     <string name="RSBanktext">This section contains a collection of resources for the general public, communities, schools and others with an interest in understanding more about key financial topics like inflation, monetary policy and the economy, and our role and history.</string>
     <string name="SavingHistory">SavingHistory</string>
+    <string name="income_cancel">Cancel</string>
+    <string name="add_into_total_income">Add into total income</string>
+    <string name="check_payment">Check Payment</string>
 
 </resources>

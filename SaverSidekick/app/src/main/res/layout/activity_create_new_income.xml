@@ -13,7 +13,7 @@
         android:id="@+id/editTextIncomeType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_income_type"
+        android:hint="@string/enter_income_type"
         android:autofillHints="none"
         android:inputType="text"
         android:minWidth="300dp"
@@ -26,7 +26,7 @@
         android:id="@+id/editTextNewIncomeAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/enter_new_income_amount"
+        android:hint="@string/enter_new_income_amount"
         android:autofillHints="none"
         android:inputType="numberDecimal"
         android:minWidth="300dp"
@@ -42,4 +42,29 @@
         android:text="@string/add_income"
         android:minWidth="100dp"
         android:minHeight="48dp" />
+
+    <TextView
+        android:id="@+id/textViewCreatedIncome"
+        android:layout_width="338dp"
+        android:layout_height="58dp"
+        android:gravity="center"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/button_incomeCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/income_cancel"
+        android:minWidth="100dp"
+        android:minHeight="48dp"
+        />
+    <Button
+        android:id="@+id/button_addIntoTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_into_total_income"
+        android:minWidth="100dp"
+        android:minHeight="48dp" />
+
+
 </LinearLayout>
