@@ -5,12 +5,16 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_goal"
+            android:icon="@drawable/goal"
             android:title="Goals" />
 
-        <item android:id="@+id/nav_budget"
+        <item
+            android:id="@+id/nav_budget"
+            android:icon="@drawable/budget"
             android:title="Budget" />
 
         <item android:id="@+id/nav_graph"
+            android:icon="@drawable/graph"
             android:title="Graph" />
     </group>
 </menu>
