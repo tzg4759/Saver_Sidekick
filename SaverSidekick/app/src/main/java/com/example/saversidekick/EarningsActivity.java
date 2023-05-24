@@ -24,13 +24,21 @@ public class EarningsActivity extends AppCompatActivity {
         submitButton.setOnClickListener(view -> {
             String weeklyEarningsString = weeklyEarningsEditText.getText().toString();
 
-            double weeklyEarnings = Double.parseDouble(weeklyEarningsString);
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EarningsActivity.this);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putFloat("weeklyEarnings", (float) weeklyEarnings);
-            editor.apply();
-            Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
-            startActivity(intent);
+            if (weeklyEarningsString.isEmpty()) {
+                weeklyEarningsEditText.setError("Please enter your weekly earnings");
+            } else {
+                try {
+                    double weeklyEarnings = Double.parseDouble(weeklyEarningsString);
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EarningsActivity.this);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putFloat("weeklyEarnings", (float) weeklyEarnings);
+                    editor.apply();
+                    Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
+                    startActivity(intent);
+                } catch (NumberFormatException e) {
+                    weeklyEarningsEditText.setError("Please enter a valid number");
+                }
+            }
         });
 
         Button createNewIncome = findViewById(R.id.button_createNewIncome);
