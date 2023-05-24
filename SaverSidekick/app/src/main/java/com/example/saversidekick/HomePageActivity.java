@@ -29,9 +29,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+
 public class HomePageActivity extends AppCompatActivity {
 
     ArrayList<Transaction> transactionList;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,8 +167,44 @@ public class HomePageActivity extends AppCompatActivity {
         } else {
             progressBarSavings.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
         }
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.nav_goal:
+                    // Handle goals navigation
+                    startActivity(new Intent(HomePageActivity.this, GoalsActivity.class));
+                    break;
+                case R.id.nav_budget:
+                    // Handle budget navigation
+                    startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
+                    break;
+                case R.id.nav_graph:
+                    // Handle budget navigation
+                    startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
+                    break;
+                // Handle additional navigation items here
+            }
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     //activity to get results from the filepicker
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),

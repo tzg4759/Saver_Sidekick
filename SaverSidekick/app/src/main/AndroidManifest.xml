@@ -15,10 +15,15 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.SaverSidekick.NoActionBar" />
+        <activity
             android:name=".CheckPeriodPayment"
-            android:label="Check a period of upcoming payment"
-            android:exported="false" />
-       <activity
+            android:exported="false"
+            android:label="Check a period of upcoming payment" />
+        <activity
             android:name=".OverTimeHoursWorked"
             android:exported="false" />
         <activity
@@ -45,7 +50,6 @@
             android:exported="false"
             android:label="Create a new Income"
             android:parentActivityName=".EarningsActivity" />
-
         <activity
             android:name=".Register"
             android:exported="false" />
@@ -58,10 +62,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name" />
         <activity
             android:name=".EarningsActivity"
             android:exported="true"
