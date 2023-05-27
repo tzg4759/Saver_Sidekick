@@ -15,11 +15,20 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
+
             android:name=".ShowCategorizedPayments"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Categorized Payments"/>
         <activity
             android:name=".PinpointPayment"
-            android:exported="false" />
+            android:exported="false"
+            android:label="To Pinpoint Your Previous Payment"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.SaverSidekick.NoActionBar" />
+
         <activity
             android:name=".CheckPeriodPayment"
             android:exported="false"
@@ -63,10 +72,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name" />
         <activity
             android:name=".EarningsActivity"
             android:exported="true"
