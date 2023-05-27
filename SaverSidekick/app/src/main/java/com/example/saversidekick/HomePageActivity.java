@@ -226,6 +226,10 @@ public class HomePageActivity extends AppCompatActivity {
             {
                 writeToFile("transactions.txt", t);
             }
+            Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
+            intent.putParcelableArrayListExtra("transactionList", transactionList);
+            startActivity(intent);
+
         }
         else
         {
@@ -392,5 +396,10 @@ public class HomePageActivity extends AppCompatActivity {
             }
         }
         return transactionList;
+    }
+    public void goToPinpointPayment(View view) {
+        Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
+        intent.putParcelableArrayListExtra("transactionList", transactionList);
+        startActivity(intent);
     }
 }

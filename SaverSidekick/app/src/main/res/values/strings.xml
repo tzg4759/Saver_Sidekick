@@ -74,5 +74,11 @@
     <string name="income_cancel">Cancel</string>
     <string name="add_into_total_income">Add into total income</string>
     <string name="check_payment">Check Payment</string>
+    <string-array name="pinpoint_options">
+        <item>Necessary</item>
+        <item>Unnecessary</item>
+        <item>Needs Improvement</item>
+
+    </string-array>
 
 </resources>
