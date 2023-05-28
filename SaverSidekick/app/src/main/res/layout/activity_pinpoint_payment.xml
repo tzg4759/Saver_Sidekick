@@ -8,9 +8,10 @@
     android:background="#F9CCC6"
     android:padding="16dp"
     tools:context=".PinpointPayment">
+
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="368dp"
+        android:layout_height="453dp"
         tools:ignore="UselessParent">
 
         <LinearLayout
@@ -23,25 +24,29 @@
                 android:id="@+id/memoTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/selectedOptionTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:padding="8dp" />
-            <Button
-                android:id="@+id/viewSummaryButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View Pinpointed Payments by Labels"
-                android:layout_marginTop="16dp"
-                android:onClick="viewSummaryButtonClicked" />
+                android:padding="8dp"
+                android:textSize="16sp" />
+
+
 
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/viewSummaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="viewSummaryButtonClicked"
+        android:text="View Pinpointed Payments by Labels" />
 
 </LinearLayout>
