@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.view.View;
@@ -240,10 +241,14 @@ public class GoalsActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
             switch (menuItem.getItemId()) {
-                case R.id.nav_goal:
-                    // Handle goals navigation
-                    selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
+                case R.id.nav_graph:
+                    // Handle budget navigation
+                    selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
                     intent = new Intent(GoalsActivity.this, GraphActivity.class);
+                    SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                    String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
+                    intent.putExtra("monthString", monthSumString);
+                    startActivity(intent);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
