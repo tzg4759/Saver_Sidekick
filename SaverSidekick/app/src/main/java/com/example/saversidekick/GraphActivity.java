@@ -26,6 +26,8 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private int selectedMenuItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         barChart.invalidate();
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -81,7 +83,10 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
-            switch (menuItem.getItemId()) {
+            selectedMenuItemId = menuItem.getItemId();
+            updateSelectedMenuItem();
+
+            switch (selectedMenuItemId) {
                 case R.id.nav_goal:
                     // Handle goals navigation
                     startActivity(new Intent(GraphActivity.this, GoalsActivity.class));
@@ -95,9 +100,17 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
                     break;
                 // Handle additional navigation items here
             }
+
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+
+        selectedMenuItemId = R.id.nav_graph; // Replace with the ID of the current activity's menu item
+        updateSelectedMenuItem();
+    }
+
+    private void updateSelectedMenuItem() {
+        navigationView.setCheckedItem(selectedMenuItemId);
     }
 
     @Override
