@@ -83,34 +83,47 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
-            selectedMenuItemId = menuItem.getItemId();
-            updateSelectedMenuItem();
-
-            switch (selectedMenuItemId) {
+            Intent intent;
+            switch (menuItem.getItemId()) {
                 case R.id.nav_goal:
                     // Handle goals navigation
-                    startActivity(new Intent(GraphActivity.this, GoalsActivity.class));
+                    selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
+                    intent = new Intent(GraphActivity.this, GoalsActivity.class);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
-                    startActivity(new Intent(GraphActivity.this, BudgetActivity.class));
+                    selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
+                    intent = new Intent(GraphActivity.this, BudgetActivity.class);
                     break;
                 case R.id.nav_home:
-                    startActivity(new Intent(GraphActivity.this, HomePageActivity.class));
+                    selectedMenuItemId = R.id.nav_home;
+                    intent = new Intent(GraphActivity.this, HomePageActivity.class);
                     break;
                 // Handle additional navigation items here
+                default:
+                    return true;
             }
-
+            intent.putExtra("selectedMenuItemId", selectedMenuItemId);
+            startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
 
-        selectedMenuItemId = R.id.nav_graph; // Replace with the ID of the current activity's menu item
+        // Get the selectedMenuItemId passed from the previous Activity
+        Intent intent = getIntent();
+        selectedMenuItemId = intent.getIntExtra("selectedMenuItemId", R.id.nav_home);
+
         updateSelectedMenuItem();
     }
 
     private void updateSelectedMenuItem() {
         navigationView.setCheckedItem(selectedMenuItemId);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSelectedMenuItem();
     }
 
     @Override

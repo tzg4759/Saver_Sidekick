@@ -43,6 +43,9 @@ public class HomePageActivity extends AppCompatActivity {
     ArrayList<Transaction> transactionList;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private int selectedMenuItemId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +172,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -178,25 +181,48 @@ public class HomePageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
+            Intent intent;
             switch (menuItem.getItemId()) {
                 case R.id.nav_goal:
                     // Handle goals navigation
-                    startActivity(new Intent(HomePageActivity.this, GoalsActivity.class));
+                    selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
+                    intent = new Intent(HomePageActivity.this, GoalsActivity.class);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
-                    startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
+                    selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
+                    intent = new Intent(HomePageActivity.this, BudgetActivity.class);
                     break;
                 case R.id.nav_graph:
-                    Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
+                    selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
+                    intent = new Intent(HomePageActivity.this, GraphActivity.class);
                     intent.putExtra("monthString", monthSums());
-                    startActivity(intent);
                     break;
                 // Handle additional navigation items here
+                default:
+                    return true;
             }
+            intent.putExtra("selectedMenuItemId", selectedMenuItemId);
+            startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+
+        // Get the selectedMenuItemId passed from the previous Activity
+        Intent intent = getIntent();
+        selectedMenuItemId = intent.getIntExtra("selectedMenuItemId", R.id.nav_home);
+
+        updateSelectedMenuItem();
+    }
+
+    private void updateSelectedMenuItem() {
+        navigationView.setCheckedItem(selectedMenuItemId);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSelectedMenuItem();
     }
 
     @Override
