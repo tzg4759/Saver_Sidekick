@@ -188,8 +188,9 @@ public class HomePageActivity extends AppCompatActivity {
                     startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
                     break;
                 case R.id.nav_graph:
-                    // Handle budget navigation
-                    startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
+                    Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
+                    intent.putExtra("monthString", monthSums());
+                    startActivity(intent);
                     break;
                 // Handle additional navigation items here
             }
