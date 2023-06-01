@@ -1,9 +1,14 @@
 package com.example.saversidekick;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Description;
@@ -11,13 +16,18 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class GraphActivity extends AppCompatActivity implements Serializable {
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private int selectedMenuItemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +72,66 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         // Set data and refresh the chart
         barChart.setData(barData);
         barChart.invalidate();
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            Intent intent;
+            switch (menuItem.getItemId()) {
+                case R.id.nav_goal:
+                    // Handle goals navigation
+                    selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
+                    intent = new Intent(GraphActivity.this, GoalsActivity.class);
+                    break;
+                case R.id.nav_budget:
+                    // Handle budget navigation
+                    selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
+                    intent = new Intent(GraphActivity.this, BudgetActivity.class);
+                    break;
+                case R.id.nav_home:
+                    selectedMenuItemId = R.id.nav_home;
+                    intent = new Intent(GraphActivity.this, HomePageActivity.class);
+                    break;
+                // Handle additional navigation items here
+                default:
+                    return true;
+            }
+            intent.putExtra("selectedMenuItemId", selectedMenuItemId);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        // Get the selectedMenuItemId passed from the previous Activity
+        Intent intent = getIntent();
+        selectedMenuItemId = intent.getIntExtra("selectedMenuItemId", R.id.nav_home);
+
+        updateSelectedMenuItem();
     }
+
+    private void updateSelectedMenuItem() {
+        navigationView.setCheckedItem(selectedMenuItemId);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSelectedMenuItem();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

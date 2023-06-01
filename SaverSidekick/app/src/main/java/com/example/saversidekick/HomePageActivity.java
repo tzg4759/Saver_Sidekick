@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 
@@ -43,6 +44,9 @@ public class HomePageActivity extends AppCompatActivity {
     ArrayList<Transaction> transactionList;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private int selectedMenuItemId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +173,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
 
         drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -178,24 +182,50 @@ public class HomePageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
+            Intent intent;
             switch (menuItem.getItemId()) {
                 case R.id.nav_goal:
                     // Handle goals navigation
-                    startActivity(new Intent(HomePageActivity.this, GoalsActivity.class));
+                    selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
+                    intent = new Intent(HomePageActivity.this, GoalsActivity.class);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
-                    startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
+                    selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
+                    intent = new Intent(HomePageActivity.this, BudgetActivity.class);
                     break;
                 case R.id.nav_graph:
-                    // Handle budget navigation
-                    startActivity(new Intent(HomePageActivity.this, BudgetActivity.class));
+                    selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
+                    intent = new Intent(HomePageActivity.this, GraphActivity.class);
+                    intent.putExtra("monthString", monthSums());
                     break;
                 // Handle additional navigation items here
+                default:
+                    return true;
             }
+            intent.putExtra("selectedMenuItemId", selectedMenuItemId);
+            startActivity(intent);
             drawerLayout.closeDrawer(GravityCompat.START);
             return true;
         });
+
+        // Get the selectedMenuItemId passed from the previous Activity
+        Intent intent = getIntent();
+        selectedMenuItemId = intent.getIntExtra("selectedMenuItemId", R.id.nav_home);
+
+        updateSelectedMenuItem();
+        reloadTransactions();
+        saveMonthSums();
+    }
+
+    private void updateSelectedMenuItem() {
+        navigationView.setCheckedItem(selectedMenuItemId);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSelectedMenuItem();
     }
 
     @Override
@@ -448,5 +478,12 @@ public class HomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
         intent.putParcelableArrayListExtra("transactionList", transactionList);
         startActivity(intent);
+    }
+    public void saveMonthSums() {
+        String monthSumString = monthSums();
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("monthSums", monthSumString);
+        editor.apply();
     }
 }
