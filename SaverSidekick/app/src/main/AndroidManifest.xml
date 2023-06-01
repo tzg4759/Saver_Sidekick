@@ -97,6 +97,10 @@
             android:exported="true"
             android:label="Edit Goal" />
         <activity
+            android:name=".AddTransactionActivity"
+            android:exported="true"
+            android:label="Add Transaction" />
+        <activity
             android:name=".HomePageActivity"
             android:exported="true"
             android:label="Home Page"
