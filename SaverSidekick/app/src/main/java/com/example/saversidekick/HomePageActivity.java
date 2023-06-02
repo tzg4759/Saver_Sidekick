@@ -52,7 +52,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Locale;
+
+import android.view.MenuItem;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -67,6 +74,8 @@ public class HomePageActivity extends AppCompatActivity {
     private static final int NOTIFICATION_ID = 123;
     private static final String CHANNEL_ID = "payment_reminder_channel";
     private static final String REMINDER_EXTRA = "reminder_extra";
+    private String addedTransaction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +122,19 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
         // To the Search page for the liner graph Button ends
+      });
+        //To the Search page for the liner graph Button ends
+        addedTransaction = (String)getIntent().getSerializableExtra("transactionString");
+
+        if (addedTransaction != "" && addedTransaction != null)
+        {
+            String[] components = addedTransaction.split(" ");
+            Transaction newTransaction = new Transaction(components[0], components[1], Float.valueOf(components[2]));
+            writeToFile("transactions.txt", newTransaction);
+        }
 
         transactionList = reloadTransactions();
+
 
         TextView summaryTextView = findViewById(R.id.summaryTextView);
         TextView noTransactionsText = findViewById(R.id.noTransactionsText);
@@ -126,6 +146,12 @@ public class HomePageActivity extends AppCompatActivity {
             loadTransactions("transactions.txt");
             updateSummary(transactionList);
         }
+
+        Button addTransactionButton = findViewById(R.id.addTransaction);
+        addTransactionButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, AddTransactionActivity.class);
+            startActivity(intent);
+        });
 
         Button goalsButton = findViewById(R.id.goalsButton);
         goalsButton.setOnClickListener(view -> {
@@ -472,6 +498,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void updateSummary(ArrayList<Transaction> transactions) {
         TextView summaryTextView = findViewById(R.id.summaryTextView);
         StringBuilder current = new StringBuilder(summaryTextView.getText());
+        Collections.sort(transactions);
 
         for (Transaction t : transactions) {
             current.append(t.getDate()).append("\n");
@@ -598,7 +625,6 @@ public class HomePageActivity extends AppCompatActivity {
     // Method to reload the transactions on the home page
     public ArrayList<Transaction> reloadTransactions() {
         ArrayList<Transaction> transactionList = new ArrayList<>();
-
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, "transactions.txt");
 

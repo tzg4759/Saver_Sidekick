@@ -4,8 +4,12 @@ package com.example.saversidekick;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 //transaction object class
-public class Transaction implements Parcelable {
+public class Transaction implements Parcelable, Comparable<Transaction> {
     private float amount;
     private String date;
     private String memo;
@@ -96,4 +100,15 @@ public class Transaction implements Parcelable {
             return new Transaction[size];
         }
     };
+
+    @Override
+    public int compareTo(Transaction transaction) {
+        try {
+            Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(this.date);
+            Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(transaction.date);
+            return date2.compareTo(date1);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

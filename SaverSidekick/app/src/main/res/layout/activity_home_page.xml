@@ -44,18 +44,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/budgetButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="32dp"
-        android:text="@string/budgeted_expenses"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/goalsButton"
-        app:layout_constraintStart_toEndOf="@+id/graphButton"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/budgetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="32dp"
+            android:text="@string/budgeted_expenses"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/goalsButton"
+            app:layout_constraintStart_toEndOf="@+id/graphButton"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/graphButton"
@@ -213,7 +213,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/importFileButton" />
+        app:layout_constraintTop_toBottomOf="@+id/addTransaction" />
 
     <EditText
         android:id="@+id/summaryTextView"
@@ -238,8 +238,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/calendarButton"
             app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/addTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Add Transaction"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/importFileButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
 
-    <TextView
+        <Button
+            android:id="@+id/importFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="Import CSV File"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
+
+        <TextView
         android:id="@+id/noTransactionsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -251,18 +272,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/summaryText" />
 
-        <Button
-            android:id="@+id/SavingHistory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/SavingHistory"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/goToPinpointPaymentButton"
-            app:layout_constraintTop_toTopOf="@+id/tableLayout"
-            app:layout_constraintVertical_bias="0.989" />
+    <Button
+        android:id="@+id/SavingHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SavingHistory"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.989" />
 
         <Button
             android:id="@+id/goToPinpointPaymentButton"
