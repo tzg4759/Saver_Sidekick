@@ -1,24 +1,48 @@
 package com.example.saversidekick;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,15 +54,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.navigation.NavigationView;
-
 public class HomePageActivity extends AppCompatActivity {
 
     ArrayList<Transaction> transactionList;
@@ -47,11 +62,24 @@ public class HomePageActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private int selectedMenuItemId;
 
+    private MaterialTextView selectedDateTextView;
+
+    private static final int NOTIFICATION_ID = 123;
+    private static final String CHANNEL_ID = "payment_reminder_channel";
+    private static final String REMINDER_EXTRA = "reminder_extra";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        selectedDateTextView = findViewById(R.id.selectedDateTextView);
+        selectedDateTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker();
+            }
+        });
 
         // Initialize the UI elements
         TextView textViewNeeds = findViewById(R.id.textViewNeeds);
@@ -62,17 +90,29 @@ public class HomePageActivity extends AppCompatActivity {
         TextView textViewWeeklyEarnings = findViewById(R.id.textViewWeeklyEarnings);
         TextView textViewOtherIncome = findViewById(R.id.textViewNewIncome);
 
-
         ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
+
+        // Get the selectedDateTextView reference
+        selectedDateTextView = findViewById(R.id.selectedDateTextView);
+
+        // Set the onClickListener for the calendarButton
+        Button calendarButton = findViewById(R.id.calendarButton);
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDatePicker();
+            }
+        });
+
         // To the Search page for the liner graph Button
         Button toSavings = findViewById(R.id.SavingHistory);
-
-        toSavings.setOnClickListener(view -> {Intent intent = new Intent(HomePageActivity.this, SavingGraphSearch.class);
+        toSavings.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, SavingGraphSearch.class);
             startActivity(intent);
-      });
-        //To the Search page for the liner graph Button ends
+        });
+        // To the Search page for the liner graph Button ends
 
         transactionList = reloadTransactions();
 
@@ -80,12 +120,9 @@ public class HomePageActivity extends AppCompatActivity {
         TextView noTransactionsText = findViewById(R.id.noTransactionsText);
         summaryTextView.setKeyListener(null);
 
-        if (transactionList.size() == 0)
-        {
+        if (transactionList.size() == 0) {
             noTransactionsText.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             loadTransactions("transactions.txt");
             updateSummary(transactionList);
         }
@@ -118,10 +155,10 @@ public class HomePageActivity extends AppCompatActivity {
         // Retrieve the weekly earnings from SharedPreferences
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
         // retrieve the new income amount from SharedPreferences
-        double newIncomeAmount = PreferenceManager.getDefaultSharedPreferences(this).getFloat("newIncomeAmount",0);
+        double newIncomeAmount = PreferenceManager.getDefaultSharedPreferences(this).getFloat("newIncomeAmount", 0);
 
         double weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
-        String newIncomeType = PreferenceManager.getDefaultSharedPreferences(this).getString("incomeType","Other Income");
+        String newIncomeType = PreferenceManager.getDefaultSharedPreferences(this).getString("incomeType", "Other Income");
 
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
@@ -133,8 +170,8 @@ public class HomePageActivity extends AppCompatActivity {
         textViewEverythingElse.setText(String.format(Locale.US, "Wants: $%.2f", wants));
         textViewSavings.setText(String.format(Locale.US, "Savings: $%.2f", savings));
 
-        textViewWeeklyEarnings.setText(String.format(Locale.US,"Your Weekly Earning: $%.2f", weeklyEarnings));
-        textViewOtherIncome.setText(String.format(Locale.US,"Your "+newIncomeType+": $%.2f", newIncomeAmount));
+        textViewWeeklyEarnings.setText(String.format(Locale.US, "Your Weekly Earning: $%.2f", weeklyEarnings));
+        textViewOtherIncome.setText(String.format(Locale.US, "Your " + newIncomeType + ": $%.2f", newIncomeAmount));
         textViewEarnings.setText((String.format(Locale.US, "Your total Earnings: $%.2f", weeklyTotalEarnings)));
 
         // Calculate the percentage for each category
@@ -216,6 +253,122 @@ public class HomePageActivity extends AppCompatActivity {
         updateSelectedMenuItem();
         reloadTransactions();
         saveMonthSums();
+
+        // Register the PaymentReminderReceiver
+        IntentFilter intentFilter = new IntentFilter("com.example.saversidekick.ACTION_PAYMENT_REMINDER");
+        PaymentReminderReceiver paymentReminderReceiver = new PaymentReminderReceiver();
+        registerReceiver(paymentReminderReceiver, intentFilter);
+    }
+
+    private void openDatePicker() {
+        CalendarConstraints.Builder calendarConstraintsBuilder = new CalendarConstraints.Builder();
+        calendarConstraintsBuilder.setStart(System.currentTimeMillis() - 31536000000L);
+        calendarConstraintsBuilder.setEnd(System.currentTimeMillis());
+        CalendarConstraints calendarConstraints = calendarConstraintsBuilder.build();
+
+        MaterialDatePicker.Builder<Long> datePickerBuilder = MaterialDatePicker.Builder.datePicker();
+        datePickerBuilder.setCalendarConstraints(calendarConstraints);
+
+        MaterialDatePicker<Long> datePicker = datePickerBuilder.build();
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            long selectedDate = selection;
+
+            // Create a Calendar object and set it to the selected date
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(selectedDate);
+
+            // Set the time for the reminder (default: current time)
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int minute = calendar.get(Calendar.MINUTE);
+
+            // Show a TimePickerDialog to choose the reminder time
+            TimePickerDialog timePickerDialog = new TimePickerDialog(
+                    HomePageActivity.this,
+                    (view, hourOfDay, minuteOfDay) -> {
+                        // Update the reminder time
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        calendar.set(Calendar.MINUTE, minuteOfDay);
+                        calendar.set(Calendar.SECOND, 0);
+
+                        // Get the user-inputted reminder message
+                        EditText reminderMessageEditText = new EditText(HomePageActivity.this);
+                        reminderMessageEditText.setHint("Enter reminder message");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(HomePageActivity.this);
+                        builder.setTitle("Add Reminder")
+                                .setView(reminderMessageEditText)
+                                .setPositiveButton("Set Reminder", (dialog, which) -> {
+                                    // Retrieve the reminder message
+                                    String reminderMessage = reminderMessageEditText.getText().toString();
+
+                                    // Create an intent to trigger the reminder
+                                    Intent intent = new Intent(HomePageActivity.this, PaymentReminderReceiver.class);
+                                    intent.putExtra("reminderMessage", reminderMessage);  // Pass the reminder message as an extra
+                                    PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                            HomePageActivity.this,
+                                            0,
+                                            intent,
+                                            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+                                    );
+
+                                    // Get the AlarmManager system service
+                                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                                    // Set the reminder using the AlarmManager
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+
+                                    // Display a toast message to indicate that the reminder is set
+                                    Toast.makeText(HomePageActivity.this, "Reminder set for " + calendar.getTime().toString(), Toast.LENGTH_SHORT).show();
+                                })
+                                .setNegativeButton("Cancel", null)
+                                .show();
+                    },
+                    hour,
+                    minute,
+                    DateFormat.is24HourFormat(HomePageActivity.this)
+            );
+            timePickerDialog.show();
+        });
+
+        datePicker.show(getSupportFragmentManager(), datePicker.toString());
+    }
+
+    public class PaymentReminderReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Retrieve the reminder data from the intent
+            String reminderText = intent.getStringExtra(REMINDER_EXTRA);
+
+            // Check if the NOTIFICATION permission is granted
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+                // Create a notification channel for Android 8.0 and higher
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Payment Reminder", NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+                    notificationManager.createNotificationChannel(channel);
+                }
+
+                // Create the notification with the reminder data
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                        .setSmallIcon(R.drawable.saver_sidekick)
+                        .setContentTitle("Payment Reminder")
+                        .setContentText(reminderText)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setAutoCancel(true);
+
+                // Show the notification
+                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+                notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
+            } else {
+                // Handle the case where the permission is not granted
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setTitle("Permission Required");
+                alertDialogBuilder.setMessage("To enable payment reminders, please grant the permission to post notifications.");
+                alertDialogBuilder.setPositiveButton("OK", null);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+            }
+        }
     }
 
     private void updateSelectedMenuItem() {
@@ -235,7 +388,8 @@ public class HomePageActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    //activity to get results from the filepicker
+
+    // Activity to get results from the filepicker
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -251,7 +405,7 @@ public class HomePageActivity extends AppCompatActivity {
             }
     );
 
-    //method to start the filepicker so the user can select a csv file
+    // Method to start the filepicker so the user can select a csv file
     public void filePicker() {
         Intent data = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         data.addCategory(Intent.CATEGORY_OPENABLE);
@@ -260,9 +414,8 @@ public class HomePageActivity extends AppCompatActivity {
         activityResultLauncher.launch(data);
     }
 
-    //method to read the contents of a csv file into an arraylist of transactions
+    // Method to read the contents of a csv file into an arraylist of transactions
     public void csvReader(Uri uri) {
-
         ArrayList<Transaction> transactionList = new ArrayList<>();
         String date;
         String memo;
@@ -306,7 +459,6 @@ public class HomePageActivity extends AppCompatActivity {
             Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
             intent.putParcelableArrayListExtra("transactionList", transactionList);
             startActivity(intent);
-
         }
         else
         {
@@ -316,32 +468,26 @@ public class HomePageActivity extends AppCompatActivity {
         updateSummary(transactionList);
     }
 
-    //method to update the summary on the home page
+    // Method to update the summary on the home page
     public void updateSummary(ArrayList<Transaction> transactions) {
-
         TextView summaryTextView = findViewById(R.id.summaryTextView);
+        StringBuilder current = new StringBuilder(summaryTextView.getText());
 
-        for (Transaction t : transactions)
-        {
-            String current = "";
-            current += summaryTextView.getText();
-            current += t.getDate()+"\n";
-            current += t.getMemo()+"\n";
-            if (t.getAmount() > 0)
-            {
-                current += "+ $"+t.getAmount()+"\n";
+        for (Transaction t : transactions) {
+            current.append(t.getDate()).append("\n");
+            current.append(t.getMemo()).append("\n");
+            if (t.getAmount() > 0) {
+                current.append("+ $").append(t.getAmount()).append("\n");
+            } else {
+                current.append("- $").append(-t.getAmount()).append("\n");
             }
-            else
-            {
-                current += "- $"+(t.getAmount() * -1)+"\n";
-
-            }
-            summaryTextView.setText(current+"-----------------------------------------------------------"+"\n");
+            current.append("-----------------------------------------------------------").append("\n");
         }
 
+        summaryTextView.setText(current.toString());
     }
 
-    //method to write transactions objects to a file
+    // Method to write transactions objects to a file
     public void writeToFile(String fileName, Transaction transaction) {
         File path = getApplicationContext().getFilesDir();
         try {
@@ -349,13 +495,12 @@ public class HomePageActivity extends AppCompatActivity {
             writer.write(transaction.export().getBytes());
             writer.close();
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Toast.makeText(this, "Error writing to file.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //method to load transactions from a file and return as a string
+    // Method to load transactions from a file and return as a string
     public String loadTransactions(String fileName) {
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, fileName);
@@ -372,7 +517,7 @@ public class HomePageActivity extends AppCompatActivity {
         }
     }
 
-    //method to sum the transactions for each month and return as a string
+    // Method to sum the transactions for each month and return as a string
     public String monthSums() {
         ArrayList<Transaction> transactions = reloadTransactions();
 
@@ -390,20 +535,17 @@ public class HomePageActivity extends AppCompatActivity {
         float dec = 0.0f;
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        String output = "";
+        StringBuilder output = new StringBuilder();
 
-        if (transactions.size() > 0)
-        {
-            for (Transaction t : transactions)
-            {
+        if (transactions.size() > 0) {
+            for (Transaction t : transactions) {
                 String currDate = t.getDate();
                 float currAmount = t.getAmount();
                 String[] components = currDate.split("/");
                 int currYear = Integer.parseInt(components[2]);
                 int currMonth = Integer.parseInt(components[1]);
 
-                if (currYear == year)
-                {
+                if (currYear == year) {
                     switch (currMonth) {
                         case 1:
                             jan += currAmount;
@@ -446,24 +588,25 @@ public class HomePageActivity extends AppCompatActivity {
             }
         }
 
-        output += jan+"|"+feb+"|"+mar+"|"+apr+"|"+may+"|"+jun+"|"+jul+"|"+aug+"|"+sep+"|"+oct+"|"+nov+"|"+dec;
-        return output;
+        output.append(jan).append("|").append(feb).append("|").append(mar).append("|").append(apr).append("|").append(may).append("|")
+                .append(jun).append("|").append(jul).append("|").append(aug).append("|").append(sep).append("|").append(oct).append("|")
+                .append(nov).append("|").append(dec);
+
+        return output.toString();
     }
 
-    //method to reload the transactions on the home page
+    // Method to reload the transactions on the home page
     public ArrayList<Transaction> reloadTransactions() {
         ArrayList<Transaction> transactionList = new ArrayList<>();
 
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, "transactions.txt");
 
-        if (file.isFile())
-        {
+        if (file.isFile()) {
             String transactions = loadTransactions("transactions.txt");
             String[] lines = transactions.split(System.getProperty("line.separator"));
 
-            for (String line : lines)
-            {
+            for (String line : lines) {
                 String[] components = line.split("[|]");
                 String date = components[0];
                 String memo = components[1];
@@ -474,11 +617,13 @@ public class HomePageActivity extends AppCompatActivity {
         }
         return transactionList;
     }
+
     public void goToPinpointPayment(View view) {
         Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
         intent.putParcelableArrayListExtra("transactionList", transactionList);
         startActivity(intent);
     }
+
     public void saveMonthSums() {
         String monthSumString = monthSums();
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
