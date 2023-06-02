@@ -74,6 +74,14 @@
     <string name="income_cancel">Cancel</string>
     <string name="add_into_total_income">Add into total income</string>
     <string name="check_payment">Check Payment</string>
+
+    <string-array name="pinpoint_options">
+        <item>Necessary</item>
+        <item>Unnecessary</item>
+        <item>Needs Improvement</item>
+
+    </string-array>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -86,5 +94,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="fab_description">Compose Email</string>
+
 
 </resources>

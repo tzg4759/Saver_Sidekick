@@ -45,8 +45,10 @@ public class CheckPeriodPayment extends AppCompatActivity {
             String startDate = startDateEditText.getText().toString();
             String endDate = endDateEditText.getText().toString();
 
-            if(startDate.isEmpty() || endDate.isEmpty()){
-                Toast.makeText(CheckPeriodPayment.this, "Your start date/ end date cannot be empty! Please enter valid dates!",Toast.LENGTH_SHORT).show();
+            if (startDate.isEmpty() || endDate.isEmpty()) {
+                Toast.makeText(CheckPeriodPayment.this, "Your start date/end date cannot be empty! Please enter valid dates!", Toast.LENGTH_SHORT).show();
+            } else if (!isValidDateFormat(startDate) || !isValidDateFormat(endDate)) {
+                Toast.makeText(CheckPeriodPayment.this, "Invalid date format! Please enter dates in the format dd/MM/yyyy.", Toast.LENGTH_SHORT).show();
             }else{
                 // Retrieve the stored budget data
                 budgetData = getSharedPreferences("Input", 0);
@@ -103,7 +105,21 @@ public class CheckPeriodPayment extends AppCompatActivity {
         for (Budget_tableRow entry : filteredEntries) {
             sb.append(entry.getText()).append("   ").append(entry.getNum()).append("   ").append(entry.getDate()).append("\n");
         }
-        resultTextView.setText("\n" + " Your searching period upcoming payment is as belows:\n" +sb.toString());
+        resultTextView.setText("\n" + " Searching period upcoming payment is as belows:\n" +sb.toString());
     }
 
+    private boolean isValidDateFormat(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        dateFormat.setLenient(false); // Ensure strict date parsing
+
+        try {
+            dateFormat.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+
 }
+

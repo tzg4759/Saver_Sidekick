@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,11 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class BudgetActivity extends AppCompatActivity {
 
@@ -28,6 +33,12 @@ public class BudgetActivity extends AppCompatActivity {
     LinearLayout layout;       // instance for the page layout container
     private SharedPreferences budgetData;       // shared preferences instance which records will be saved
     private SharedPreferences.Editor editor;        // shared preferences editor instance to alter the records in shared preferences
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private int selectedMenuItemId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +80,64 @@ public class BudgetActivity extends AppCompatActivity {
                 layout.removeAllViews();    // click action which will clear the data in shared preferences
             }
         });
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            Intent intent;
+            switch (menuItem.getItemId()) {
+                case R.id.nav_goal:
+                    // Handle goals navigation
+                    selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
+                    intent = new Intent(BudgetActivity.this, GoalsActivity.class);
+                    break;
+                case R.id.nav_graph:
+                    // Handle budget navigation
+                    selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
+                    intent = new Intent(BudgetActivity.this, GraphActivity.class);
+                    SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                    String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
+                    intent.putExtra("monthString", monthSumString);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_home:
+                    selectedMenuItemId = R.id.nav_home;
+                    intent = new Intent(BudgetActivity.this, HomePageActivity.class);
+                    break;
+                // Handle additional navigation items here
+                default:
+                    return true;
+            }
+            intent.putExtra("selectedMenuItemId", selectedMenuItemId);
+            startActivity(intent);
+            drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
+        });
+
+        // Get the selectedMenuItemId passed from the previous Activity
+        Intent intent = getIntent();
+        selectedMenuItemId = intent.getIntExtra("selectedMenuItemId", R.id.nav_home);
+
+        updateSelectedMenuItem();
+    }
+
+    private void updateSelectedMenuItem() {
+        navigationView.setCheckedItem(selectedMenuItemId);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //this function will take user input in the form of dialog and add this input to a card which can be displayed on the view
@@ -156,4 +225,5 @@ public class BudgetActivity extends AppCompatActivity {
         }
 
     }
+
 }
