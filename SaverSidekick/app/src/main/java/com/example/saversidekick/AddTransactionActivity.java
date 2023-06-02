@@ -21,8 +21,7 @@ public class AddTransactionActivity extends AppCompatActivity {
     EditText inputName;
     EditText inputAmount;
     EditText inputDate;
-
-    boolean expense = false;
+    boolean expense = true;
     boolean income = false;
 
     @Override
@@ -46,13 +45,13 @@ public class AddTransactionActivity extends AppCompatActivity {
         Button transactionInputButton = findViewById(R.id.transactionInputButton);
         transactionInputButton.setOnClickListener(view -> {
             Intent intent = new Intent(AddTransactionActivity.this, HomePageActivity.class);
-            if (createTransaction() == true)
+            String transaction = createTransaction();
+            System.out.println(transaction);
+            intent.putExtra("transactionString", transaction);
+            if (transaction != "")
             {
+                Toast.makeText(this, "Transaction Added", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
-            }
-            else
-            {
-                Toast.makeText(getApplicationContext(), "Error: Transaction could not be added", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,11 +62,14 @@ public class AddTransactionActivity extends AppCompatActivity {
         });
     }
 
-    public boolean createTransaction() {
+    public String createTransaction() {
         try {
             String name = inputName.getText().toString().trim();
-            int amount = Integer.parseInt(inputAmount.getText().toString().trim());
+            float amount = Float.valueOf(inputAmount.getText().toString().trim());
             String date = inputDate.getText().toString().trim();
+
+            System.out.println(expense);
+            System.out.println(income);
 
             if (expense == true)
             {
@@ -109,13 +111,12 @@ public class AddTransactionActivity extends AppCompatActivity {
 
             if (error == false)
             {
-
-                return true;
+                return date+" "+name+" "+amount;
             }
         } catch (Exception e) {
-            return false;
+            return "";
         }
-        return false;
+        return "";
     }
 
     public boolean checkDate(String date) {

@@ -28,13 +28,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Locale;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
@@ -46,6 +44,8 @@ public class HomePageActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private int selectedMenuItemId;
+
+    private String addedTransaction;
 
 
     @Override
@@ -62,7 +62,6 @@ public class HomePageActivity extends AppCompatActivity {
         TextView textViewWeeklyEarnings = findViewById(R.id.textViewWeeklyEarnings);
         TextView textViewOtherIncome = findViewById(R.id.textViewNewIncome);
 
-
         ProgressBar progressBarNecessities = findViewById(R.id.progressBarNecessities);
         ProgressBar progressBarWants = findViewById(R.id.progressBarWants);
         ProgressBar progressBarSavings = findViewById(R.id.progressBarSavings);
@@ -73,8 +72,17 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
       });
         //To the Search page for the liner graph Button ends
+        addedTransaction = (String)getIntent().getSerializableExtra("transactionString");
+
+        if (addedTransaction != "" && addedTransaction != null)
+        {
+            String[] components = addedTransaction.split(" ");
+            Transaction newTransaction = new Transaction(components[0], components[1], Float.valueOf(components[2]));
+            writeToFile("transactions.txt", newTransaction);
+        }
 
         transactionList = reloadTransactions();
+
 
         TextView summaryTextView = findViewById(R.id.summaryTextView);
         TextView noTransactionsText = findViewById(R.id.noTransactionsText);
@@ -89,6 +97,12 @@ public class HomePageActivity extends AppCompatActivity {
             loadTransactions("transactions.txt");
             updateSummary(transactionList);
         }
+
+        Button addTransactionButton = findViewById(R.id.addTransaction);
+        addTransactionButton.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, AddTransactionActivity.class);
+            startActivity(intent);
+        });
 
         Button goalsButton = findViewById(R.id.goalsButton);
         goalsButton.setOnClickListener(view -> {
@@ -320,6 +334,7 @@ public class HomePageActivity extends AppCompatActivity {
     public void updateSummary(ArrayList<Transaction> transactions) {
 
         TextView summaryTextView = findViewById(R.id.summaryTextView);
+        Collections.sort(transactions);
 
         for (Transaction t : transactions)
         {
@@ -453,7 +468,6 @@ public class HomePageActivity extends AppCompatActivity {
     //method to reload the transactions on the home page
     public ArrayList<Transaction> reloadTransactions() {
         ArrayList<Transaction> transactionList = new ArrayList<>();
-
         File path = getApplicationContext().getFilesDir();
         File file = new File(path, "transactions.txt");
 
