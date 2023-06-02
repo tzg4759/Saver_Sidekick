@@ -55,12 +55,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Locale;
 
-import android.view.MenuItem;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.navigation.NavigationView;
-
 public class HomePageActivity extends AppCompatActivity {
 
     ArrayList<Transaction> transactionList;
@@ -122,7 +116,6 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
         // To the Search page for the liner graph Button ends
-      });
         //To the Search page for the liner graph Button ends
         addedTransaction = (String)getIntent().getSerializableExtra("transactionString");
 

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,7 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/noTransactionsText" />
 
-
         <Button
             android:id="@+id/calendarButton"
             android:layout_width="wrap_content"
@@ -34,256 +34,230 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-        android:id="@+id/goalsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/goals"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+            android:id="@+id/goalsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/goals"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/budgetButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="32dp"
             android:text="@string/budgeted_expenses"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toStartOf="@+id/goalsButton"
             app:layout_constraintStart_toEndOf="@+id/graphButton"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/graphButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="327dp"
-        android:text="@string/graph"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="364dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalsButton">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textViewNeeds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginBottom="4dp"
-                android:textColor="@color/black"
-                android:text="@string/necessities"
-                android:textSize="18sp" />
-
-            <ProgressBar
-                android:id="@+id/progressBarNecessities"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="182dp"
-                android:layout_height="22dp"
-                android:layout_marginStart="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textViewWants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/wants"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <ProgressBar
-                android:id="@+id/progressBarWants"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="182dp"
-                android:layout_height="22dp"
-                android:layout_marginStart="20dp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/textViewSavings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/savings"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <ProgressBar
-                android:id="@+id/progressBarSavings"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="182dp"
-                android:layout_height="22dp"
-                android:layout_marginStart="20dp" />
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/textViewEarnings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="430dp"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="60dp"
-        android:text="@string/your_earnings"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewNewIncome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="60dp"
-        android:text="@string/your_otherIncome"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textViewWeeklyEarnings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginEnd="143dp"
-        android:layout_marginBottom="60dp"
-        android:text="@string/your_weeklyEarning"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/summaryText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Recent Activity"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addTransaction" />
-
-    <EditText
-        android:id="@+id/summaryTextView"
-        android:layout_width="386dp"
-        android:layout_height="153dp"
-        android:ems="10"
-        android:inputType="none"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textViewWeeklyEarnings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summaryText"
-        app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/importFileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
-            android:text="Import CSV File"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/calendarButton"
             app:layout_constraintTop_toTopOf="parent" />
-            android:id="@+id/addTransaction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:text="Add Transaction"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/importFileButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
 
         <Button
-            android:id="@+id/importFileButton"
+            android:id="@+id/graphButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:text="Import CSV File"
+            android:layout_marginTop="32dp"
+            android:text="@string/graph"
             android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/textViewEarnings"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="364dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="320dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goalsButton">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewNeeds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="@color/black"
+                    android:text="@string/necessities"
+                    android:textSize="18sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarNecessities"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="182dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="20dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewWants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/wants"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarWants"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="182dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="20dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewSavings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/savings"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarSavings"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="182dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="20dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
 
         <TextView
-        android:id="@+id/noTransactionsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="You have not imported any transactions"
-        android:textColor="@color/black"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summaryText" />
+            android:id="@+id/textViewEarnings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="430dp"
+            android:layout_marginEnd="143dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/your_earnings"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/SavingHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/SavingHistory"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.989" />
+        <TextView
+            android:id="@+id/textViewNewIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="360dp"
+            android:layout_marginEnd="143dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/your_otherIncome"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewWeeklyEarnings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginEnd="143dp"
+            android:layout_marginBottom="60dp"
+            android:text="@string/your_weeklyEarning"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/summaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Recent Activity"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/importFileButton" />
+
+        <EditText
+            android:id="@+id/summaryTextView"
+            android:layout_width="386dp"
+            android:layout_height="153dp"
+            android:ems="10"
+            android:inputType="none"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/textViewWeeklyEarnings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/summaryText"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/importFileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="104dp"
+            android:text="Import CSV File"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/calendarButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/noTransactionsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="You have not imported any transactions"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/summaryText" />
+
+        <Button
+            android:id="@+id/SavingHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/SavingHistory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/goToPinpointPaymentButton"
+            app:layout_constraintTop_toTopOf="@+id/tableLayout"
+            app:layout_constraintVertical_bias="0.989" />
 
         <Button
             android:id="@+id/goToPinpointPaymentButton"
@@ -295,7 +269,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -304,4 +277,5 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
