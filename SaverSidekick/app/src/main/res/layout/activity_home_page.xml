@@ -27,12 +27,11 @@
             android:id="@+id/calendarButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
             android:text="Expense Calendar"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/graphButton" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
         android:id="@+id/goalsButton"
