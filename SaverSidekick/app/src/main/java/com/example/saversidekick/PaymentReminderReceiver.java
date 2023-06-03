@@ -30,8 +30,8 @@ public class PaymentReminderReceiver extends BroadcastReceiver {
 
             // Create the notification with the reminder data
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.saver_sidekick1)
-                    .setContentTitle("Payment Reminder")
+                    .setSmallIcon(R.drawable.saversidekick3)
+                    .setContentTitle("Saver Sidekick Reminder")
                     .setContentText(reminderText)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                     .setAutoCancel(true);

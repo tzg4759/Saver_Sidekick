@@ -311,7 +311,7 @@ public class HomePageActivity extends AppCompatActivity {
 
                                     // Create an intent to trigger the reminder
                                     Intent intent = new Intent(HomePageActivity.this, PaymentReminderReceiver.class);
-                                    intent.putExtra("reminderMessage", reminderMessage);  // Pass the reminder message as an extra
+                                    intent.putExtra(PaymentReminderReceiver.REMINDER_EXTRA, reminderMessage);  // Pass the reminder message as an extra
                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(
                                             HomePageActivity.this,
                                             0,
