@@ -4,6 +4,12 @@
     package="com.example.saversidekick">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +21,6 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
-
             android:name=".ShowCategorizedPayments"
             android:exported="false"
             android:label="Categorized Payments"/>
@@ -97,10 +102,22 @@
             android:exported="true"
             android:label="Edit Goal" />
         <activity
+            android:name=".AddTransactionActivity"
+            android:exported="true"
+            android:label="Add Transaction" />
+        <activity
             android:name=".HomePageActivity"
             android:exported="true"
             android:label="Home Page"
             android:screenOrientation="unspecified" />
+        <receiver
+            android:name=".PaymentReminderReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.saversidekick.ACTION_PAYMENT_REMINDER" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
