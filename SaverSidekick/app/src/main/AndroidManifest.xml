@@ -112,7 +112,7 @@
             android:screenOrientation="unspecified" />
         <receiver
             android:name=".PaymentReminderReceiver"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.example.saversidekick.ACTION_PAYMENT_REMINDER" />
             </intent-filter>
