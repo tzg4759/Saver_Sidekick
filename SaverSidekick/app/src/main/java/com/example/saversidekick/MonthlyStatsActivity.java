@@ -27,9 +27,16 @@ public class MonthlyStatsActivity extends AppCompatActivity {
         TextView expenseComparisonText = findViewById(R.id.thisMonthExpenseComp);
         TextView dailySpendTextCurrent = findViewById(R.id.averageDailySpendThisMonth);
         TextView dailySpendLast = findViewById(R.id.averageDailySpendLastMonth);
+        TextView averageMonthlyIncome = findViewById(R.id.averageMonthlyIncome);
+        TextView averageMonthlyExpense = findViewById(R.id.averageMonthlyExpense);
+        TextView averageMonthlyNet = findViewById(R.id.averageMonthlyNet);
 
         String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
         String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+        allExpense *= -1;
 
         String[] thisMonthComponents = thisMonth.split(" ");
         String[] lastMonthComponents = lastMonth.split(" ");
@@ -71,11 +78,11 @@ public class MonthlyStatsActivity extends AppCompatActivity {
         String incomeComparisonString;
         if (incomeComparison < 0)
         {
-            incomeComparisonString = "- $"+incomeComparison;
+            incomeComparisonString = "- $"+String.format("%.2f", incomeComparison);
             incomeComparisonText.setTextColor(Color.parseColor("#FF0000"));
         }
         else {
-             incomeComparisonString = "+ $"+incomeComparison;
+             incomeComparisonString = "+ $"+String.format("%.2f", incomeComparison);
              incomeComparisonText.setTextColor(Color.parseColor("#00FF00"));
         }
 
@@ -83,12 +90,12 @@ public class MonthlyStatsActivity extends AppCompatActivity {
         String expenseComparisonString;
         if (incomeComparison < 0)
         {
-            expenseComparisonString = "- $"+expenseComparison;
+            expenseComparisonString = "- $"+String.format("%.2f", expenseComparison);
             expenseComparisonText.setTextColor(Color.parseColor("#00FF00"));
         }
         else {
             expenseComparison *= -1;
-            expenseComparisonString = "+ $"+expenseComparison;
+            expenseComparisonString = "+ $"+String.format("%.2f", expenseComparison);
             expenseComparisonText.setTextColor(Color.parseColor("#FF0000"));
         }
 
@@ -104,13 +111,19 @@ public class MonthlyStatsActivity extends AppCompatActivity {
             dailyExpenseLastMonth *= -1;
         }
 
-        thisMonthIncomeText.setText("$"+thisMonthIncome);
-        thisMonthExpenseText.setText("$"+thisMonthExpense);
-        lastMonthIncomeText.setText("$"+lastMonthIncome);
-        lastMonthExpenseText.setText("$"+lastMonthExpense);
+        thisMonthExpense *= -1;
+        lastMonthExpense *= -1;
+
+        thisMonthIncomeText.setText("$"+String.format("%.2f", thisMonthIncome));
+        thisMonthExpenseText.setText("$"+String.format("%.2f", thisMonthExpense));
+        lastMonthIncomeText.setText("$"+String.format("%.2f", lastMonthIncome));
+        lastMonthExpenseText.setText("$"+String.format("%.2f", lastMonthExpense));
         incomeComparisonText.setText(incomeComparisonString);
         expenseComparisonText.setText(expenseComparisonString);
-        dailySpendTextCurrent.setText("$"+dailyExpenseThisMonth);
-        dailySpendLast.setText("$"+dailyExpenseLastMonth);
+        dailySpendTextCurrent.setText("$"+String.format("%.2f", dailyExpenseThisMonth));
+        dailySpendLast.setText("$"+String.format("%.2f", dailyExpenseLastMonth));
+        averageMonthlyIncome.setText("$"+String.format("%.2f", (allIncome / 12)));
+        averageMonthlyExpense.setText("$"+String.format("%.2f", (allExpense / 12)));
+        averageMonthlyNet.setText("$"+String.format("%.2f", (allNet / 12)));
     }
 }

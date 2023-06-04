@@ -158,6 +158,9 @@ public class HomePageActivity extends AppCompatActivity {
             intent.putExtra("monthString", monthSums());
             intent.putExtra("thisMonth", currentMonth());
             intent.putExtra("lastMonth", lastMonth());
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             startActivity(intent);
         });
 
@@ -252,6 +255,9 @@ public class HomePageActivity extends AppCompatActivity {
                     intent.putExtra("monthString", monthSums());
                     intent.putExtra("thisMonth", currentMonth());
                     intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 // Handle additional navigation items here
                 default:
@@ -530,8 +536,6 @@ public class HomePageActivity extends AppCompatActivity {
                 String[] components = currDate.split("/");
                 int currYear = Integer.parseInt(components[2]);
                 int currMonth = Integer.parseInt(components[1]);
-
-
 
                 if (currYear == year) {
 

@@ -38,6 +38,9 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         String monthSums = (String) getIntent().getSerializableExtra("monthString");
         String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
         String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
 
         System.out.println(thisMonth);
         System.out.println(lastMonth);
@@ -92,6 +95,9 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
             Intent intent = new Intent(GraphActivity.this, MonthlyStatsActivity.class);
             intent.putExtra("thisMonth", thisMonth);
             intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             startActivity(intent);
         });
 
