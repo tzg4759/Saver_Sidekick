@@ -36,6 +36,11 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_graph);
 
         String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+
+        System.out.println(thisMonth);
+        System.out.println(lastMonth);
 
         BarChart barChart = findViewById(R.id.barChart);
 
@@ -50,7 +55,6 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         ArrayList<Float> monthValues = new ArrayList<>();
         String components[] = monthSums.split("[|]");
         for (int i = 0; i < 12; i++) {
-            System.out.println(components[i]);
             monthValues.add(Float.valueOf(components[i]));
         }
 
@@ -86,6 +90,8 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         Button monthlyStatsButton = findViewById(R.id.moreInfoButton);
         monthlyStatsButton.setOnClickListener(view -> {
             Intent intent = new Intent(GraphActivity.this, MonthlyStatsActivity.class);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
             startActivity(intent);
         });
 

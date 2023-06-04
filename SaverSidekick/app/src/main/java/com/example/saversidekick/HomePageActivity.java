@@ -40,6 +40,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -59,6 +60,9 @@ public class HomePageActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "payment_reminder_channel";
     private static final String REMINDER_EXTRA = "reminder_extra";
     private String addedTransaction;
+    private float allIncome;
+    private float allExpense;
+    private float allNet;
 
 
     @Override
@@ -152,6 +156,8 @@ public class HomePageActivity extends AppCompatActivity {
         graphButton.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
             intent.putExtra("monthString", monthSums());
+            intent.putExtra("thisMonth", currentMonth());
+            intent.putExtra("lastMonth", lastMonth());
             startActivity(intent);
         });
 
@@ -244,6 +250,8 @@ public class HomePageActivity extends AppCompatActivity {
                     selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
                     intent = new Intent(HomePageActivity.this, GraphActivity.class);
                     intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
                     break;
                 // Handle additional navigation items here
                 default:
@@ -511,6 +519,10 @@ public class HomePageActivity extends AppCompatActivity {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         StringBuilder output = new StringBuilder();
 
+        allIncome = 0.0f;
+        allExpense = 0.0f;
+        allNet = 0.0f;
+
         if (transactions.size() > 0) {
             for (Transaction t : transactions) {
                 String currDate = t.getDate();
@@ -519,7 +531,21 @@ public class HomePageActivity extends AppCompatActivity {
                 int currYear = Integer.parseInt(components[2]);
                 int currMonth = Integer.parseInt(components[1]);
 
+
+
                 if (currYear == year) {
+
+                    allNet += currAmount;
+
+                    if (currAmount < 0)
+                    {
+                        allExpense += currAmount;
+                    }
+                    else
+                    {
+                        allIncome += currAmount;
+                    }
+
                     switch (currMonth) {
                         case 1:
                             jan += currAmount;
@@ -603,5 +629,71 @@ public class HomePageActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("monthSums", monthSumString);
         editor.apply();
+    }
+
+    public String currentMonth() {
+        String output = "";
+
+        Calendar cal = Calendar.getInstance();
+        String currentYear = (new SimpleDateFormat("yyyy").format(cal.getTime()));
+        String currentMonth = (new SimpleDateFormat("MM").format(cal.getTime()));
+
+        ArrayList<Transaction> transactions = reloadTransactions();
+
+        if (transactions.size() > 0) {
+            for (Transaction t : transactions) {
+                String currDate = t.getDate();
+                String[] components = currDate.split("/");
+                String transactionYear = components[2];
+                String transactionMonth = components[1];
+
+                if (currentMonth.equals(transactionMonth) && currentYear.equals(transactionYear)) {
+                    output += t.getAmount() + " ";
+                }
+            }
+        }
+
+        return output;
+    }
+
+    public String lastMonth() {
+        String output = "";
+
+        Calendar cal = Calendar.getInstance();
+        String currentYear = (new SimpleDateFormat("yyyy").format(cal.getTime()));
+        int currentMonth = Integer.parseInt(new SimpleDateFormat("MM").format(cal.getTime()));
+        int currentDay = Integer.parseInt(new SimpleDateFormat("dd").format(cal.getTime()));
+        String lastMonth;
+
+        if (currentMonth == 1)
+        {
+            lastMonth = "12";
+            int yearInt = Integer.parseInt(currentYear);
+            yearInt--;
+            currentYear = String.valueOf(yearInt);
+        }
+        else
+        {
+            currentMonth--;
+            lastMonth = "0"+String.valueOf(currentMonth);
+        }
+
+        ArrayList<Transaction> transactions = reloadTransactions();
+
+        if (transactions.size() > 0) {
+            for (Transaction t : transactions) {
+                String currDate = t.getDate();
+                String[] components = currDate.split("/");
+                String transactionYear = components[2];
+                String transactionMonth = components[1];
+                int transactionDay = Integer.parseInt(components[0]);
+
+                if (lastMonth.equals(transactionMonth) && currentYear.equals(transactionYear) && transactionDay <= currentDay) {
+                    output += t.getAmount() + " ";
+                }
+            }
+        }
+
+        return output;
     }
 }
