@@ -22,10 +22,11 @@ public class OverTimeHoursWorked extends AppCompatActivity {
         Ratio =findViewById(R.id.BonusRatio);
         display = findViewById(R.id.OTHSubmit);
         change_income = findViewById(R.id.NewIncomeRatio);
-        String income = i.getStringExtra("income");
+
         display.setOnClickListener(view -> {
             String getHour = Hours.getText().toString();
-            String getBonus = Ratio.getText().toString()
+            String getBonus = Ratio.getText().toString();
+            String income = i.getStringExtra("income");
                     ;
             //Pass data to 2nd activity
             if (TextUtils.isEmpty(getHour)) {
@@ -50,7 +51,7 @@ public class OverTimeHoursWorked extends AppCompatActivity {
             Intent intent = new Intent(OverTimeHoursWorked.this, DisplayOverWorkedHour.class);
             intent.putExtra("getHour", getHour);
             intent.putExtra("getBonus", getBonus);
-            intent.putExtra("income", income);
+            //intent.putExtra("income", income);
             startActivity(intent);
         });
         change_income.setOnClickListener(view -> {
