@@ -33,6 +33,8 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -64,6 +66,9 @@ public class HomePageActivity extends AppCompatActivity {
     private float allExpense;
     private float allNet;
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,11 @@ public class HomePageActivity extends AppCompatActivity {
                 openDatePicker();
             }
         });
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"transactions.txt";
 
         // Initialize the UI elements
         TextView textViewNeeds = findViewById(R.id.textViewNeeds);
@@ -117,7 +127,7 @@ public class HomePageActivity extends AppCompatActivity {
         {
             String[] components = addedTransaction.split(" ");
             Transaction newTransaction = new Transaction(components[0], components[1], Float.valueOf(components[2]));
-            writeToFile("transactions.txt", newTransaction);
+            writeToFile(filename, newTransaction);
         }
 
         transactionList = reloadTransactions();
@@ -130,7 +140,7 @@ public class HomePageActivity extends AppCompatActivity {
         if (transactionList.size() == 0) {
             noTransactionsText.setVisibility(View.VISIBLE);
         } else {
-            loadTransactions("transactions.txt");
+            loadTransactions(filename);
             updateSummary(transactionList);
         }
 
@@ -168,6 +178,10 @@ public class HomePageActivity extends AppCompatActivity {
         importButton.setOnClickListener(view -> {
             filePicker();
             transactionList = reloadTransactions();
+            if (transactionList.size() > 0)
+            {
+                noTransactionsText.setVisibility(View.INVISIBLE);
+            }
         });
 
         // Retrieve the weekly earnings from SharedPreferences
@@ -441,7 +455,7 @@ public class HomePageActivity extends AppCompatActivity {
             Toast.makeText(this, "Opened file", Toast.LENGTH_SHORT).show();
             for (Transaction t : transactionList)
             {
-                writeToFile("transactions.txt", t);
+                writeToFile(filename, t);
             }
             Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
             intent.putParcelableArrayListExtra("transactionList", transactionList);
@@ -603,10 +617,10 @@ public class HomePageActivity extends AppCompatActivity {
     public ArrayList<Transaction> reloadTransactions() {
         ArrayList<Transaction> transactionList = new ArrayList<>();
         File path = getApplicationContext().getFilesDir();
-        File file = new File(path, "transactions.txt");
+        File file = new File(path, filename);
 
         if (file.isFile()) {
-            String transactions = loadTransactions("transactions.txt");
+            String transactions = loadTransactions(filename);
             String[] lines = transactions.split(System.getProperty("line.separator"));
 
             for (String line : lines) {

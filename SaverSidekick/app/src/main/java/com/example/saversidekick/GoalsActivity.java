@@ -34,6 +34,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 //activity displays all current goals the user has set
 public class GoalsActivity extends AppCompatActivity {
@@ -43,20 +45,30 @@ public class GoalsActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private int selectedMenuItemId;
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"goals.txt";
+
         //read file if it exists
 
         ArrayList<Goal> goalsList = new ArrayList<>();
         File path = getApplicationContext().getFilesDir();
-        File file = new File(path, "goals.txt");
+        File file = new File(path, filename);
 
         if (file.isFile())
         {
-            String goals = loadGoals("goals.txt");
+            String goals = loadGoals(filename);
 
             String[] lines = goals.split(System.getProperty("line.separator"));
 

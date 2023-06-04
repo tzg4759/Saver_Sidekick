@@ -65,15 +65,18 @@ public class MonthlyStatsActivity extends AppCompatActivity {
             String[] lastMonthComponents = lastMonth.split(" ");
             for (String s : lastMonthComponents)
             {
-                float curr = Float.parseFloat(s);
+                if (s != null && s != "")
+                {
+                    float curr = Float.parseFloat(s);
 
-                if (curr > 0)
-                {
-                    lastMonthIncome += curr;
-                }
-                else
-                {
-                    lastMonthExpense += curr;
+                    if (curr > 0)
+                    {
+                        lastMonthIncome += curr;
+                    }
+                    else
+                    {
+                        lastMonthExpense += curr;
+                    }
                 }
             }
         }
@@ -116,7 +119,11 @@ public class MonthlyStatsActivity extends AppCompatActivity {
         }
 
         thisMonthExpense *= -1;
-        lastMonthExpense *= -1;
+        if (lastMonthExpense < 0)
+        {
+            lastMonthExpense *= -1;
+        }
+
 
         thisMonthIncomeText.setText("$"+String.format("%.2f", thisMonthIncome));
         thisMonthExpenseText.setText("$"+String.format("%.2f", thisMonthExpense));
