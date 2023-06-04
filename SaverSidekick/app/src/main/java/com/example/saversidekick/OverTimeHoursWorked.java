@@ -12,18 +12,21 @@ import android.widget.Toast;
 public class OverTimeHoursWorked extends AppCompatActivity {
     EditText Hours, Ratio;
     Button display,change_income;
-    String income = "21";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_over_time_hours_worked);
+        Intent i = getIntent();
         Hours=findViewById(R.id.Hours);
         Ratio =findViewById(R.id.BonusRatio);
         display = findViewById(R.id.OTHSubmit);
         change_income = findViewById(R.id.NewIncomeRatio);
+        String income = i.getStringExtra("income");
         display.setOnClickListener(view -> {
             String getHour = Hours.getText().toString();
-            String getBonus = Ratio.getText().toString();
+            String getBonus = Ratio.getText().toString()
+                    ;
             //Pass data to 2nd activity
             if (TextUtils.isEmpty(getHour)) {
                 Toast.makeText(OverTimeHoursWorked.this,"Please enter a Hour",Toast.LENGTH_SHORT).show();
@@ -51,7 +54,7 @@ public class OverTimeHoursWorked extends AppCompatActivity {
             startActivity(intent);
         });
         change_income.setOnClickListener(view -> {
-            Intent intent = new Intent(OverTimeHoursWorked.this, finacial_education_resource.class);
+            Intent intent = new Intent(OverTimeHoursWorked.this, EarningsActivity.class);
             startActivity(intent);
         });
     }
