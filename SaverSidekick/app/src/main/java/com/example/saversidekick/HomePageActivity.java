@@ -199,12 +199,22 @@ public class HomePageActivity extends AppCompatActivity {
             intent.putExtra("income",String.valueOf(weeklyEarnings));
             startActivity(intent);
         });
+        Intent in = getIntent();
+        String overworkedhour = in.getStringExtra("Overworkedhour");
+        //// AFTER THE EXTRA OVER WORK HOUR ADDED
+        float overworkedhourvalue = Float.parseFloat(overworkedhour);
+        newIncomeAmount = newIncomeAmount + overworkedhourvalue;
+
+
+        //// AFTER THE EXTRA OVER WORK HOUR ADDED
 //
 
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
         double wants = weeklyTotalEarnings * 0.3;
         double savings = weeklyTotalEarnings * 0.2;
+        // reset when new income is added
+
 
         // Update the UI with the calculated amounts
         textViewNeeds.setText(String.format(Locale.US, "Necessities: $%.2f", necessities));

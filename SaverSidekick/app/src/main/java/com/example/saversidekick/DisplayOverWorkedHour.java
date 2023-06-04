@@ -24,15 +24,18 @@ public class DisplayOverWorkedHour extends AppCompatActivity {
         float intHour =Float.parseFloat(getHour);
         float Bonusnum = Float.parseFloat(getBonus);
         float incomenum =Float.parseFloat(income);
+        double total = intHour*Bonusnum*incomenum;
 
         result.setText("Extra Hour: "+getHour+" X Bonus Ratio: "+ getBonus +" X income: "+income + "=  in total of :"
-                +" Total of "+intHour*Bonusnum*incomenum);
+                +" Total of "+total);
         ToHome.setOnClickListener(view -> {
-            Intent i = new Intent(DisplayOverWorkedHour.this, MainActivity.class);
+            Intent i = new Intent(DisplayOverWorkedHour.this, HomePageActivity.class);
+            i.putExtra("Overworkedhour", String.valueOf(total));
             startActivity(i);
         });
         BacktoOWT.setOnClickListener(view -> {
             Intent i = new Intent(DisplayOverWorkedHour.this, OverTimeHoursWorked.class);
+            intent.putExtra("income", income);
             startActivity(i);
         });
     }
