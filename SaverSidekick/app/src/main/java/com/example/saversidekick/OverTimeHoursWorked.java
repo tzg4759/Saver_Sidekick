@@ -51,7 +51,7 @@ public class OverTimeHoursWorked extends AppCompatActivity {
             Intent intent = new Intent(OverTimeHoursWorked.this, DisplayOverWorkedHour.class);
             intent.putExtra("getHour", getHour);
             intent.putExtra("getBonus", getBonus);
-            //intent.putExtra("income", income);
+            intent.putExtra("income", income);
             startActivity(intent);
         });
         change_income.setOnClickListener(view -> {
