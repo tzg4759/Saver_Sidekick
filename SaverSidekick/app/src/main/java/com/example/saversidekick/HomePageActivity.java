@@ -183,15 +183,6 @@ public class HomePageActivity extends AppCompatActivity {
                 noTransactionsText.setVisibility(View.INVISIBLE);
             }
         });
-        Button overworked= findViewById(R.id.Overworked);
-        overworked.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, OverTimeHoursWorked.class);
-            intent.putExtra("allIncome", allIncome);
-            intent.putExtra("allExpense", allExpense);
-            float income = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
-            intent.putExtra("income",income);
-            startActivity(intent);
-        });
         // Retrieve the weekly earnings from SharedPreferences
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
         // retrieve the new income amount from SharedPreferences
@@ -199,6 +190,16 @@ public class HomePageActivity extends AppCompatActivity {
 
         double weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
         String newIncomeType = PreferenceManager.getDefaultSharedPreferences(this).getString("incomeType", "Other Income");
+// Button to overworked
+        Button overworked= findViewById(R.id.Overworked);
+        overworked.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, OverTimeHoursWorked.class);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("income",String.valueOf(weeklyEarnings));
+            startActivity(intent);
+        });
+//
 
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;

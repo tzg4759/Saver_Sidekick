@@ -27,7 +27,7 @@ public class OverTimeHoursWorked extends AppCompatActivity {
             String getHour = Hours.getText().toString();
             String getBonus = Ratio.getText().toString();
             String income = i.getStringExtra("income");
-                    ;
+
             //Pass data to 2nd activity
             if (TextUtils.isEmpty(getHour)) {
                 Toast.makeText(OverTimeHoursWorked.this,"Please enter a Hour",Toast.LENGTH_SHORT).show();
