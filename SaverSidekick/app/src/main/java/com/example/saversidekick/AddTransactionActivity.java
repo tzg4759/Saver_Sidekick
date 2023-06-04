@@ -64,7 +64,7 @@ public class AddTransactionActivity extends AppCompatActivity {
 
     public String createTransaction() {
         try {
-            String name = inputName.getText().toString().trim();
+            String name = inputName.getText().toString().trim().replaceAll("\\s", "");
             float amount = Float.valueOf(inputAmount.getText().toString().trim());
             String date = inputDate.getText().toString().trim();
 
