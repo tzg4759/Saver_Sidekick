@@ -19,34 +19,35 @@
         app:layout_constraintVertical_bias="0.161" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="81dp"
-        android:layout_height="36dp"
-        android:text="TextView"
+        android:id="@+id/SummaryOTW"
+        android:layout_width="85dp"
+        android:layout_height="24dp"
+        android:text="Summary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintVertical_bias="0.419" />
 
     <TextView
-        android:id="@+id/textView11"
-        android:layout_width="83dp"
-        android:layout_height="31dp"
+        android:id="@+id/CalculationOTW"
+        android:layout_width="316dp"
+        android:layout_height="64dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ToHomePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="HomePage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.233"
@@ -55,10 +56,10 @@
         app:layout_constraintVertical_bias="0.809" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/BacktoOTW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Add More"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.791"
