@@ -221,12 +221,15 @@ public class HomePageActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
+        // Set up the ActionBarDrawerToggle for the drawer layout
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Enable the "up" button in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Set a navigation item selection listener for the navigation view
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
             switch (menuItem.getItemId()) {
@@ -270,15 +273,20 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void openDatePicker() {
+        // Create CalendarConstraints to restrict the date range
         CalendarConstraints.Builder calendarConstraintsBuilder = new CalendarConstraints.Builder();
-        calendarConstraintsBuilder.setStart(System.currentTimeMillis() - 31536000000L);
-        calendarConstraintsBuilder.setEnd(System.currentTimeMillis());
+        calendarConstraintsBuilder.setStart(System.currentTimeMillis() - 31536000000L); // Start date is set to 1 year ago
+        calendarConstraintsBuilder.setEnd(System.currentTimeMillis()); // End date is set to the current date
         CalendarConstraints calendarConstraints = calendarConstraintsBuilder.build();
 
+        // Create MaterialDatePicker.Builder for selecting a date
         MaterialDatePicker.Builder<Long> datePickerBuilder = MaterialDatePicker.Builder.datePicker();
         datePickerBuilder.setCalendarConstraints(calendarConstraints);
 
+        // Build the MaterialDatePicker
         MaterialDatePicker<Long> datePicker = datePickerBuilder.build();
+
+        // Add a listener for positive button click (date selection)
         datePicker.addOnPositiveButtonClickListener(selection -> {
             long selectedDate = selection;
 
@@ -311,7 +319,7 @@ public class HomePageActivity extends AppCompatActivity {
 
                                     // Create an intent to trigger the reminder
                                     Intent intent = new Intent(HomePageActivity.this, PaymentReminderReceiver.class);
-                                    intent.putExtra(PaymentReminderReceiver.REMINDER_EXTRA, reminderMessage);  // Pass the reminder message as an extra
+                                    intent.putExtra(PaymentReminderReceiver.REMINDER_EXTRA, reminderMessage); // Pass the reminder message as an extra
                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(
                                             HomePageActivity.this,
                                             0,
@@ -338,13 +346,12 @@ public class HomePageActivity extends AppCompatActivity {
             timePickerDialog.show();
         });
 
+        // Show the DatePicker dialog
         datePicker.show(getSupportFragmentManager(), datePicker.toString());
     }
 
-
-
-
     private void updateSelectedMenuItem() {
+        // Set the checked state of the navigation view item based on the selectedMenuItemId
         navigationView.setCheckedItem(selectedMenuItemId);
     }
 
@@ -356,6 +363,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the selected item to the ActionBarDrawerToggle
         if(toggle.onOptionsItemSelected(item)){
             return true;
         }
