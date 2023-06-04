@@ -33,6 +33,12 @@
         android:backgroundTint="#A3657A"/>
 
     <Button
+        android:id="@+id/Sehun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sehun" />
+
+    <Button
         android:text="@string/log_out"
         android:id="@+id/logout"
         android:textColor="#FFFFFF"

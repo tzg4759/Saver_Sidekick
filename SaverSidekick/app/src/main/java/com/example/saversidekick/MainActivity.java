@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;      // firebase authentication
-    Button logoutButton;        // button to log out of the app
+    Button logoutButton,SehunButton;        // button to log out of the app
     TextView userEmail;         // text which shows the email of the current user logged in
     FirebaseUser currentUser;       // variable to store current user details from firebase
     // this function checks if the application is logged in and displays buttons and current user email
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         // initialise variables for the main page
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
+        SehunButton = findViewById(R.id.Sehun);
         userEmail = findViewById(R.id.user_details);
         currentUser = auth.getCurrentUser();
 
@@ -38,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
+        SehunButton.setOnClickListener(view -> {
+        Intent intent = new Intent(MainActivity.this, OverTimeHoursWorked.class);
+           startActivity(intent);
+        });
         if (currentUser == null)    // if there is no current user go to the log in page
         {
             Intent intent = new Intent(getApplicationContext(), Login.class);
