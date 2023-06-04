@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,11 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_graph);
 
         String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
 
         BarChart barChart = findViewById(R.id.barChart);
 
@@ -49,7 +56,6 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         ArrayList<Float> monthValues = new ArrayList<>();
         String components[] = monthSums.split("[|]");
         for (int i = 0; i < 12; i++) {
-            System.out.println(components[i]);
             monthValues.add(Float.valueOf(components[i]));
         }
 
@@ -81,6 +87,24 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         toggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Button monthlyStatsButton = findViewById(R.id.moreInfoButton);
+        monthlyStatsButton.setOnClickListener(view -> {
+            if (thisMonth == null || allIncome == 0.0 || allExpense == 0.0 || allNet == 0.0)
+            {
+                Toast.makeText(this, "Not enough transaction data.", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Intent intent = new Intent(GraphActivity.this, MonthlyStatsActivity.class);
+                intent.putExtra("thisMonth", thisMonth);
+                intent.putExtra("lastMonth", lastMonth);
+                intent.putExtra("allIncome", allIncome);
+                intent.putExtra("allExpense", allExpense);
+                intent.putExtra("allNet", allNet);
+                startActivity(intent);
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
