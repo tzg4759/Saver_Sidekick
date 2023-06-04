@@ -51,7 +51,7 @@ public class EarningsActivity extends AppCompatActivity {
 
                     // Create an Intent to navigate to the HomePageActivity
                     Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
-                    intent.putExtra("Overworkedhour", "1");
+                    intent.putExtra("Overworkedhour", "0");
                     // Start the HomePageActivity
                     startActivity(intent);
                 } catch (NumberFormatException e) {
