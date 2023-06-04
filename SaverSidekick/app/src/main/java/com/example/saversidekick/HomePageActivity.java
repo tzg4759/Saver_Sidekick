@@ -1,23 +1,16 @@
 package com.example.saversidekick;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
@@ -33,9 +26,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -321,7 +311,7 @@ public class HomePageActivity extends AppCompatActivity {
 
                                     // Create an intent to trigger the reminder
                                     Intent intent = new Intent(HomePageActivity.this, PaymentReminderReceiver.class);
-                                    intent.putExtra("reminderMessage", reminderMessage);  // Pass the reminder message as an extra
+                                    intent.putExtra(PaymentReminderReceiver.REMINDER_EXTRA, reminderMessage);  // Pass the reminder message as an extra
                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(
                                             HomePageActivity.this,
                                             0,
@@ -351,44 +341,8 @@ public class HomePageActivity extends AppCompatActivity {
         datePicker.show(getSupportFragmentManager(), datePicker.toString());
     }
 
-    public class PaymentReminderReceiver extends BroadcastReceiver {
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Retrieve the reminder data from the intent
-            String reminderText = intent.getStringExtra(REMINDER_EXTRA);
 
-            // Check if the NOTIFICATION permission is granted
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                // Create a notification channel for Android 8.0 and higher
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Payment Reminder", NotificationManager.IMPORTANCE_DEFAULT);
-                    NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-                    notificationManager.createNotificationChannel(channel);
-                }
-
-                // Create the notification with the reminder data
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                        .setSmallIcon(R.drawable.saver_sidekick)
-                        .setContentTitle("Payment Reminder")
-                        .setContentText(reminderText)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setAutoCancel(true);
-
-                // Show the notification
-                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-                notificationManagerCompat.notify(NOTIFICATION_ID, builder.build());
-            } else {
-                // Handle the case where the permission is not granted
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                alertDialogBuilder.setTitle("Permission Required");
-                alertDialogBuilder.setMessage("To enable payment reminders, please grant the permission to post notifications.");
-                alertDialogBuilder.setPositiveButton("OK", null);
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-            }
-        }
-    }
 
     private void updateSelectedMenuItem() {
         navigationView.setCheckedItem(selectedMenuItemId);

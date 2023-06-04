@@ -16,6 +16,7 @@
         android:gravity="center"
         android:textSize="16sp"
         android:textColor="@color/purple_500"
+        android:textStyle="bold"
         android:padding="8dp" />
 
     <TextView
@@ -34,6 +35,7 @@
         android:textSize="16sp"
         android:gravity="center"
         android:textColor="@color/purple_500"
+        android:textStyle="bold"
         android:padding="8dp" />
 
     <TextView
@@ -52,6 +54,7 @@
         android:gravity="center"
         android:textSize="16sp"
         android:textColor="@color/purple_500"
+        android:textStyle="bold"
         android:padding="8dp" />
 
     <TextView

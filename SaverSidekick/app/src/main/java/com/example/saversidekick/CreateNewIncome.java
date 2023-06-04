@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class CreateNewIncome extends AppCompatActivity {
@@ -39,16 +40,28 @@ public class CreateNewIncome extends AppCompatActivity {
         addIncome.setOnClickListener(view -> {
             String incomeTypeString = incomeTypeEditText.getText().toString();
             String newIncomeAmountString = newIncomeAmount.getText().toString();
-            double newIncomeAmount = Double.parseDouble(newIncomeAmountString);
 
-            // Display the created income details
-            String createdIncomeText = "Income Type: " + incomeTypeString + "\nAmount: " + newIncomeAmountString;
-            createdIncomeTextView.setText(createdIncomeText);
+            // Check if any of the input fields are empty
+            if (incomeTypeString.isEmpty() || newIncomeAmountString.isEmpty()) {
+                // Display an error message to the user
+                Toast.makeText(CreateNewIncome.this, "Please enter income details", Toast.LENGTH_SHORT).show();
+            } else {
+                double newIncomeAmount = Double.parseDouble(newIncomeAmountString);
 
-            // Enable the cancel button and addIntoTotal button
-            cancelButton.setEnabled(true);
-            addIntoTotalButton.setEnabled(true);
+                // Check if the new income amount is a positive number
+                if (newIncomeAmount > 0) {
+                    // Display the created income details
+                    String createdIncomeText = "Income Type: " + incomeTypeString + "\nAmount: " + newIncomeAmount;
+                    createdIncomeTextView.setText(createdIncomeText);
 
+                    // Enable the cancel button and addIntoTotal button
+                    cancelButton.setEnabled(true);
+                    addIntoTotalButton.setEnabled(true);
+                } else {
+                    // Display an error message to the user
+                    Toast.makeText(CreateNewIncome.this, "Please enter a positive income amount", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
         cancelButton.setOnClickListener(view -> {
