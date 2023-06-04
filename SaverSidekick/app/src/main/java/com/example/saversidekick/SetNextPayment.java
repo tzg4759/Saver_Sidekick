@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class NextPaymentCycle extends AppCompatActivity {
+public class SetNextPayment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_next_payment_cycle);
+        setContentView(R.layout.activity_set_next_payment);
     }
 }

@@ -183,7 +183,6 @@ public class HomePageActivity extends AppCompatActivity {
                 noTransactionsText.setVisibility(View.INVISIBLE);
             }
         });
-
         // Retrieve the weekly earnings from SharedPreferences
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
         // retrieve the new income amount from SharedPreferences
@@ -191,11 +190,30 @@ public class HomePageActivity extends AppCompatActivity {
 
         double weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
         String newIncomeType = PreferenceManager.getDefaultSharedPreferences(this).getString("incomeType", "Other Income");
+// Button to overworked
+        Button overworked= findViewById(R.id.Overworked);
+        overworked.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, OverTimeHoursWorked.class);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("income",String.valueOf(weeklyEarnings));
+            startActivity(intent);
+        });
+        Intent in = getIntent();
+        String overworkedhour = in.getStringExtra("Overworkedhour");
+        //// AFTER THE EXTRA OVER WORK HOUR ADDED
+        float overworkedhourvalue = Float.parseFloat(overworkedhour);
+        newIncomeAmount = newIncomeAmount + overworkedhourvalue;
+        weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
+        //// AFTER THE EXTRA OVER WORK HOUR ADDED
+//
 
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
         double wants = weeklyTotalEarnings * 0.3;
         double savings = weeklyTotalEarnings * 0.2;
+        // reset when new income is added
+
 
         // Update the UI with the calculated amounts
         textViewNeeds.setText(String.format(Locale.US, "Necessities: $%.2f", necessities));
