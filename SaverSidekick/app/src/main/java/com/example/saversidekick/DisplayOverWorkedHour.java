@@ -21,12 +21,12 @@ public class DisplayOverWorkedHour extends AppCompatActivity {
         String getHour = intent.getStringExtra("getHour");
         String getBonus = intent.getStringExtra("getBonus");
         String income = intent.getStringExtra("income");
-        int intHour =Integer.parseInt(getHour);
-        int Bonusnum = Integer.parseInt(getBonus);
-        int incomenum =Integer.parseInt(income);
-        int total = intHour*Bonusnum*incomenum;
-        result.setText("OverWorked Hour:"+getHour+"Bonus Ratio:"+ getBonus +"income:"+income+"in total of :" +
-                total);
+        float intHour =Float.parseFloat(getHour);
+        float Bonusnum = Float.parseFloat(getBonus);
+        float incomenum =Float.parseFloat(income);
+
+        result.setText("Extra Hour: "+getHour+" X Bonus Ratio: "+ getBonus +" X income: "+income + "=  in total of :"
+                +" Total of "+intHour*Bonusnum*incomenum);
         ToHome.setOnClickListener(view -> {
             Intent i = new Intent(DisplayOverWorkedHour.this, MainActivity.class);
             startActivity(i);

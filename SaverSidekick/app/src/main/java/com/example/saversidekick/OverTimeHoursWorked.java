@@ -10,10 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class OverTimeHoursWorked extends AppCompatActivity {
-    int income = 23;
     EditText Hours, Ratio;
     Button display,change_income;
-
+    String income = "21";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +26,7 @@ public class OverTimeHoursWorked extends AppCompatActivity {
             String getBonus = Ratio.getText().toString();
             //Pass data to 2nd activity
             if (TextUtils.isEmpty(getHour)) {
-                Toast.makeText(OverTimeHoursWorked.this,"Please enter a number in the Start box(1-11)",Toast.LENGTH_SHORT).show();
+                Toast.makeText(OverTimeHoursWorked.this,"Please enter a Hour",Toast.LENGTH_SHORT).show();
                 return;
             }
             if (TextUtils.isEmpty(getBonus)) {
@@ -37,8 +36,8 @@ public class OverTimeHoursWorked extends AppCompatActivity {
             int Startvalue = 0;
             try {
                 Startvalue = Integer.parseInt(Hours.getText().toString());
-                if(Startvalue<1 ||Startvalue>11){
-                    Toast.makeText(OverTimeHoursWorked.this,"Please enter a number in the Start box(from 1-11)",Toast.LENGTH_SHORT).show();
+                if(Startvalue<0){
+                    Toast.makeText(OverTimeHoursWorked.this,"Please enter a Hours worked starting from 1",Toast.LENGTH_SHORT).show();
                     return;
                 }
             } catch (NumberFormatException e) {
