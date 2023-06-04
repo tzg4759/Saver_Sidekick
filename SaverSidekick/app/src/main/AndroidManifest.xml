@@ -107,6 +107,10 @@
             android:exported="true"
             android:label="Add Transaction" />
         <activity
+            android:name=".MonthlyStatsActivity"
+            android:exported="true"
+            android:label="Monthly Stats" />
+        <activity
             android:name=".HomePageActivity"
             android:exported="true"
             android:label="Home Page"
