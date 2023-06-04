@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
@@ -26,11 +29,19 @@ public class CreateGoalActivity  extends AppCompatActivity {
     EditText inputCurrent;
     EditText inputDate;
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"goals.txt";
 
         //UI components
         inputName = (EditText) findViewById(R.id.inputName);
@@ -128,7 +139,7 @@ public class CreateGoalActivity  extends AppCompatActivity {
                 {
                     newGoal.setDate(date);
                 }
-                writeToFile("goals.txt", newGoal.toString()+"\n");
+                writeToFile(filename, newGoal.toString()+"\n");
                 return true;
             }
         } catch (Exception e) {
