@@ -107,6 +107,11 @@ public class CheckPeriodPayment extends AppCompatActivity {
         }
         resultTextView.setText("\n" + " Searching period upcoming payment is as belows:\n" +sb.toString());
     }
+    /*
+     * Checks if a given date string is in a valid date format.
+     * @param date The date string to validate.
+     * @return True if the date string is in the format "dd/MM/yyyy", false otherwise.
+     */
 
     private boolean isValidDateFormat(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -119,7 +124,5 @@ public class CheckPeriodPayment extends AppCompatActivity {
             return false;
         }
     }
-
-
 }
 
