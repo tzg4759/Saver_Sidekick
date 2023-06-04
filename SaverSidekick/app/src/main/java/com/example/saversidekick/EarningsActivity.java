@@ -20,39 +20,32 @@ public class EarningsActivity extends AppCompatActivity {
 
         weeklyEarningsEditText = findViewById(R.id.editTextWeeklyEarnings);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EarningsActivity.this);
-        if (sharedPreferences.contains("weeklyEarnings")) {
-            float weeklyEarnings = sharedPreferences.getFloat("weeklyEarnings", 0.0f);
-            weeklyEarningsEditText.setText(String.valueOf(weeklyEarnings));
-            Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
-            startActivity(intent);
-        } else {
+        Button submitButton = findViewById(R.id.buttonSubmitEarnings);
+        submitButton.setOnClickListener(view -> {
+            String weeklyEarningsString = weeklyEarningsEditText.getText().toString();
 
-            Button submitButton = findViewById(R.id.buttonSubmitEarnings);
-            submitButton.setOnClickListener(view -> {
-                String weeklyEarningsString = weeklyEarningsEditText.getText().toString();
-
-                if (weeklyEarningsString.isEmpty()) {
-                    weeklyEarningsEditText.setError("Please enter your weekly earnings");
-                } else {
-                    try {
-                        double weeklyEarnings = Double.parseDouble(weeklyEarningsString);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putFloat("weeklyEarnings", (float) weeklyEarnings);
-                        editor.apply();
-                        Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
-                        startActivity(intent);
-                    } catch (NumberFormatException e) {
-                        weeklyEarningsEditText.setError("Please enter a valid number");
-                    }
+            if (weeklyEarningsString.isEmpty()) {
+                weeklyEarningsEditText.setError("Please enter your weekly earnings");
+            } else {
+                try {
+                    double weeklyEarnings = Double.parseDouble(weeklyEarningsString);
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(EarningsActivity.this);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putFloat("weeklyEarnings", (float) weeklyEarnings);
+                    editor.apply();
+                    Intent intent = new Intent(EarningsActivity.this, HomePageActivity.class);
+                    startActivity(intent);
+                } catch (NumberFormatException e) {
+                    weeklyEarningsEditText.setError("Please enter a valid number");
                 }
-            });
+            }
+        });
 
-            Button createNewIncome = findViewById(R.id.button_createNewIncome);
-            createNewIncome.setOnClickListener(view -> {
-                Intent i = new Intent(EarningsActivity.this, CreateNewIncome.class);
-                startActivity(i);
-            });
-        }
+        Button createNewIncome = findViewById(R.id.button_createNewIncome);
+        createNewIncome.setOnClickListener(view -> {
+            Intent i = new Intent(EarningsActivity.this, CreateNewIncome.class);
+            startActivity(i);
+        });
+
     }
 }
