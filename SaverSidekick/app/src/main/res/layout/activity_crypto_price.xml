@@ -1,0 +1,44 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F9CCC6"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cryptocurrency\nPrices"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Below is a list of up to date cryptocurrency prices using the CoinCap API 2.0\n\nHere you can check the current prices and use this data to keep track of any cryptocurrency market changes.\n\nIn the below list you can see the crypto coin names, code, price in USD, and percentage increase in the past 24 hours so you can keep track of any crypto-based savings on the go."
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:padding="20dp"
+        />
+
+    <Button
+        android:id="@+id/homebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Back to Home Page"
+        />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+</LinearLayout>

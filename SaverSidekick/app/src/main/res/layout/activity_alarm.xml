@@ -1,0 +1,202 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9CCC6">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".AlarmActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spending Reminder Alerts"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scroll down to set a spending reminders at personally selected high-spend times of the day"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:padding="20dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="High-spend times could include:\n\nMorning Rush Hour (8:00AM)\n\nMany people spend money on the way to work grabbing a morning coffee and breakfast.\n\nMorning Coffee Break (10:30AM)\n\nMany people spend money on their morning breaks getting coffee or food\n\nLunch (12:00PM)\n\nLunch is one of the highest spend times of the day with people eating out for lunch\n\nAfternoon Coffee Break (3:30PM)\n\nLater in the day it can be easier to spend money on coffee or snacks\n\nDinner Time (7:00PM)\n\nGetting takeaways rather than cooking in the evening can cause dinner time to become a high-spend time\n\nLate Night (9:30PM)\n\nLate night snacks or night life related expenses"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:padding="20dp"
+            />
+
+        <!-- Notification 1 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spending Reminder 1"
+            android:textAppearance="@android:style/TextAppearance.Large" />
+
+        <EditText
+            android:id="@+id/hours_edit_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Hour (24hr)"
+            android:minWidth="48dp"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/minutes_edit_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Minute"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/seconds_edit_text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Second"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/message_edit_text_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Spending Reminder 1 Message"
+            android:minHeight="48dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:id="@+id/button_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="Create Spending Reminder 1" />
+
+        </FrameLayout>
+
+        <!-- Notification 2 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spending Reminder 2"
+            android:textAppearance="@android:style/TextAppearance.Large" />
+
+        <EditText
+            android:id="@+id/hours_edit_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Hour (24hr)"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/minutes_edit_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Minute"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/seconds_edit_text_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Second"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/message_edit_text_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Spending Reminder 2 Message"
+            android:minHeight="48dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:id="@+id/button_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="Create Spending Reminder 2" />
+
+        </FrameLayout>
+
+        <!-- Notification 3 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spending Reminder 3"
+            android:textAppearance="@android:style/TextAppearance.Large" />
+
+        <EditText
+            android:id="@+id/hours_edit_text_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Hour (24hr)"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/minutes_edit_text_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Minute"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/seconds_edit_text_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Second" />
+
+        <EditText
+            android:id="@+id/message_edit_text_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Spending Reminder 3 Message" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <Button
+                android:id="@+id/button_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:text="Create Spending Reminder 3" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/homebutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Back to Home Page" />
+
+    </LinearLayout>
+
+</ScrollView>
