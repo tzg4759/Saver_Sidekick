@@ -26,7 +26,7 @@
         android:ems="10"
         android:inputType="number"
         android:hint="0000 0000 0000 0000"
-        android:maxLength="8"
+        android:maxLength="16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.662" />
 
     <RadioGroup
-        android:id="@+id/RadioGroup"
+        android:id="@+id/banks"
         android:layout_width="213dp"
         android:layout_height="129dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,6 +103,7 @@
             android:layout_width="183dp"
             android:layout_height="60dp"
             android:text="bnz"
+            android:onClick="checkButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.337"
@@ -116,6 +117,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="24dp"
             android:text="anz"
+            android:onClick="checkButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.331"
