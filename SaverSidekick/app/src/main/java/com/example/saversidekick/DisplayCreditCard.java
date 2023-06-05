@@ -27,8 +27,19 @@ public class DisplayCreditCard extends AppCompatActivity {
             Intent intent = new Intent(DisplayCreditCard.this,HomePageActivity.class);
             startActivity(intent);
         });
+        if(Bank=="bnz"){
+            terms.setOnClickListener(view -> {
+                Intent intent = new Intent(DisplayCreditCard.this,GoalsActivity.class);
+                intent.putExtra("Bank", Bank);
+                startActivity(intent);
+            });
+        }
+        else{
+
+        }
         terms.setOnClickListener(view -> {
             Intent intent = new Intent(DisplayCreditCard.this,GoalsActivity.class);
+            intent.putExtra("Bank", Bank);
             startActivity(intent);
         });
     }
