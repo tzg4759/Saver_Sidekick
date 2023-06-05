@@ -24,7 +24,7 @@ public class DisplayCreditCard extends AppCompatActivity {
         main.setText("Credit Card Number: "+Num+"\n Bank : "+Bank+"\n ExpireDate : "+ thedate+"\n CVV : ***");
 
         Home.setOnClickListener(view -> {
-            Intent intent = new Intent(DisplayCreditCard.this,GoalsActivity.class);
+            Intent intent = new Intent(DisplayCreditCard.this,HomePageActivity.class);
             startActivity(intent);
         });
         terms.setOnClickListener(view -> {
