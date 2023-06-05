@@ -1,41 +1,27 @@
 package com.example.saversidekick;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.content.Intent;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
 
 //activity displays all current goals the user has set
 public class GoalsActivity extends AppCompatActivity {
@@ -270,6 +256,10 @@ public class GoalsActivity extends AppCompatActivity {
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(GoalsActivity.this, HomePageActivity.class);
+                    break;
+                case R.id.nav_creditCard:
+                    selectedMenuItemId = R.id.nav_creditCard;
+                    intent = new Intent(GoalsActivity.this, CreditCardInput.class);
                     break;
                 // Handle additional navigation items here
                 default:

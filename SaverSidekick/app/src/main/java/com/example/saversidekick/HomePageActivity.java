@@ -150,30 +150,6 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button goalsButton = findViewById(R.id.goalsButton);
-        goalsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, GoalsActivity.class);
-            startActivity(intent);
-        });
-
-        Button budgetButton = findViewById(R.id.budgetButton);
-        budgetButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, BudgetActivity.class);
-            startActivity(intent);
-        });
-
-        Button graphButton = findViewById(R.id.graphButton);
-        graphButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
-            intent.putExtra("monthString", monthSums());
-            intent.putExtra("thisMonth", currentMonth());
-            intent.putExtra("lastMonth", lastMonth());
-            intent.putExtra("allIncome", allIncome);
-            intent.putExtra("allExpense", allExpense);
-            intent.putExtra("allNet", allNet);
-            startActivity(intent);
-        });
-
         Button importButton = findViewById(R.id.importFileButton);
         importButton.setOnClickListener(view -> {
             filePicker();
@@ -209,13 +185,7 @@ public class HomePageActivity extends AppCompatActivity {
             float overworkedhourvalue = Float.parseFloat(overworkedhour);
         }
         //// AFTER THE EXTRA OVER WORK HOUR ADDED
-//Credit card add
-        Button tocreditcard= findViewById(R.id.CreditCard);
-        tocreditcard.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, CreditCardInput.class);
-            startActivity(intent);
-        });
-//
+
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
         double wants = weeklyTotalEarnings * 0.3;
@@ -301,6 +271,10 @@ public class HomePageActivity extends AppCompatActivity {
                     intent.putExtra("allIncome", allIncome);
                     intent.putExtra("allExpense", allExpense);
                     intent.putExtra("allNet", allNet);
+                    break;
+                case R.id.nav_creditCard:
+                    selectedMenuItemId = R.id.nav_creditCard;
+                    intent = new Intent(HomePageActivity.this, CreditCardInput.class);
                     break;
                 // Handle additional navigation items here
                 default:

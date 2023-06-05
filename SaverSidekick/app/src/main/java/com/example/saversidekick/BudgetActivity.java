@@ -12,15 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class BudgetActivity extends AppCompatActivity {
 
@@ -110,6 +110,10 @@ public class BudgetActivity extends AppCompatActivity {
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(BudgetActivity.this, HomePageActivity.class);
+                    break;
+                case R.id.nav_creditCard:
+                    selectedMenuItemId = R.id.nav_creditCard;
+                    intent = new Intent(BudgetActivity.this, CreditCardInput.class);
                     break;
                 // Handle additional navigation items here
                 default:

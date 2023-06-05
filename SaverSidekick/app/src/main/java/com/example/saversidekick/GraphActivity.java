@@ -123,6 +123,10 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(GraphActivity.this, HomePageActivity.class);
                     break;
+                case R.id.nav_creditCard:
+                    selectedMenuItemId = R.id.nav_creditCard;
+                    intent = new Intent(GraphActivity.this, CreditCardInput.class);
+                    break;
                 // Handle additional navigation items here
                 default:
                     return true;
