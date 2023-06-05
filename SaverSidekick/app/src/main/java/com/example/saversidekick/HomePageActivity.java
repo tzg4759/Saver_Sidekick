@@ -206,8 +206,13 @@ public class HomePageActivity extends AppCompatActivity {
         newIncomeAmount = newIncomeAmount + overworkedhourvalue;
         weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
         //// AFTER THE EXTRA OVER WORK HOUR ADDED
+//Credit card add
+        Button tocreditcard= findViewById(R.id.CreditCard);
+        tocreditcard.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, CreditCardInput.class);
+            startActivity(intent);
+        });
 //
-
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
         double wants = weeklyTotalEarnings * 0.3;
