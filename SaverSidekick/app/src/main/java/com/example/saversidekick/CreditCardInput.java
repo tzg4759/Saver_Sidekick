@@ -55,7 +55,10 @@ public class CreditCardInput extends AppCompatActivity {
             }
             int radioID = radioGroup.getCheckedRadioButtonId();
             radioButton = findViewById(radioID);
-
+            if (TextUtils.isEmpty(radioButton.getText())) {
+                Toast.makeText(CreditCardInput.this,"Please Select ur Bank",Toast.LENGTH_SHORT).show();
+                return;
+            }
             intent.putExtra("getNum", getNum);
             intent.putExtra("date", date);
             intent.putExtra("getCvv", getCvv);
