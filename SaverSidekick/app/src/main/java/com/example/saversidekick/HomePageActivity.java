@@ -200,11 +200,15 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
         Intent in = getIntent();
-        String overworkedhour = in.getStringExtra("Overworkedhour");
+        String overworkedhour;
+        try{
+         overworkedhour = in.getStringExtra("Overworkedhour");
         //// AFTER THE EXTRA OVER WORK HOUR ADDED
         float overworkedhourvalue = Float.parseFloat(overworkedhour);
         newIncomeAmount = newIncomeAmount + overworkedhourvalue;
-        weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
+        weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;} catch (Exception e){
+            overworkedhour ="0";
+        }
         //// AFTER THE EXTRA OVER WORK HOUR ADDED
 //Credit card add
         Button tocreditcard= findViewById(R.id.CreditCard);
