@@ -45,6 +45,10 @@ public class CreditCardInput extends AppCompatActivity {
                 Toast.makeText(CreditCardInput.this,"Please enter a correct Card number",Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (getNum.length()<10) {
+                Toast.makeText(CreditCardInput.this,"Please enter a correct Card number",Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (TextUtils.isEmpty(date)) {
                 Toast.makeText(CreditCardInput.this,"Please enter a Expire data",Toast.LENGTH_SHORT).show();
                 return;
@@ -55,7 +59,7 @@ public class CreditCardInput extends AppCompatActivity {
             }
             int radioID = radioGroup.getCheckedRadioButtonId();
             radioButton = findViewById(radioID);
-            if (TextUtils.isEmpty(radioButton.getText())) {
+            if (radioButton == null|| radioGroup==null) {
                 Toast.makeText(CreditCardInput.this,"Please Select ur Bank",Toast.LENGTH_SHORT).show();
                 return;
             }
