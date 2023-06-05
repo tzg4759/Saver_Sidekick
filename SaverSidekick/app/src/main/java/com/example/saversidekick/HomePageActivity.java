@@ -206,8 +206,10 @@ public class HomePageActivity extends AppCompatActivity {
         //// AFTER THE EXTRA OVER WORK HOUR ADDED
         float overworkedhourvalue = Float.parseFloat(overworkedhour);
         newIncomeAmount = newIncomeAmount + overworkedhourvalue;
-        weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;} catch (Exception e){
+        weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;}
+        catch (Exception e){
             overworkedhour ="0";
+            float overworkedhourvalue = Float.parseFloat(overworkedhour);
         }
         //// AFTER THE EXTRA OVER WORK HOUR ADDED
 //Credit card add
