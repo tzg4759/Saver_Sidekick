@@ -35,7 +35,6 @@ public class AddTransactionActivity extends AppCompatActivity {
         inputDate = (EditText) findViewById(R.id.transactionDateInput);
 
         Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         String formattedDate = df.format(c);
@@ -46,7 +45,6 @@ public class AddTransactionActivity extends AppCompatActivity {
         transactionInputButton.setOnClickListener(view -> {
             Intent intent = new Intent(AddTransactionActivity.this, HomePageActivity.class);
             String transaction = createTransaction();
-            System.out.println(transaction);
             intent.putExtra("transactionString", transaction);
             if (transaction != "")
             {
@@ -67,9 +65,6 @@ public class AddTransactionActivity extends AppCompatActivity {
             String name = inputName.getText().toString().trim().replaceAll("\\s", "");
             float amount = Float.valueOf(inputAmount.getText().toString().trim());
             String date = inputDate.getText().toString().trim();
-
-            System.out.println(expense);
-            System.out.println(income);
 
             if (expense == true)
             {

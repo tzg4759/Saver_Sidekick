@@ -50,7 +50,7 @@ import java.util.Locale;
 
 public class HomePageActivity extends AppCompatActivity {
 
-    ArrayList<Transaction> transactionList;
+    public static ArrayList<Transaction> transactionList;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
@@ -178,10 +178,7 @@ public class HomePageActivity extends AppCompatActivity {
         importButton.setOnClickListener(view -> {
             filePicker();
             transactionList = reloadTransactions();
-            if (transactionList.size() > 0)
-            {
-                noTransactionsText.setVisibility(View.INVISIBLE);
-            }
+            noTransactionsText.setVisibility(View.INVISIBLE);
         });
 
         // Retrieve the weekly earnings from SharedPreferences
