@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth;      // firebase authentication
     Button logoutButton;        // button to log out of the app
+
+    Button alertButton;
+    Button cryptoButton;
     TextView userEmail;         // text which shows the email of the current user logged in
     FirebaseUser currentUser;       // variable to store current user details from firebase
     // this function checks if the application is logged in and displays buttons and current user email
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         // initialise variables for the main page
         auth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
+        alertButton = findViewById(R.id.alertButton);
+        cryptoButton = findViewById(R.id.crypto);
         userEmail = findViewById(R.id.user_details);
         currentUser = auth.getCurrentUser();
 
@@ -56,6 +61,26 @@ public class MainActivity extends AppCompatActivity {
             {
                 FirebaseAuth.getInstance().signOut();       // sign out in firebase
                 Intent intent = new Intent(getApplicationContext(), Login.class);       // take user to log in screen
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        alertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);       // take user to log in screen
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        cryptoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getApplicationContext(), CryptoPriceActivity.class);       // take user to log in screen
                 startActivity(intent);
                 finish();
             }
