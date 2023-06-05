@@ -6,4 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".DisplayCreditCard">
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="167dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="80dp"
+        android:text="Your Credit Card Details"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/CreditCardDetail"
+        android:layout_width="266dp"
+        android:layout_height="166dp"
+        android:text="asdaad \n asdasd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.156" />
+
+    <Button
+        android:id="@+id/Terms"
+        android:layout_width="228dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="215dp"
+        android:layout_marginEnd="4dp"
+        android:text="Terms and Policy"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CreditCardDetail"
+        app:layout_constraintVertical_bias="0.847" />
 </androidx.constraintlayout.widget.ConstraintLayout>
