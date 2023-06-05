@@ -48,15 +48,18 @@ public class MonthlyStatsActivity extends AppCompatActivity {
 
         for (String s : thisMonthComponents)
         {
-            float curr = Float.parseFloat(s);
+            if (s != null && !s.equals(""))
+            {
+                float curr = Float.parseFloat(s);
 
-            if (curr > 0)
-            {
-                thisMonthIncome += curr;
-            }
-            else
-            {
-                thisMonthExpense += curr;
+                if (curr > 0)
+                {
+                    thisMonthIncome += curr;
+                }
+                else
+                {
+                    thisMonthExpense += curr;
+                }
             }
         }
 
