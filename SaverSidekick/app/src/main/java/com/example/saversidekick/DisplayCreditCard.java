@@ -3,7 +3,9 @@ package com.example.saversidekick;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -28,19 +30,23 @@ public class DisplayCreditCard extends AppCompatActivity {
             startActivity(intent);
         });
         if(Bank=="bnz"){
-            terms.setOnClickListener(view -> {
-                Intent intent = new Intent(DisplayCreditCard.this,GoalsActivity.class);
-                intent.putExtra("Bank", Bank);
-                startActivity(intent);
+            terms.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent onClickIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.bnz.co.nz/assets/about-us/public-notices/BNZ-credit-card-terms-and-conditions-8-may-2023.pdf?5b498c4c296ac846fd0a621f9c6b5a214f2c26ea"));
+                    startActivity(onClickIntent);
+                }
             });
         }
         else{
-
+            terms.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent onClickIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.anz.co.nz/rates-fees-agreements/general-terms-conditions/"));
+                    startActivity(onClickIntent);
+                }
+            });
         }
-        terms.setOnClickListener(view -> {
-            Intent intent = new Intent(DisplayCreditCard.this,GoalsActivity.class);
-            intent.putExtra("Bank", Bank);
-            startActivity(intent);
-        });
+
     }
 }
