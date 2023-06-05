@@ -28,7 +28,7 @@
                     android:title="Graph" />
 
                 <item android:id="@+id/nav_creditCard"
-                    android:icon="@drawable/graph"
+                    android:icon="@drawable/credit"
                     android:title="Credit Card" />
 
         </group>
