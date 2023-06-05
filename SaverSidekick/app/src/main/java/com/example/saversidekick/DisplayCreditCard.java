@@ -29,7 +29,7 @@ public class DisplayCreditCard extends AppCompatActivity {
             Intent intent = new Intent(DisplayCreditCard.this,HomePageActivity.class);
             startActivity(intent);
         });
-        if(Bank=="bnz"){
+        if(Bank.contains("bnz")){
             terms.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
