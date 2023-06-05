@@ -304,8 +304,8 @@
 
         <Button
             android:id="@+id/Overworked"
-            android:layout_width="95dp"
-            android:layout_height="42dp"
+            android:layout_width="102dp"
+            android:layout_height="52dp"
             android:text="OverWork"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -318,13 +318,13 @@
             android:id="@+id/CreditCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Card"
-            app:layout_constraintBottom_toTopOf="@+id/graphButton"
+            android:text="CreditCard"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/calendarButton"
-            app:layout_constraintHorizontal_bias="0.928"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.888" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
