@@ -46,6 +46,13 @@ public class GoalsActivity extends AppCompatActivity {
         String username = currentUser.getEmail();
         filename = username+"goals.txt";
 
+        String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+
         //read file if it exists
 
         ArrayList<Goal> goalsList = new ArrayList<>();
@@ -78,6 +85,12 @@ public class GoalsActivity extends AppCompatActivity {
         Button newGoalButton = findViewById(R.id.newGoalButton);
         newGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(GoalsActivity.this, CreateGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             if (goalsList.size() < 5)
             {
                 startActivity(intent);
@@ -90,6 +103,12 @@ public class GoalsActivity extends AppCompatActivity {
         Button editGoalButton = findViewById(R.id.editGoalButton);
         editGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(GoalsActivity.this, SelectGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             if (goalsList.size() > 0)
             {
                 startActivity(intent);
@@ -238,28 +257,55 @@ public class GoalsActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
+            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
             switch (menuItem.getItemId()) {
                 case R.id.nav_graph:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
                     intent = new Intent(GoalsActivity.this, GraphActivity.class);
-                    SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-                    String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
                     intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     startActivity(intent);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
                     intent = new Intent(GoalsActivity.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(GoalsActivity.this, HomePageActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 case R.id.nav_creditCard:
                     selectedMenuItemId = R.id.nav_creditCard;
                     intent = new Intent(GoalsActivity.this, CreditCardInput.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
+                    break;
+                case R.id.nav_logout:
+                    selectedMenuItemId = R.id.nav_logout;
+                    intent = new Intent(GoalsActivity.this, MainActivity.class);
                     break;
                 // Handle additional navigation items here
                 default:

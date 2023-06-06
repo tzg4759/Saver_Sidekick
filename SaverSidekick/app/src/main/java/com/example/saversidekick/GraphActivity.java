@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -90,20 +89,14 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
 
         Button monthlyStatsButton = findViewById(R.id.moreInfoButton);
         monthlyStatsButton.setOnClickListener(view -> {
-            if (thisMonth == null || allIncome == 0.0 || allExpense == 0.0 || allNet == 0.0)
-            {
-                Toast.makeText(this, "Not enough transaction data.", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Intent intent = new Intent(GraphActivity.this, MonthlyStatsActivity.class);
-                intent.putExtra("thisMonth", thisMonth);
-                intent.putExtra("lastMonth", lastMonth);
-                intent.putExtra("allIncome", allIncome);
-                intent.putExtra("allExpense", allExpense);
-                intent.putExtra("allNet", allNet);
-                startActivity(intent);
-            }
+
+            Intent intent = new Intent(GraphActivity.this, MonthlyStatsActivity.class);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
+            startActivity(intent);
         });
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
@@ -113,19 +106,47 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
                     // Handle goals navigation
                     selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
                     intent = new Intent(GraphActivity.this, GoalsActivity.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
                     intent = new Intent(GraphActivity.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(GraphActivity.this, HomePageActivity.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_creditCard:
                     selectedMenuItemId = R.id.nav_creditCard;
                     intent = new Intent(GraphActivity.this, CreditCardInput.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    break;
+                case R.id.nav_logout:
+                    selectedMenuItemId = R.id.nav_logout;
+                    intent = new Intent(GraphActivity.this, MainActivity.class);
                     break;
                 // Handle additional navigation items here
                 default:
