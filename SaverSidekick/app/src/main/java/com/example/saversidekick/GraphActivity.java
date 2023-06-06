@@ -107,19 +107,43 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
                     // Handle goals navigation
                     selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
                     intent = new Intent(GraphActivity.this, GoalsActivity.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
                     intent = new Intent(GraphActivity.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(GraphActivity.this, HomePageActivity.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_creditCard:
                     selectedMenuItemId = R.id.nav_creditCard;
                     intent = new Intent(GraphActivity.this, CreditCardInput.class);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 // Handle additional navigation items here
                 default:

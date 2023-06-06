@@ -167,6 +167,10 @@ public class HomePageActivity extends AppCompatActivity {
         Button overworked= findViewById(R.id.Overworked);
         overworked.setOnClickListener(view -> {
             Intent intent = new Intent(HomePageActivity.this, OverTimeHoursWorked.class);
+            intent.putExtra("monthString", monthSums());
+            intent.putExtra("thisMonth", currentMonth());
+            intent.putExtra("lastMonth", lastMonth());
+            intent.putExtra("allNet", allNet);
             intent.putExtra("allIncome", allIncome);
             intent.putExtra("allExpense", allExpense);
             intent.putExtra("income",String.valueOf(weeklyEarnings));
@@ -255,12 +259,24 @@ public class HomePageActivity extends AppCompatActivity {
                 case R.id.nav_goal:
                     // Handle goals navigation
                     selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
-                    intent = new Intent(HomePageActivity.this, GoalsActivity.class);
+                    intent = new Intent(HomePageActivity.this, GoalsActivity.class);                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
+
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
                     intent = new Intent(HomePageActivity.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 case R.id.nav_graph:
                     selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
@@ -275,6 +291,12 @@ public class HomePageActivity extends AppCompatActivity {
                 case R.id.nav_creditCard:
                     selectedMenuItemId = R.id.nav_creditCard;
                     intent = new Intent(HomePageActivity.this, CreditCardInput.class);
+                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 // Handle additional navigation items here
                 default:

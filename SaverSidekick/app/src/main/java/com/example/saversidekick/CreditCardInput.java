@@ -45,6 +45,13 @@ public class CreditCardInput extends AppCompatActivity {
 //Radio group
         radioGroup = findViewById(R.id.banks);
 
+        String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+
         //credit card
        // CreditCard card = new CreditCard(getNum,date,cvv,"anz");
         //submit
@@ -93,6 +100,8 @@ public class CreditCardInput extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
+            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
             switch (menuItem.getItemId()) {
                 case R.id.nav_goal:
                     // Handle goals navigation
@@ -103,18 +112,36 @@ public class CreditCardInput extends AppCompatActivity {
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
                     intent = new Intent(CreditCardInput.this, GraphActivity.class);
-                    SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-                    String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
                     intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     startActivity(intent);
                     break;
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(CreditCardInput.this, HomePageActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
-                case R.id.nav_creditCard:
+                case R.id.nav_budget:
                     selectedMenuItemId = R.id.nav_creditCard;
                     intent = new Intent(CreditCardInput.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 // Handle additional navigation items here
                 default:
