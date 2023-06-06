@@ -53,7 +53,8 @@
             android:layout_weight="1"
             android:textColor="#FFFFFF"
             android:id="@+id/addButton"
-            android:text="Add New" />
+            android:text="Add\nNew"
+            />
 
         <Button
             android:layout_width="0dp"

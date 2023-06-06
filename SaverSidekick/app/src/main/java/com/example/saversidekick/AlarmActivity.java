@@ -141,37 +141,37 @@ public class AlarmActivity extends AppCompatActivity {
             // Calculate the current time in milliseconds
             long currentTimeMillis = System.currentTimeMillis();
 
-            // Create a Calendar instance and set it to the current time
+            // Calendar instance is set with the current time in millis
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(currentTimeMillis);
 
-            // Set the desired hour of the day
+            // set the hour, minute and second in the calendar instance
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
             calendar.set(Calendar.MINUTE, minutes);
             calendar.set(Calendar.SECOND, seconds);
 
-            // Check if the desired time has already passed for today, if yes, add one day
+            // Check if the time the user set has already passed for today, if yes, add one day
             if (calendar.getTimeInMillis() < currentTimeMillis) {
                 calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
 
-            // Calculate the delay in milliseconds until the desired time
+            // Calculate how long the difference is between set and current time in milliseconds
             long delayMillis = calendar.getTimeInMillis() - currentTimeMillis;
 
-            // Change button text to indicate the delay
+            // Change button text to show user how long until notification will go off
             switch (notificationId) {
                 case NOTIFICATION_ID_1:
-                    alertBtn1.setText("Notification 1 set for " + delayMillis / 1000 + " seconds");
+                    alertBtn1.setText("Spending Alert 1 set for " + delayMillis / 1000 + " seconds");
                     break;
                 case NOTIFICATION_ID_2:
-                    alertBtn2.setText("Notification 2 set for " + delayMillis / 1000 + " seconds");
+                    alertBtn2.setText("Spending Alert 2 set for " + delayMillis / 1000 + " seconds");
                     break;
                 case NOTIFICATION_ID_3:
-                    alertBtn3.setText("Notification 3 set for " + delayMillis / 1000 + " seconds");
+                    alertBtn3.setText("Spending Alert 3 set for " + delayMillis / 1000 + " seconds");
                     break;
             }
 
-            // Create a handler to introduce the delay
+            // Create a handler to set the delay
             new Handler().postDelayed(new Runnable() {
                 @SuppressLint("MissingPermission")
                 @Override
@@ -189,25 +189,26 @@ public class AlarmActivity extends AppCompatActivity {
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(AlarmActivity.this);
                     notificationManager.notify(notificationId, builder.build());
 
-                    // Reset button text to its original value
+                    // Reset button to its original text
                     switch (notificationId) {
                         case NOTIFICATION_ID_1:
-                            alertBtn1.setText("Create Notification 1");
+                            alertBtn1.setText("Create Spending Reminder 1");
                             break;
                         case NOTIFICATION_ID_2:
-                            alertBtn2.setText("Create Notification 2");
+                            alertBtn2.setText("Create Spending Reminder 2");
                             break;
                         case NOTIFICATION_ID_3:
-                            alertBtn3.setText("Create Notification 3");
+                            alertBtn3.setText("Create Spending Reminder 3");
                             break;
                     }
                 }
-            }, delayMillis); // Use the calculated delay in milliseconds
+            }, delayMillis); //delay in milliseconds
         }
     }
 
+    // function to hide the keyboard when a button is clicked
     private void hideKeyboard(View view) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        InputMethodManager hideKeyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        hideKeyboard.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
