@@ -159,6 +159,7 @@
         android:layout_marginBottom="76dp"
         android:text="Delete Goal"
         android:visibility="invisible"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

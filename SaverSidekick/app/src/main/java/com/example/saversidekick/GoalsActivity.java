@@ -85,6 +85,12 @@ public class GoalsActivity extends AppCompatActivity {
         Button newGoalButton = findViewById(R.id.newGoalButton);
         newGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(GoalsActivity.this, CreateGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             if (goalsList.size() < 5)
             {
                 startActivity(intent);
@@ -97,6 +103,12 @@ public class GoalsActivity extends AppCompatActivity {
         Button editGoalButton = findViewById(R.id.editGoalButton);
         editGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(GoalsActivity.this, SelectGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             if (goalsList.size() > 0)
             {
                 startActivity(intent);
