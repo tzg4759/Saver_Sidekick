@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,14 +42,28 @@ public class PinpointPayment extends AppCompatActivity {
                 TextView memoTextView = new TextView(this);
                 memoTextView.setText(memo + ": " + amount + ", --");
                 memoTextView.setTextSize(16);
-                memoTextView.setPadding(8, 8, 8, 8);
+                memoTextView.setPadding(14, 14, 14, 14);
                 // Create a TextView to display the selected pinpoint option
                 TextView selectedOptionTextView = new TextView(this);
                 selectedOptionTextView.setTextSize(16);
-                selectedOptionTextView.setPadding(8, 8, 8, 8);
+                selectedOptionTextView.setPadding(14, 14, 14, 14);
                 // Create a Button to trigger the pinpoint options dialog
                 Button pinpointButton = new Button(this);
                 pinpointButton.setText("Pinpoint");
+                pinpointButton.setTextColor(Color.WHITE);
+                pinpointButton.setPadding(1, 1, 1, 1);
+                pinpointButton.setBackgroundColor(Color.parseColor("#a3657b"));
+
+                LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                buttonLayoutParams.width = 200;
+                buttonLayoutParams.height = 80;
+
+                pinpointButton.setLayoutParams(buttonLayoutParams);
+
+
                 pinpointButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
