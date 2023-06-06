@@ -145,6 +145,10 @@ public class BudgetActivity extends AppCompatActivity {
                     intent.putExtra("allIncome", allIncome);
                     intent.putExtra("allExpense", allExpense);
                     break;
+                case R.id.nav_logout:
+                    selectedMenuItemId = R.id.nav_logout;
+                    intent = new Intent(BudgetActivity.this, MainActivity.class);
+                    break;
                 // Handle additional navigation items here
                 default:
                     return true;

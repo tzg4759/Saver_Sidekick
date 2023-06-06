@@ -291,6 +291,10 @@ public class GoalsActivity extends AppCompatActivity {
                     intent.putExtra("allExpense", allExpense);
                     intent.putExtra("allNet", allNet);
                     break;
+                case R.id.nav_logout:
+                    selectedMenuItemId = R.id.nav_logout;
+                    intent = new Intent(GoalsActivity.this, MainActivity.class);
+                    break;
                 // Handle additional navigation items here
                 default:
                     return true;

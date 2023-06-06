@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -144,6 +143,10 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
                     intent.putExtra("allNet", allNet);
                     intent.putExtra("allIncome", allIncome);
                     intent.putExtra("allExpense", allExpense);
+                    break;
+                case R.id.nav_logout:
+                    selectedMenuItemId = R.id.nav_logout;
+                    intent = new Intent(GraphActivity.this, MainActivity.class);
                     break;
                 // Handle additional navigation items here
                 default:
