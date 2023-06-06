@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,10 +34,19 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
     EditText inputCurrent;
     EditText inputDate;
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_goal);
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"goals.txt";
 
         //UI components
 
@@ -43,13 +55,20 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         inputCurrent = (EditText) findViewById(R.id.inputCurrent);
         inputDate = (EditText) findViewById(R.id.inputDate);
 
+        String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+
         Intent intentBundle = this.getIntent();
         Bundle bundle = intentBundle.getExtras();
         int index = (Integer)bundle.getSerializable("index");
         System.out.println(index);
 
         ArrayList<Goal> goalsList = new ArrayList<>();
-        String goals = loadGoals("goals.txt");
+        String goals = loadGoals(filename);
 
         String[] lines = goals.split(System.getProperty("line.separator"));
 
@@ -81,6 +100,12 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(view -> {
             Intent intent = new Intent(EditGoalActivity.this, GoalsActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             startActivity(intent);
         });
 
@@ -88,6 +113,12 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         editButton.setText("Edit Goal");
         editButton.setOnClickListener(view -> {
             Intent intent = new Intent(EditGoalActivity.this, GoalsActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             try {
                 removeLine(goalsList, index);
             } catch (IOException e) {
@@ -108,6 +139,12 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setOnClickListener(view -> {
             Intent intent = new Intent(EditGoalActivity.this, GoalsActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             try {
                 removeLine(goalsList, index);
             } catch (IOException e) {
@@ -138,7 +175,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
     //method to remove line if goal is deleted
     public void removeLine(ArrayList<Goal> goals, int index) throws IOException {
         File path = getApplicationContext().getFilesDir();
-        File goalsFile = new File(path, "goals.txt");
+        File goalsFile = new File(path, filename);
         File tempFile = new File(path, "temp.txt");
 
         BufferedReader reader = new BufferedReader(new FileReader(goalsFile));
@@ -228,7 +265,7 @@ public class EditGoalActivity extends AppCompatActivity implements Serializable 
                 {
                     newGoal.setDate(date);
                 }
-                writeToFile("goals.txt", newGoal.toString()+"\n");
+                writeToFile(filename, newGoal.toString()+"\n");
                 return true;
             }
         } catch (Exception e) {

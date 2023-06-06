@@ -298,6 +298,16 @@ public class HomePageActivity extends AppCompatActivity {
                     intent.putExtra("allExpense", allExpense);
                     intent.putExtra("allNet", allNet);
                     break;
+                case R.id.nav_logout:
+                    selectedMenuItemId = R.id.nav_logout;
+                    intent = new Intent(HomePageActivity.this, MainActivity.class);
+                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
+                    break;
                 // Handle additional navigation items here
                 default:
                     return true;

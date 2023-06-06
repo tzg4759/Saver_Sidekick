@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9CCC6"
     tools:context=".SavingGraphSearch">
 
     <EditText
@@ -50,6 +51,7 @@
         android:layout_width="211dp"
         android:layout_height="67dp"
         android:text="View my Saving in A period"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -61,6 +63,7 @@
         android:id="@+id/ToEduRef"
         android:layout_width="209dp"
         android:layout_height="77dp"
+        android:textColor="@android:color/white"
         android:background="@android:color/black"
         android:text="@string/finalcial_education_resource"
         app:layout_constraintBottom_toBottomOf="parent"

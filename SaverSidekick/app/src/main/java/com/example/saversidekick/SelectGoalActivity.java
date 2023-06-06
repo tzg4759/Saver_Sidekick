@@ -8,6 +8,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
@@ -15,13 +18,22 @@ import java.util.ArrayList;
 
 public class SelectGoalActivity extends AppCompatActivity implements Serializable {
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_goal);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"goals.txt";
+
         ArrayList<Goal> goalsList = new ArrayList<>();
-        String goals = loadGoals("goals.txt");
+        String goals = loadGoals(filename);
 
         String[] lines = goals.split(System.getProperty("line.separator"));
 
@@ -36,11 +48,24 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
             goalsList.add(new Goal(name, total, current, date));
         }
 
+        String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+
         Bundle bundle = new Bundle();
 
         Button goal1Button = findViewById(R.id.goal1Button);
         goal1Button.setOnClickListener(view -> {
             Intent intent = new Intent(SelectGoalActivity.this, EditGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             bundle.putSerializable("index", 0);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -49,6 +74,12 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
         Button goal2Button = findViewById(R.id.goal2Button);
         goal2Button.setOnClickListener(view -> {
             Intent intent = new Intent(SelectGoalActivity.this, EditGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             bundle.putSerializable("index", 1);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -57,6 +88,12 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
         Button goal3Button = findViewById(R.id.goal3Button);
         goal3Button.setOnClickListener(view -> {
             Intent intent = new Intent(SelectGoalActivity.this, EditGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             bundle.putSerializable("index", 2);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -65,6 +102,12 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
         Button goal4Button = findViewById(R.id.goal4Button);
         goal4Button.setOnClickListener(view -> {
             Intent intent = new Intent(SelectGoalActivity.this, EditGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             bundle.putSerializable("index", 3);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -73,6 +116,12 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
         Button goal5Button = findViewById(R.id.goal5Button);
         goal5Button.setOnClickListener(view -> {
             Intent intent = new Intent(SelectGoalActivity.this, EditGoalActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             bundle.putSerializable("index", 4);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -81,6 +130,12 @@ public class SelectGoalActivity extends AppCompatActivity implements Serializabl
         Button cancelButton = findViewById(R.id.cancelSelectionButton);
         cancelButton.setOnClickListener(view -> {
             Intent intent = new Intent(SelectGoalActivity.this, GoalsActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             startActivity(intent);
         });
 

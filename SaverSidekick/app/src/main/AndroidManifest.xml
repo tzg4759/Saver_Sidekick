@@ -39,9 +39,7 @@
         <activity
             android:name=".DisplayOverWorkedHour"
             android:exported="false" />
-        <activity
-            android:name=".SetNextPayment"
-            android:exported="false" />
+
         <activity
             android:name=".ShowCategorizedPayments"
             android:exported="false"

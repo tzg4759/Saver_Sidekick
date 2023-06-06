@@ -5,6 +5,9 @@ public class CreditCard {
     private String ExpireDate;
     private int CVV;
     private String bank;
+    CreditCard(){
+
+    }
     CreditCard(String number, String Date, int CVV, String bank){
         this.number=number;
         this.ExpireDate=Date;

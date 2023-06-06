@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9CCC6"
     tools:context=".finacial_education_resource">
 
     <TextView
@@ -24,6 +25,7 @@
         android:layout_height="61dp"
         android:text="@string/money_hub_button"
         android:textSize="15sp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.908"
@@ -51,6 +53,7 @@
         android:layout_height="49dp"
         android:text="@string/Resource_reserved_bank_button"
         android:textSize="13sp"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.908"
@@ -87,6 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
+        android:textColor="@android:color/white"
         android:text="@string/to_politechnic_button"
         app:layout_constraintBottom_toBottomOf="@+id/ReservedBank"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,5 +98,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MoneyHub"
         app:layout_constraintVertical_bias="0.065" />
+
+    <Button
+        android:id="@+id/ToHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ReservedBank"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.971" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

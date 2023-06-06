@@ -49,9 +49,22 @@ public class CreateGoalActivity  extends AppCompatActivity {
         inputCurrent = (EditText) findViewById(R.id.inputCurrent);
         inputDate = (EditText) findViewById(R.id.inputDate);
 
+        String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+
         Button createGoalButton = findViewById(R.id.createGoalButton);
         createGoalButton.setOnClickListener(view -> {
             Intent intent = new Intent(CreateGoalActivity.this, GoalsActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             if (createGoal() == true)
             {
                 startActivity(intent);
@@ -65,6 +78,12 @@ public class CreateGoalActivity  extends AppCompatActivity {
         Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(view -> {
             Intent intent = new Intent(CreateGoalActivity.this, GoalsActivity.class);
+            intent.putExtra("monthString", monthSums);
+            intent.putExtra("thisMonth", thisMonth);
+            intent.putExtra("lastMonth", lastMonth);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("allNet", allNet);
             startActivity(intent);
         });
     }

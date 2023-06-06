@@ -41,5 +41,11 @@ public class finacial_education_resource extends AppCompatActivity {
                 startActivity(onClickIntent);
             }
         });
+        Button Home = findViewById(R.id.ToHome);
+        Home.setOnClickListener(view -> {
+            Intent i = new Intent(finacial_education_resource.this,HomePageActivity.class);
+            startActivity(i);
+        });
     }
-}
+    }
+
