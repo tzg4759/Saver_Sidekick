@@ -49,6 +49,7 @@ public class AlarmActivity extends AppCompatActivity {
     private EditText msgInput2;
     private EditText msgInput3;
 
+    // when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
