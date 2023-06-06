@@ -15,6 +15,7 @@ public class DisplayCreditCard extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CreditCard creditCard = new CreditCard();
         setContentView(R.layout.activity_display_credit_card);
         Intent i = getIntent();
         String Num = i.getStringExtra("getNum");
