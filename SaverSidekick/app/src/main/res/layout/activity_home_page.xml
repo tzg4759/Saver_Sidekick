@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Main content layoFut -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="#F9CCC6"
         android:layout_width="match_parent"
@@ -13,76 +14,42 @@
         android:padding="16dp"
         tools:ignore="ExtraText">
 
+        <!-- TextView for displaying selected date -->
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/selectedDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/summaryTextView"
+            app:layout_constraintEnd_toEndOf="@+id/summaryTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/noTransactionsText" />
 
-
+        <!-- Button for opening the expense calendar -->
         <Button
             android:id="@+id/calendarButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="0dp"
+            android:layout_width="190dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
             android:text="Expense Calendar"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/goalsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/goals"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/importFileButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <Button
-            android:id="@+id/budgetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/budgeted_expenses"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/goalsButton"
-            app:layout_constraintStart_toEndOf="@+id/graphButton"
-            app:layout_constraintTop_toBottomOf="@+id/calendarButton"
-            tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/graphButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/graph"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/addTransaction"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.127" />
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="364dp"
             android:layout_height="96dp"
             android:layout_marginStart="19dp"
-            android:layout_marginTop="320dp"
             android:layout_marginEnd="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goalsButton">
+            app:layout_constraintTop_toTopOf="@+id/textViewEarnings">
 
+            <!-- TableRow for necessities -->
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -93,8 +60,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:layout_marginBottom="4dp"
-                    android:textColor="@color/black"
                     android:text="@string/necessities"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <ProgressBar
@@ -105,6 +72,7 @@
                     android:layout_marginStart="20dp" />
             </TableRow>
 
+            <!-- TableRow for wants -->
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -127,6 +95,7 @@
                     android:layout_marginStart="20dp" />
             </TableRow>
 
+            <!-- TableRow for savings -->
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -149,11 +118,13 @@
                     android:layout_marginStart="20dp" />
             </TableRow>
 
-
+            <!-- Placeholder TableRow -->
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </TableLayout>
+
+        <!-- TextView for displaying summary text -->
 
         <TextView
             android:id="@+id/textViewEarnings"
@@ -162,8 +133,8 @@
             android:text="@string/your_earnings"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewNewIncome" />
 
@@ -172,31 +143,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="162dp"
-            android:layout_marginTop="360dp"
             android:layout_marginEnd="143dp"
-            android:layout_marginBottom="60dp"
             android:text="@string/your_otherIncome"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toBottomOf="@+id/textViewWeeklyEarnings" />
 
         <TextView
             android:id="@+id/textViewWeeklyEarnings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="330dp"
             android:layout_marginStart="162dp"
-            android:layout_marginTop="290dp"
             android:layout_marginEnd="143dp"
-            android:layout_marginBottom="60dp"
             android:text="@string/your_weeklyEarning"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/tableLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -204,49 +171,55 @@
             android:id="@+id/summaryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="135dp"
             android:text="Recent Activity"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addTransaction" />
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- EditText for displaying summary -->
         <EditText
             android:id="@+id/summaryTextView"
-            android:layout_width="386dp"
-            android:layout_height="153dp"
+            android:layout_width="362dp"
+            android:layout_height="148dp"
             android:ems="10"
             android:inputType="none"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/textViewWeeklyEarnings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/summaryText"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/summaryText" />
+
+        <!-- Button for adding a transaction -->
+
+        <!-- Button for importing a CSV file -->
+
+        <!-- TextView for displaying "No Transactions" message -->
 
         <Button
             android:id="@+id/addTransaction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="184dp"
+            android:layout_height="52dp"
             android:text="Add Transaction"
             android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toStartOf="@+id/importFileButton"
+            app:layout_constraintBottom_toTopOf="@+id/summaryText"
+            app:layout_constraintEnd_toStartOf="@+id/Overworked"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
+            app:layout_constraintTop_toBottomOf="@+id/calendarButton" />
 
         <Button
             android:id="@+id/importFileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_width="177dp"
+            android:layout_height="51dp"
             android:text="Import CSV File"
             android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/summaryText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/budgetButton" />
+            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintStart_toEndOf="@+id/addTransaction"
+            app:layout_constraintTop_toBottomOf="@+id/Overworked" />
 
         <TextView
             android:id="@+id/noTransactionsText"
@@ -260,6 +233,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/summaryText" />
 
+        <!-- Button for navigating to saving history -->
         <Button
             android:id="@+id/SavingHistory"
             android:layout_width="wrap_content"
@@ -268,11 +242,9 @@
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/goToPinpointPaymentButton"
-            app:layout_constraintVertical_bias="0.989" />
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
+        <!-- Button for navigating to pinpoint payment -->
         <Button
             android:id="@+id/goToPinpointPaymentButton"
             android:layout_width="wrap_content"
@@ -282,15 +254,28 @@
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/SavingHistory"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
+        <Button
+            android:id="@+id/Overworked"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:text="Add Overtime"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/calendarButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Navigation view for the drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

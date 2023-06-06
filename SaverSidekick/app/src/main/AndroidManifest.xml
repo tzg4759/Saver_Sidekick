@@ -8,8 +8,10 @@
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+   <uses-permission android:name="android.permission.SEND_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.NOTIFICATION_POST" />
 
     <application
         android:allowBackup="true"
@@ -21,28 +23,44 @@
         android:theme="@style/Theme.SaverSidekick"
         tools:targetApi="31">
         <activity
+            android:name=".CryptoPriceActivity"
+            android:exported="false"
+            android:label="Today's Crypto Prices"/>
+        <activity
+            android:name=".AlarmActivity"
+            android:exported="false"
+            android:label="Spending Alerts"/>
+        <activity
+            android:name=".DisplayCreditCard"
+            android:exported="false" />
+        <activity
+            android:name=".CreditCardInput"
+            android:exported="false" />
+        <activity
+            android:name=".DisplayOverWorkedHour"
+            android:exported="false" />
+        <activity
+            android:name=".SetNextPayment"
+            android:exported="false" />
+        <activity
             android:name=".ShowCategorizedPayments"
             android:exported="false"
-            android:label="Categorized Payments"/>
+            android:label="Categorized Payments" />
         <activity
             android:name=".PinpointPayment"
             android:exported="false"
-            android:label="To Pinpoint Your Previous Payment"/>
+            android:label="To Pinpoint Your Previous Payment" />
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.SaverSidekick.NoActionBar" />
-
         <activity
             android:name=".CheckPeriodPayment"
             android:exported="false"
             android:label="Check a period of upcoming payment" />
         <activity
             android:name=".OverTimeHoursWorked"
-            android:exported="false" />
-        <activity
-            android:name=".NextPaymentCycle"
             android:exported="false" />
         <activity
             android:name=".finacial_education_resource"
@@ -106,10 +124,15 @@
             android:exported="true"
             android:label="Add Transaction" />
         <activity
+            android:name=".MonthlyStatsActivity"
+            android:exported="true"
+            android:label="Monthly Stats" />
+        <activity
             android:name=".HomePageActivity"
             android:exported="true"
             android:label="Home Page"
             android:screenOrientation="unspecified" />
+
         <receiver
             android:name=".PaymentReminderReceiver"
             android:exported="true">
@@ -117,7 +140,6 @@
                 <action android:name="com.example.saversidekick.ACTION_PAYMENT_REMINDER" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

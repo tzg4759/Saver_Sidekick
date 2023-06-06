@@ -1,39 +1,27 @@
 package com.example.saversidekick;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.content.Intent;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Locale;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
 
 //activity displays all current goals the user has set
 public class GoalsActivity extends AppCompatActivity {
@@ -43,20 +31,37 @@ public class GoalsActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private int selectedMenuItemId;
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"goals.txt";
+
+        String monthSums = (String) getIntent().getSerializableExtra("monthString");
+        String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
+        String lastMonth = (String) getIntent().getSerializableExtra("lastMonth");
+        float allIncome = (Float) getIntent().getSerializableExtra("allIncome");
+        float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
+        float allNet = (Float) getIntent().getSerializableExtra("allNet");
+
         //read file if it exists
 
         ArrayList<Goal> goalsList = new ArrayList<>();
         File path = getApplicationContext().getFilesDir();
-        File file = new File(path, "goals.txt");
+        File file = new File(path, filename);
 
         if (file.isFile())
         {
-            String goals = loadGoals("goals.txt");
+            String goals = loadGoals(filename);
 
             String[] lines = goals.split(System.getProperty("line.separator"));
 
@@ -240,24 +245,51 @@ public class GoalsActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
+            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
             switch (menuItem.getItemId()) {
                 case R.id.nav_graph:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
                     intent = new Intent(GoalsActivity.this, GraphActivity.class);
-                    SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-                    String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
                     intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     startActivity(intent);
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
                     intent = new Intent(GoalsActivity.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 case R.id.nav_home:
                     selectedMenuItemId = R.id.nav_home;
                     intent = new Intent(GoalsActivity.this, HomePageActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
+                    break;
+                case R.id.nav_creditCard:
+                    selectedMenuItemId = R.id.nav_creditCard;
+                    intent = new Intent(GoalsActivity.this, CreditCardInput.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 // Handle additional navigation items here
                 default:

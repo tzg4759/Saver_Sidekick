@@ -33,6 +33,8 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,6 +42,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -47,7 +50,7 @@ import java.util.Locale;
 
 public class HomePageActivity extends AppCompatActivity {
 
-    ArrayList<Transaction> transactionList;
+    public static ArrayList<Transaction> transactionList;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
@@ -59,7 +62,13 @@ public class HomePageActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "payment_reminder_channel";
     private static final String REMINDER_EXTRA = "reminder_extra";
     private String addedTransaction;
+    private float allIncome;
+    private float allExpense;
+    private float allNet;
 
+    FirebaseAuth auth;
+    FirebaseUser currentUser;
+    String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +82,11 @@ public class HomePageActivity extends AppCompatActivity {
                 openDatePicker();
             }
         });
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        String username = currentUser.getEmail();
+        filename = username+"transactions.txt";
 
         // Initialize the UI elements
         TextView textViewNeeds = findViewById(R.id.textViewNeeds);
@@ -113,7 +127,7 @@ public class HomePageActivity extends AppCompatActivity {
         {
             String[] components = addedTransaction.split(" ");
             Transaction newTransaction = new Transaction(components[0], components[1], Float.valueOf(components[2]));
-            writeToFile("transactions.txt", newTransaction);
+            writeToFile(filename, newTransaction);
         }
 
         transactionList = reloadTransactions();
@@ -126,7 +140,7 @@ public class HomePageActivity extends AppCompatActivity {
         if (transactionList.size() == 0) {
             noTransactionsText.setVisibility(View.VISIBLE);
         } else {
-            loadTransactions("transactions.txt");
+            loadTransactions(filename);
             updateSummary(transactionList);
         }
 
@@ -136,31 +150,12 @@ public class HomePageActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button goalsButton = findViewById(R.id.goalsButton);
-        goalsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, GoalsActivity.class);
-            startActivity(intent);
-        });
-
-        Button budgetButton = findViewById(R.id.budgetButton);
-        budgetButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, BudgetActivity.class);
-            startActivity(intent);
-        });
-
-        Button graphButton = findViewById(R.id.graphButton);
-        graphButton.setOnClickListener(view -> {
-            Intent intent = new Intent(HomePageActivity.this, GraphActivity.class);
-            intent.putExtra("monthString", monthSums());
-            startActivity(intent);
-        });
-
         Button importButton = findViewById(R.id.importFileButton);
         importButton.setOnClickListener(view -> {
             filePicker();
             transactionList = reloadTransactions();
+            noTransactionsText.setVisibility(View.INVISIBLE);
         });
-
         // Retrieve the weekly earnings from SharedPreferences
         double weeklyEarnings = PreferenceManager.getDefaultSharedPreferences(this).getFloat("weeklyEarnings", 0);
         // retrieve the new income amount from SharedPreferences
@@ -168,11 +163,39 @@ public class HomePageActivity extends AppCompatActivity {
 
         double weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;
         String newIncomeType = PreferenceManager.getDefaultSharedPreferences(this).getString("incomeType", "Other Income");
+// Button to overworked
+        Button overworked= findViewById(R.id.Overworked);
+        overworked.setOnClickListener(view -> {
+            Intent intent = new Intent(HomePageActivity.this, OverTimeHoursWorked.class);
+            intent.putExtra("monthString", monthSums());
+            intent.putExtra("thisMonth", currentMonth());
+            intent.putExtra("lastMonth", lastMonth());
+            intent.putExtra("allNet", allNet);
+            intent.putExtra("allIncome", allIncome);
+            intent.putExtra("allExpense", allExpense);
+            intent.putExtra("income",String.valueOf(weeklyEarnings));
+            startActivity(intent);
+        });
+        Intent in = getIntent();
+        String overworkedhour;
+        try{
+         overworkedhour = in.getStringExtra("Overworkedhour");
+        //// AFTER THE EXTRA OVER WORK HOUR ADDED
+        float overworkedhourvalue = Float.parseFloat(overworkedhour);
+        newIncomeAmount = newIncomeAmount + overworkedhourvalue;
+        weeklyTotalEarnings = weeklyEarnings + newIncomeAmount;}
+        catch (Exception e){
+            overworkedhour ="0";
+            float overworkedhourvalue = Float.parseFloat(overworkedhour);
+        }
+        //// AFTER THE EXTRA OVER WORK HOUR ADDED
 
         // Calculate the amounts for each category
         double necessities = weeklyTotalEarnings * 0.5;
         double wants = weeklyTotalEarnings * 0.3;
         double savings = weeklyTotalEarnings * 0.2;
+        // reset when new income is added
+
 
         // Update the UI with the calculated amounts
         textViewNeeds.setText(String.format(Locale.US, "Necessities: $%.2f", necessities));
@@ -221,29 +244,59 @@ public class HomePageActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
+        // Set up the ActionBarDrawerToggle for the drawer layout
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        // Enable the "up" button in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Set a navigation item selection listener for the navigation view
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
             switch (menuItem.getItemId()) {
                 case R.id.nav_goal:
                     // Handle goals navigation
                     selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
-                    intent = new Intent(HomePageActivity.this, GoalsActivity.class);
+                    intent = new Intent(HomePageActivity.this, GoalsActivity.class);                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
+
                     break;
                 case R.id.nav_budget:
                     // Handle budget navigation
                     selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
                     intent = new Intent(HomePageActivity.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 case R.id.nav_graph:
                     selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
                     intent = new Intent(HomePageActivity.this, GraphActivity.class);
                     intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
+                    break;
+                case R.id.nav_creditCard:
+                    selectedMenuItemId = R.id.nav_creditCard;
+                    intent = new Intent(HomePageActivity.this, CreditCardInput.class);
+                    intent.putExtra("monthString", monthSums());
+                    intent.putExtra("thisMonth", currentMonth());
+                    intent.putExtra("lastMonth", lastMonth());
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    intent.putExtra("allNet", allNet);
                     break;
                 // Handle additional navigation items here
                 default:
@@ -270,15 +323,20 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void openDatePicker() {
+        // Create CalendarConstraints to restrict the date range
         CalendarConstraints.Builder calendarConstraintsBuilder = new CalendarConstraints.Builder();
-        calendarConstraintsBuilder.setStart(System.currentTimeMillis() - 31536000000L);
-        calendarConstraintsBuilder.setEnd(System.currentTimeMillis());
+        calendarConstraintsBuilder.setStart(System.currentTimeMillis() - 31536000000L); // Start date is set to 1 year ago
+        calendarConstraintsBuilder.setEnd(System.currentTimeMillis()); // End date is set to the current date
         CalendarConstraints calendarConstraints = calendarConstraintsBuilder.build();
 
+        // Create MaterialDatePicker.Builder for selecting a date
         MaterialDatePicker.Builder<Long> datePickerBuilder = MaterialDatePicker.Builder.datePicker();
         datePickerBuilder.setCalendarConstraints(calendarConstraints);
 
+        // Build the MaterialDatePicker
         MaterialDatePicker<Long> datePicker = datePickerBuilder.build();
+
+        // Add a listener for positive button click (date selection)
         datePicker.addOnPositiveButtonClickListener(selection -> {
             long selectedDate = selection;
 
@@ -311,7 +369,7 @@ public class HomePageActivity extends AppCompatActivity {
 
                                     // Create an intent to trigger the reminder
                                     Intent intent = new Intent(HomePageActivity.this, PaymentReminderReceiver.class);
-                                    intent.putExtra(PaymentReminderReceiver.REMINDER_EXTRA, reminderMessage);  // Pass the reminder message as an extra
+                                    intent.putExtra(PaymentReminderReceiver.REMINDER_EXTRA, reminderMessage); // Pass the reminder message as an extra
                                     PendingIntent pendingIntent = PendingIntent.getBroadcast(
                                             HomePageActivity.this,
                                             0,
@@ -338,13 +396,12 @@ public class HomePageActivity extends AppCompatActivity {
             timePickerDialog.show();
         });
 
+        // Show the DatePicker dialog
         datePicker.show(getSupportFragmentManager(), datePicker.toString());
     }
 
-
-
-
     private void updateSelectedMenuItem() {
+        // Set the checked state of the navigation view item based on the selectedMenuItemId
         navigationView.setCheckedItem(selectedMenuItemId);
     }
 
@@ -356,6 +413,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Pass the selected item to the ActionBarDrawerToggle
         if(toggle.onOptionsItemSelected(item)){
             return true;
         }
@@ -427,7 +485,7 @@ public class HomePageActivity extends AppCompatActivity {
             Toast.makeText(this, "Opened file", Toast.LENGTH_SHORT).show();
             for (Transaction t : transactionList)
             {
-                writeToFile("transactions.txt", t);
+                writeToFile(filename, t);
             }
             Intent intent = new Intent(HomePageActivity.this, PinpointPayment.class);
             intent.putParcelableArrayListExtra("transactionList", transactionList);
@@ -511,6 +569,10 @@ public class HomePageActivity extends AppCompatActivity {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         StringBuilder output = new StringBuilder();
 
+        allIncome = 0.0f;
+        allExpense = 0.0f;
+        allNet = 0.0f;
+
         if (transactions.size() > 0) {
             for (Transaction t : transactions) {
                 String currDate = t.getDate();
@@ -520,6 +582,18 @@ public class HomePageActivity extends AppCompatActivity {
                 int currMonth = Integer.parseInt(components[1]);
 
                 if (currYear == year) {
+
+                    allNet += currAmount;
+
+                    if (currAmount < 0)
+                    {
+                        allExpense += currAmount;
+                    }
+                    else
+                    {
+                        allIncome += currAmount;
+                    }
+
                     switch (currMonth) {
                         case 1:
                             jan += currAmount;
@@ -573,10 +647,10 @@ public class HomePageActivity extends AppCompatActivity {
     public ArrayList<Transaction> reloadTransactions() {
         ArrayList<Transaction> transactionList = new ArrayList<>();
         File path = getApplicationContext().getFilesDir();
-        File file = new File(path, "transactions.txt");
+        File file = new File(path, filename);
 
         if (file.isFile()) {
-            String transactions = loadTransactions("transactions.txt");
+            String transactions = loadTransactions(filename);
             String[] lines = transactions.split(System.getProperty("line.separator"));
 
             for (String line : lines) {
@@ -603,5 +677,71 @@ public class HomePageActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("monthSums", monthSumString);
         editor.apply();
+    }
+
+    public String currentMonth() {
+        String output = "";
+
+        Calendar cal = Calendar.getInstance();
+        String currentYear = (new SimpleDateFormat("yyyy").format(cal.getTime()));
+        String currentMonth = (new SimpleDateFormat("MM").format(cal.getTime()));
+
+        ArrayList<Transaction> transactions = reloadTransactions();
+
+        if (transactions.size() > 0) {
+            for (Transaction t : transactions) {
+                String currDate = t.getDate();
+                String[] components = currDate.split("/");
+                String transactionYear = components[2];
+                String transactionMonth = components[1];
+
+                if (currentMonth.equals(transactionMonth) && currentYear.equals(transactionYear)) {
+                    output += t.getAmount() + " ";
+                }
+            }
+        }
+
+        return output;
+    }
+
+    public String lastMonth() {
+        String output = "";
+
+        Calendar cal = Calendar.getInstance();
+        String currentYear = (new SimpleDateFormat("yyyy").format(cal.getTime()));
+        int currentMonth = Integer.parseInt(new SimpleDateFormat("MM").format(cal.getTime()));
+        int currentDay = Integer.parseInt(new SimpleDateFormat("dd").format(cal.getTime()));
+        String lastMonth;
+
+        if (currentMonth == 1)
+        {
+            lastMonth = "12";
+            int yearInt = Integer.parseInt(currentYear);
+            yearInt--;
+            currentYear = String.valueOf(yearInt);
+        }
+        else
+        {
+            currentMonth--;
+            lastMonth = "0"+String.valueOf(currentMonth);
+        }
+
+        ArrayList<Transaction> transactions = reloadTransactions();
+
+        if (transactions.size() > 0) {
+            for (Transaction t : transactions) {
+                String currDate = t.getDate();
+                String[] components = currDate.split("/");
+                String transactionYear = components[2];
+                String transactionMonth = components[1];
+                int transactionDay = Integer.parseInt(components[0]);
+
+                if (lastMonth.equals(transactionMonth) && currentYear.equals(transactionYear) && transactionDay <= currentDay) {
+                    output += t.getAmount() + " ";
+                }
+            }
+        }
+
+        return output;
     }
 }

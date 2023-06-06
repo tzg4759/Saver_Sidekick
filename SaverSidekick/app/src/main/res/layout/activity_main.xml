@@ -32,6 +32,26 @@
         android:textColor="#FFFFFF"
         android:backgroundTint="#A3657A"/>
 
+
+    <Button
+        android:text="Spending Alerts"
+        android:id="@+id/alertButton"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#A3657A"
+        />
+
+    <Button
+        android:text="Crypto Prices"
+        android:id="@+id/crypto"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#A3657A"
+        />
+
+
     <Button
         android:text="@string/log_out"
         android:id="@+id/logout"

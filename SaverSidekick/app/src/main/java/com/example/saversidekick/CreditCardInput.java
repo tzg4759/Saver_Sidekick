@@ -1,10 +1,15 @@
 package com.example.saversidekick;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,19 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-public class GraphActivity extends AppCompatActivity implements Serializable {
+public class CreditCardInput extends AppCompatActivity {
+    EditText Cardnumber,Expiredata,cvvnumber;
+    //Radio group
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+    Button add;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -34,7 +34,16 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graph);
+        setContentView(R.layout.activity_credit_card_input);
+        //get setting
+       // radioGroup = findViewById(R.id.RadioGroup);
+        Cardnumber=findViewById(R.id.cardnumber);
+        Expiredata=findViewById(R.id.Expire);
+        cvvnumber=findViewById(R.id.cvv);
+        add = findViewById(R.id.add);
+        //change to var
+//Radio group
+        radioGroup = findViewById(R.id.banks);
 
         String monthSums = (String) getIntent().getSerializableExtra("monthString");
         String thisMonth = (String) getIntent().getSerializableExtra("thisMonth");
@@ -43,41 +52,42 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         float allExpense = (Float) getIntent().getSerializableExtra("allExpense");
         float allNet = (Float) getIntent().getSerializableExtra("allNet");
 
-        BarChart barChart = findViewById(R.id.barChart);
-
-        // Create a description and set its text to the chart description
-        Description description = new Description();
-        description.setText("");
-
-        // Set the chart description
-        barChart.setDescription(description);
-
-        // Create a list of month sums
-        ArrayList<Float> monthValues = new ArrayList<>();
-        String components[] = monthSums.split("[|]");
-        for (int i = 0; i < 12; i++) {
-            monthValues.add(Float.valueOf(components[i]));
-        }
-
-        // Prepare data for the bar chart
-        List<BarEntry> entries = new ArrayList<>();
-        for (int i = 0; i < monthValues.size(); i++) {
-            entries.add(new BarEntry(i, monthValues.get(i)));
-        }
-
-        BarDataSet dataSet = new BarDataSet(entries, "Monthly Spending");
-        dataSet.setColor(Color.parseColor("#FFA726"));
-        BarData barData = new BarData(dataSet);
-        barData.setBarWidth(0.9f);
-
-        // Customize x-axis labels
-        String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(months));
-        barChart.getXAxis().setGranularity(1f);
-
-        // Set data and refresh the chart
-        barChart.setData(barData);
-        barChart.invalidate();
+        //credit card
+       // CreditCard card = new CreditCard(getNum,date,cvv,"anz");
+        //submit
+        add.setOnClickListener(view -> {
+            String getNum = Cardnumber.getText().toString();
+            String date = Expiredata.getText().toString();
+            String getCvv = cvvnumber.getText().toString();
+            Intent intent = new Intent(CreditCardInput.this, DisplayCreditCard.class);
+            if (TextUtils.isEmpty(getNum)) {
+                Toast.makeText(CreditCardInput.this,"Please enter a correct Card number",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (getNum.length()<10) {
+                Toast.makeText(CreditCardInput.this,"Please enter a correct Card number",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(date)) {
+                Toast.makeText(CreditCardInput.this,"Please enter a Expire data",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(getCvv)) {
+                Toast.makeText(CreditCardInput.this,"Please enter a correct cvv number",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int radioID = radioGroup.getCheckedRadioButtonId();
+            radioButton = findViewById(radioID);
+            if (radioButton == null|| radioGroup==null) {
+                Toast.makeText(CreditCardInput.this,"Please Select ur Bank",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            intent.putExtra("getNum", getNum);
+            intent.putExtra("date", date);
+            intent.putExtra("getCvv", getCvv);
+            intent.putExtra("Bank", radioButton.getText());
+            startActivity(intent);
+        });
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -88,25 +98,40 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Button monthlyStatsButton = findViewById(R.id.moreInfoButton);
-        monthlyStatsButton.setOnClickListener(view -> {
-
-            Intent intent = new Intent(GraphActivity.this, MonthlyStatsActivity.class);
-            intent.putExtra("thisMonth", thisMonth);
-            intent.putExtra("lastMonth", lastMonth);
-            intent.putExtra("allIncome", allIncome);
-            intent.putExtra("allExpense", allExpense);
-            intent.putExtra("allNet", allNet);
-            startActivity(intent);
-        });
-
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             Intent intent;
+            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            String monthSumString = sharedPreferences.getString("monthSums", "default_value_if_not_found");
             switch (menuItem.getItemId()) {
                 case R.id.nav_goal:
                     // Handle goals navigation
                     selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
-                    intent = new Intent(GraphActivity.this, GoalsActivity.class);
+                    intent = new Intent(CreditCardInput.this, GoalsActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    break;
+                case R.id.nav_graph:
+                    // Handle budget navigation
+                    selectedMenuItemId = R.id.nav_graph;  // Update selectedMenuItemId
+                    intent = new Intent(CreditCardInput.this, GraphActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
+                    startActivity(intent);
+                    break;
+                case R.id.nav_home:
+                    selectedMenuItemId = R.id.nav_home;
+                    intent = new Intent(CreditCardInput.this, HomePageActivity.class);
+                    intent.putExtra("monthString", monthSumString);
                     intent.putExtra("monthString", monthSums);
                     intent.putExtra("thisMonth", thisMonth);
                     intent.putExtra("lastMonth", lastMonth);
@@ -115,29 +140,9 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
                     intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_budget:
-                    // Handle budget navigation
-                    selectedMenuItemId = R.id.nav_budget;  // Update selectedMenuItemId
-                    intent = new Intent(GraphActivity.this, BudgetActivity.class);
-                    intent.putExtra("monthString", monthSums);
-                    intent.putExtra("thisMonth", thisMonth);
-                    intent.putExtra("lastMonth", lastMonth);
-                    intent.putExtra("allNet", allNet);
-                    intent.putExtra("allIncome", allIncome);
-                    intent.putExtra("allExpense", allExpense);
-                    break;
-                case R.id.nav_home:
-                    selectedMenuItemId = R.id.nav_home;
-                    intent = new Intent(GraphActivity.this, HomePageActivity.class);
-                    intent.putExtra("monthString", monthSums);
-                    intent.putExtra("thisMonth", thisMonth);
-                    intent.putExtra("lastMonth", lastMonth);
-                    intent.putExtra("allNet", allNet);
-                    intent.putExtra("allIncome", allIncome);
-                    intent.putExtra("allExpense", allExpense);
-                    break;
-                case R.id.nav_creditCard:
                     selectedMenuItemId = R.id.nav_creditCard;
-                    intent = new Intent(GraphActivity.this, CreditCardInput.class);
+                    intent = new Intent(CreditCardInput.this, BudgetActivity.class);
+                    intent.putExtra("monthString", monthSumString);
                     intent.putExtra("monthString", monthSums);
                     intent.putExtra("thisMonth", thisMonth);
                     intent.putExtra("lastMonth", lastMonth);
@@ -167,12 +172,6 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        updateSelectedMenuItem();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (toggle.onOptionsItemSelected(item)) {
             return true;
@@ -180,4 +179,9 @@ public class GraphActivity extends AppCompatActivity implements Serializable {
         return super.onOptionsItemSelected(item);
     }
 
+    public void checkButton(View view){
+      int radioID = radioGroup.getCheckedRadioButtonId();
+      radioButton = findViewById(radioID);
+      Toast.makeText(this,"Selected radio"+radioButton.getText(),Toast.LENGTH_SHORT);
+    }
 }
