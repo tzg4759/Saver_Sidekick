@@ -24,7 +24,7 @@ public class DisplayCreditCard extends AppCompatActivity {
         String Bank = i.getStringExtra("Bank");
         Button Home = findViewById(R.id.ToHome);
         Button terms = findViewById(R.id.Terms);
-        String settext ="\"Credit Card Number: \"+Num+\"\\n Bank : \"+Bank+\"\\n ExpireDate : \"+ thedate+\"\\n CVV : ***\"";
+        String settext ="\"Credit Card Number: \n+Num+\n Bank : \n+Bank+\n ExpireDate : \n+ thedate+\n CVV : ***\n";
         main=findViewById(R.id.CreditCardDetail);
         main.setText(settext);
         //Seting the creditcard
