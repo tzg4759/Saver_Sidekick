@@ -50,6 +50,7 @@
         android:layout_width="211dp"
         android:layout_height="67dp"
         android:text="View my Saving in A period"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
