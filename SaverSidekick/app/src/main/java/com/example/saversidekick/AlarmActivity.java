@@ -55,22 +55,22 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);        // set layout view to activity_alarm.xml
 
         //initialise front-end view edit texts, set reminder buttons and home button
-        alertBtn1 = findViewById(R.id.button_1);
-        alertBtn2 = findViewById(R.id.button_2);
-        alertBtn3 = findViewById(R.id.button_3);
-        hourInput1 = findViewById(R.id.hours_edit_text_1);
-        minuteInput1 = findViewById(R.id.minutes_edit_text_1);
-        secondInput1 = findViewById(R.id.seconds_edit_text_1);
-        hourInput2 = findViewById(R.id.hours_edit_text_2);
-        minuteInput2 = findViewById(R.id.minutes_edit_text_2);
-        secondInput2 = findViewById(R.id.seconds_edit_text_2);
-        hourInput3 = findViewById(R.id.hours_edit_text_3);
-        minuteInput3 = findViewById(R.id.minutes_edit_text_3);
-        secondInput3 = findViewById(R.id.seconds_edit_text_3);
-        msgInput1 = findViewById(R.id.message_edit_text_1);
-        msgInput2 = findViewById(R.id.message_edit_text_2);
-        msgInput3 = findViewById(R.id.message_edit_text_3);
-        homeButton = findViewById(R.id.homebutton);
+        alertBtn1 = findViewById(R.id.button_1);                    // initialise first button
+        alertBtn2 = findViewById(R.id.button_2);                    // initialise second button
+        alertBtn3 = findViewById(R.id.button_3);                    // initialise third button
+        hourInput1 = findViewById(R.id.hours_edit_text_1);          // initialise user input for the hour for reminder 1
+        minuteInput1 = findViewById(R.id.minutes_edit_text_1);      // initialise user input for the minute for reminder 1
+        secondInput1 = findViewById(R.id.seconds_edit_text_1);      // initialise user input for the second for reminder 1
+        hourInput2 = findViewById(R.id.hours_edit_text_2);          // initialise user input for the hour for reminder 2
+        minuteInput2 = findViewById(R.id.minutes_edit_text_2);      // initialise user input for the minute for reminder 2
+        secondInput2 = findViewById(R.id.seconds_edit_text_2);      // initialise user input for the second for reminder 2
+        hourInput3 = findViewById(R.id.hours_edit_text_3);          // initialise user input for the hour for reminder 3
+        minuteInput3 = findViewById(R.id.minutes_edit_text_3);      // initialise user input for the minute for reminder 3
+        secondInput3 = findViewById(R.id.seconds_edit_text_3);      // initialise user input for the second for reminder 3
+        msgInput1 = findViewById(R.id.message_edit_text_1);         // initialise user input for the message for reminder 1
+        msgInput2 = findViewById(R.id.message_edit_text_2);         // initialise user input for the message for reminder 2
+        msgInput3 = findViewById(R.id.message_edit_text_3);         // initialise user input for the message for reminder 3
+        homeButton = findViewById(R.id.homebutton);                 // initialise the return to main/home button
 
         // message when open to remind user to set notficiations for the application on this device
         Toast.makeText(getApplicationContext(), "Notifications must be turned on in device settings for Saver Sidekick", Toast.LENGTH_LONG).show();
@@ -146,9 +146,9 @@ public class AlarmActivity extends AppCompatActivity {
             calendar.setTimeInMillis(currentTimeMillis);
 
             // set the hour, minute and second in the calendar instance
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            calendar.set(Calendar.MINUTE, minutes);
-            calendar.set(Calendar.SECOND, seconds);
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);      // set the hours on the calender instance
+            calendar.set(Calendar.MINUTE, minutes);             // set the minutes on the calender instance
+            calendar.set(Calendar.SECOND, seconds);             // set the seconds on the calender instance
 
             // Check if the time the user set has already passed for today, if yes, add one day
             if (calendar.getTimeInMillis() < currentTimeMillis) {
