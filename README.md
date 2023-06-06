@@ -1,5 +1,7 @@
 ========================================================================
+
 Saver Sidekick
+
 Authors:Fahim Kaidawala, Brad Jackson, Lucas Spain, Sehun Bang, Katie LI;
 ========================================================================
 
@@ -80,7 +82,7 @@ Step 4. Run the app on virtual device.
 8. The user can click the "Set Reminder" button to confirm the reminder, or click "Cancel" to cancel the reminder creation.
 
 --------------------------------------
-   BUDGET EXPENSE ACTIVITY
+  HOW TO USE BUDGET EXPENSE ACTIVITY
 --------------------------------------
 
 1. Launch the application on an Android device or emulator.
@@ -95,7 +97,7 @@ Step 4. Run the app on virtual device.
 10. The budget amounts and progress bars update dynamically when the percentages or earnings change.
 
 --------------------------------------
-   NAVIGATION DRAWER
+  HOW TO USE NAVIGATION DRAWER
 --------------------------------------
 
 1. The HomePageActivity will be displayed, showing the navigation drawer icon in the toolbar.
@@ -106,7 +108,7 @@ Step 4. Run the app on virtual device.
 6. The HomePageActivity class includes a NavigationView.OnNavigationItemSelectedListener implementation to handle menu item clicks and navigate to the appropriate activity.
 
 --------------------------------------
-   ADD NEW INCOME TYPE
+  HOW TO USE ADD NEW INCOME TYPE
 --------------------------------------
 
 1. Import the necessary classes or modules
@@ -119,7 +121,7 @@ Step 4. Run the app on virtual device.
 
 
 --------------------------------------
-   CHECK EXPENSE PERIOD
+  HOW TO USE CHECK EXPENSE PERIOD
 --------------------------------------
 
 1. Import the necessary classes or modules
@@ -130,7 +132,7 @@ Step 4. Run the app on virtual device.
 6. Validate and display the list
 
 --------------------------------------
-   PINPOINT PAYMENT WITH LABELS
+  HOW TO USE PINPOINT PAYMENT WITH LABELS
 --------------------------------------
 1. Import the necessary classes or modules
 2. Navigate to the Home page
@@ -142,7 +144,7 @@ Step 4. Run the app on virtual device.
 8. Verify that the chosen option label is displayed and updated behind the amount of the selected expense
 
 --------------------------------------
-   ADD TRANSACTION
+  HOW TO USE ADD TRANSACTION
 --------------------------------------
 
 1. Navigate to Home page
@@ -151,7 +153,7 @@ Step 4. Run the app on virtual device.
 4. Click 'Add Transaction' button
 
 --------------------------------------
-   IMPORT CSV FILE
+   HOW TO USE IMPORT CSV FILE
 --------------------------------------
 
 In order to import a csv file for transactions, the file must be in the correct format. It must be a .csv, and it must have 3 columns. The first column is for the date which must be in dd/mm/yyyy format, the second column is for the name of the transaction, and the third column is for the amount. Positive values will be added as income and negative values will be added as expenses.
@@ -161,7 +163,7 @@ In order to import a csv file for transactions, the file must be in the correct 
 3. Select file
 
 --------------------------------------
-   GOALS PAGE
+   HOW TO USE GOALS PAGE
 --------------------------------------
 
 1. Open navigation sidebar
@@ -175,14 +177,14 @@ In order to import a csv file for transactions, the file must be in the correct 
 9. Click 'Add goal' button
 
 --------------------------------------
-   MONTHLY STATS
+   HOW TO USE MONTHLY STATS
 --------------------------------------
 
 1. Navigate to graph page
 2. Click 'More Info' button
 3. Monthly stats page will be displayed
 --------------------------------------
-   Add OVER WORKED HOUR
+   HOW TO USE ADD OVER WORKED HOUR
 --------------------------------------
 1. Click 'OVERWORKEDHOUR' button
 2. Enter "hours worked" and "Bonus ratio" information
@@ -190,7 +192,7 @@ In order to import a csv file for transactions, the file must be in the correct 
 4. click submit to add to the overall income
 5. Click edit to change.
 --------------------------------------
-   CREDIT CARD
+   HOW TO USE CREDIT CARD
 --------------------------------------
 1. Open navigation sidebar
 2. Click 'CREDIT CARD'
@@ -201,13 +203,13 @@ In order to import a csv file for transactions, the file must be in the correct 
 8. Click 'Terms and Policy' button to check the Terms and Policy
 9. Click 'Home' to go back to homepage
 --------------------------------------
-   SAVINGS HISTORY GRAPH
+   HOW TO USE SAVINGS HISTORY GRAPH
 --------------------------------------
 1. Click 'Savingshistory' button
 2. Enter the "starting month", "how many month"(for graph to display) and "this month savings"information
 3. Click 'Home' to go back to homepage
 --------------------------------------
-   FINAICAL EDUCATION RESOURCE
+   HOW TO USE FINANCIAL EDUCATION RESOURCE
 --------------------------------------
 1. Click 'Savingshistory' button
 2. Click 'FINAICAL EDUCATION RESOURCE' button
