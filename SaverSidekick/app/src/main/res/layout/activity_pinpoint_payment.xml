@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="viewSummaryButtonClicked"
-        android:text="View Pinpointed Payments by Labels" />
+        android:text="View Pinpointed Payments by Labels"
+        android:textColor="@color/white"/>
 
 </LinearLayout>
