@@ -3,6 +3,7 @@ package com.example.saversidekick;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,5 +67,10 @@ public class SavingsGraph extends AppCompatActivity {
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate(); // refresh chart
+        Button Home = findViewById(R.id.ToHome);
+        Home.setOnClickListener(view -> {
+            Intent i = new Intent(SavingsGraph.this,HomePageActivity.class);
+            startActivity(i);
+        });
     }
 }
