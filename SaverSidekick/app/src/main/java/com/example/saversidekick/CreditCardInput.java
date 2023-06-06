@@ -107,6 +107,13 @@ public class CreditCardInput extends AppCompatActivity {
                     // Handle goals navigation
                     selectedMenuItemId = R.id.nav_goal;  // Update selectedMenuItemId
                     intent = new Intent(CreditCardInput.this, GoalsActivity.class);
+                    intent.putExtra("monthString", monthSumString);
+                    intent.putExtra("monthString", monthSums);
+                    intent.putExtra("thisMonth", thisMonth);
+                    intent.putExtra("lastMonth", lastMonth);
+                    intent.putExtra("allNet", allNet);
+                    intent.putExtra("allIncome", allIncome);
+                    intent.putExtra("allExpense", allExpense);
                     break;
                 case R.id.nav_graph:
                     // Handle budget navigation
