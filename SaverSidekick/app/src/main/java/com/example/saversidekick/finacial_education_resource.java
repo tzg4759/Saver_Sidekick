@@ -48,4 +48,4 @@ public class finacial_education_resource extends AppCompatActivity {
         });
     }
     }
-}
+
