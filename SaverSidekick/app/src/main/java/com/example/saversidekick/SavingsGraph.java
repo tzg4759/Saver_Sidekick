@@ -57,7 +57,7 @@ public class SavingsGraph extends AppCompatActivity {
             }
         }
 
-
+        //Setting Graph
         XAxis xAxis = chart.getXAxis();
         xAxis.setLabelCount(5); // set the number of labels to display on the X-axis
         xAxis.setGranularity(1f);

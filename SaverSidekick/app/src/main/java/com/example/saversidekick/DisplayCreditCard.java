@@ -18,13 +18,16 @@ public class DisplayCreditCard extends AppCompatActivity {
         CreditCard creditCard = new CreditCard();
         setContentView(R.layout.activity_display_credit_card);
         Intent i = getIntent();
+        //Get Data
         String Num = i.getStringExtra("getNum");
         String thedate = i.getStringExtra("date");
         String Bank = i.getStringExtra("Bank");
         Button Home = findViewById(R.id.ToHome);
         Button terms = findViewById(R.id.Terms);
+        String settext ="\"Credit Card Number: \"+Num+\"\\n Bank : \"+Bank+\"\\n ExpireDate : \"+ thedate+\"\\n CVV : ***\"";
         main=findViewById(R.id.CreditCardDetail);
-        main.setText("Credit Card Number: "+Num+"\n Bank : "+Bank+"\n ExpireDate : "+ thedate+"\n CVV : ***");
+        main.setText(settext);
+        //Seting the creditcard
         creditCard.setBank(Num);
         creditCard.setBank(Bank);
         creditCard.setDate(thedate);
@@ -32,6 +35,7 @@ public class DisplayCreditCard extends AppCompatActivity {
             Intent intent = new Intent(DisplayCreditCard.this,HomePageActivity.class);
             startActivity(intent);
         });
+        //Setting the terms and policy button depending on the bank user chosen
         if(Bank.contains("bnz")){
             terms.setOnClickListener(new View.OnClickListener() {
                 @Override
